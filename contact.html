@@ -293,35 +293,6 @@
             font-size: 0.7rem;
         }
 
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            z-index: 999;
-        }
-
-        .scroll-to-top:hover {
-            background: var(--gold-dark);
-            transform: translateY(-5px);
-        }
-
-        .scroll-to-top::before {
-            content: '▲';
-            color: var(--white);
-            font-size: 1.2rem;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .contact-title {
@@ -450,7 +421,5 @@
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <div class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"></div>
 </body>
 </html>
