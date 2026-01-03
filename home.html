@@ -1138,7 +1138,7 @@
             }
             
             guideGrid.innerHTML = `
-                <a href="/detail.html?id=${articleId}" class="related-card large" style="text-decoration: none; color: inherit;">
+                <a href="detail.html?id=${articleId}" class="related-card large" style="text-decoration: none; color: inherit;">
                     <div class="related-content">
                         <div class="related-image" style="background: linear-gradient(135deg, #EDBF43 0%, #B8860B 100%); position: relative;">
                             ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📖<span class=\\'related-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : '📖'}

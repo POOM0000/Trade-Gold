@@ -586,7 +586,7 @@
                         เรียนรู้พื้นฐานการลงทุนทองคำตั้งแต่เริ่มต้น เข้าใจความแตกต่างของทองคำแต่ละประเภท วิธีการซื้อขาย
                         และกลยุทธ์การลงทุนที่เหมาะสม พร้อมเคล็ดลับจากผู้เชี่ยวชาญที่จะช่วยให้คุณเริ่มต้นได้อย่างมั่นใจ
                     </p>
-                    <a href="/article.html" class="read-more-btn">อ่านบทความเต็ม →</a>
+                    <a href="article.html" class="read-more-btn">อ่านบทความเต็ม →</a>
                 </div>
             </div>
         </div>
@@ -702,7 +702,7 @@
                 }
                 
                 return `
-                    <a href="/detail.html?id=${articleId}" class="knowledge-card" data-category="${category}">
+                    <a href="detail.html?id=${articleId}" class="knowledge-card" data-category="${category}">
                         <div class="knowledge-image" style="background:${bgColor}; position: relative;">
                             ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.innerHTML='📄<span class=\\'knowledge-category\\'>${category}</span>';" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">` : '📄'}
                             <span class="knowledge-category" style="${imageUrl ? 'position:absolute;' : ''}">${category}</span>
