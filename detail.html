@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดบทความ - Trade Gold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #EDBF43;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --navy: #1E3A8A;
+            --navy-medium: #1E40AF;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --text-dark: #2c3e50;
+            --sky-blue: #87CEEB;
+            --sky-light: #A3DFF8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --green: #059669;
+            --red: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy);
+            padding: 0.75rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo strong {
+            color: var(--gold-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-light);
+            border-radius: 50%;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 6rem;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-left: auto;
+            margin-right: 0.75rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu a.active {
+            color: var(--gold-primary);
+        }
+
+        .signup-btn {
+            background: var(--gold-primary);
+            color: var(--navy);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .breadcrumb a {
+            color: var(--navy);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-primary);
+        }
+
+        .breadcrumb span {
+            color: #9ca3af;
+        }
+
+        /* Article Container */
+        .article-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .article-category {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: inline-block;
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-featured-image {
+            width: 100%;
+            height: 500px;
+            background: url('/Image/Book.png') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem;
+            margin-bottom: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .article-featured-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--navy);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .article-featured-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            z-index: 1;
+        }
+        
+        .article-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-featured-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Article Content */
+        .article-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 0;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            color: var(--navy);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--gold-primary);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .article-content h4 {
+            color: var(--navy);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .article-content strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .article-content blockquote {
+            background: var(--gray-light);
+            border-left: 5px solid var(--gold-primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid var(--gold-primary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--navy);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Loading State */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--gold-primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error-container {
+            background: #fee;
+            border: 2px solid #fcc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .error-container h3 {
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #172d69;
+            color: var(--white);
+            padding: 1rem 0;
+            margin: 0;
+            width: 100%;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            white-space: nowrap;
+        }
+
+        .footer-grid {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+        }
+
+        .footer-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .footer-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #1a2332;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .footer-bottom div {
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .article-content p {
+                font-size: 1rem;
+            }
+
+            .article-featured-image {
+                height: 350px;
+                padding: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-grid {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="/home.html" class="logo">
+                <img src="/Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                <span>Trade <strong>Gold</strong></span>
+            </a>
+            <div class="search-bar">
+                <input type="search" placeholder="ค้นหา...">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/market.html">Market</a></li>
+                <li><a href="/blog.html" class="active">Blog</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <a href="/signup.html" class="signup-btn">เปิดบัญชี</a>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="/home.html">หน้าแรก</a>
+        <span>›</span>
+        <a href="/blog.html">บทความ</a>
+        <span>›</span>
+        <span id="breadcrumbTitle">รายละเอียดบทความ</span>
+    </div>
+
+    <div class="article-container">
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-container">
+            <div class="loading-spinner"></div>
+            <p style="color: #666;">กำลังโหลดบทความ...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-container" style="display: none;">
+            <h3>⚠️ ไม่สามารถโหลดบทความได้</h3>
+            <p>กรุณาลองใหม่อีกครั้งในภายหลัง หรือกลับไปยัง<a href="/blog.html" style="color: var(--navy); font-weight: 600;">หน้าบทความ</a></p>
+        </div>
+
+        <!-- Article Content (Hidden by default) -->
+        <div id="articleWrapper" style="display: none;">
+            <div class="article-featured-image" id="articleImage">
+                <span class="article-category" id="articleCategory">📈 Trading Strategy</span>
+                <div class="article-header-content">
+                    <h1 class="article-title" id="articleTitle">กำลังโหลด...</h1>
+                    <div class="article-meta">
+                        <div class="meta-item">
+                            <span>📅</span>
+                            <span id="articleDate">-</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>✍️</span>
+                            <span>โดย Trade Gold Team</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>⏱️</span>
+                            <span id="readTime">อ่าน 5 นาที</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-content" id="articleContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Contact</div>
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>@xxxxxx (Trade Gold)</div>
+                    </div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>02-088-9181, 02-088-9185</div>
+                    </div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>1 ถนนราชดำริ ลุมพินี ปทุมวัน กรุงเทพมหานคร สีลม ซอย 22 ห้อง 2301 ชั้น 23 ถนนเแวนด์ แขวง</div>
+                        <div>สีลม เขตบางรัก กรุงเทพมหานคร 10500</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom"><div>copy right © 2025</div></div>
+        </div>
+    </footer>
+
+    <script>
+        // API URL สำหรับดึงข้อมูลบทความจาก Google Apps Script
+        const API_URL = 'https://script.google.com/macros/s/AKfycbzTIMUcEl49nXGRMQk_L_TI1XFD28gUNyMt0IXKVWnDiPnV5GorIEEPMswp-Gsv0r1Bhw/exec';
+
+        // ดึง ID จาก URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+
+        // แปลง Google Drive URL เป็น Direct Link
+        function convertGoogleDriveUrl(url) {
+            if (!url || !url.includes('drive.google.com')) {
+                return url;
+            }
+            
+            let fileId = '';
+            const match1 = url.match(/\/d\/(.*?)\//);
+            const match2 = url.match(/id=(.*?)(&|$)/);
+            
+            if (match1) {
+                fileId = match1[1];
+            } else if (match2) {
+                fileId = match2[1];
+            }
+            
+            if (fileId) {
+                return `https://lh3.googleusercontent.com/d/${fileId}`;
+            }
+            
+            return url;
+        }
+
+        // คำนวณเวลาอ่าน (ประมาณการจากจำนวนคำ)
+        function calculateReadTime(content) {
+            const wordsPerMinute = 200;
+            const wordCount = content.split(/\s+/).length;
+            const minutes = Math.ceil(wordCount / wordsPerMinute);
+            return `อ่าน ${minutes} นาที`;
+        }
+
+        // แสดงข้อมูลบทความ
+        function displayArticle(article) {
+            // ซ่อน loading และ error state
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorState').style.display = 'none';
+            document.getElementById('articleWrapper').style.display = 'block';
+
+            // อัพเดทข้อมูล
+            document.getElementById('articleTitle').textContent = article.Title || 'ไม่มีหัวข้อ';
+            document.getElementById('articleCategory').textContent = article.Category || '📰 ทั่วไป';
+            document.getElementById('articleDate').textContent = article.Date || '-';
+            document.getElementById('breadcrumbTitle').textContent = article.Title || 'รายละเอียดบทความ';
+
+            // อัพเดทรูปภาพ - แบบเดียวกับหน้า article
+            const imageUrl = convertGoogleDriveUrl(article.Image);
+            const imageElement = document.getElementById('articleImage');
+            
+            if (imageUrl) {
+                // ใช้ background-image แบบเดียวกับหน้า article
+                imageElement.style.background = `url('${imageUrl}') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%)`;
+            } else {
+                // ใช้ default background
+                imageElement.style.background = `url('/Image/Book.png') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%)`;
+            }
+
+            // อัพเดทเนื้อหาบทความ
+            const content = article.Content || article.Answer || article.Excerpt || '<p>ไม่มีเนื้อหา</p>';
+            document.getElementById('articleContent').innerHTML = content;
+
+            // คำนวณเวลาอ่าน
+            const readTime = calculateReadTime(content);
+            document.getElementById('readTime').textContent = readTime;
+
+            // อัพเดท title ของหน้า
+            document.title = `${article.Title || 'รายละเอียดบทความ'} - Trade Gold`;
+        }
+
+        // แสดง error state
+        function showError() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorState').style.display = 'block';
+            document.getElementById('articleWrapper').style.display = 'none';
+        }
+
+        // โหลดข้อมูลบทความจาก API
+        async function loadArticle() {
+            if (!articleId) {
+                showError();
+                return;
+            }
+
+            try {
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                
+                const data = await response.json();
+                let articles = [];
+                
+                // รองรับ format ต่างๆ ของ response
+                if (Array.isArray(data)) {
+                    articles = data;
+                } else if (data && typeof data === 'object') {
+                    if (data.articles && Array.isArray(data.articles)) {
+                        articles = data.articles;
+                    } else if (data.faqs && Array.isArray(data.faqs)) {
+                        articles = data.faqs;
+                    }
+                }
+
+                // หาบทความที่ตรงกับ ID
+                const article = articles.find(item => {
+                    // เปรียบเทียบ ID ในรูปแบบต่างๆ
+                    return item.ID == articleId || 
+                           item.id == articleId || 
+                           item.No == articleId ||
+                           item.no == articleId;
+                });
+
+                if (article) {
+                    displayArticle(article);
+                } else {
+                    showError();
+                }
+                
+            } catch (error) {
+                console.error('Error loading article:', error);
+                showError();
+            }
+        }
+
+        // โหลดข้อมูลเมื่อหน้าเว็บพร้อม
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadArticle);
+        } else {
+            loadArticle();
+        }
+    </script>
+</body>
+</html>

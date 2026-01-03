@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับเรา - Trade Gold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold-primary: #EDBF43;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --navy: #1E3A8A;
+            --navy-medium: #1E40AF;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --text-dark: #2c3e50;
+            --sky-blue: #87CEEB;
+            --sky-light: #A3DFF8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy);
+            padding: 0.75rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo strong {
+            color: var(--gold-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-light);
+            border-radius: 50%;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 6rem;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-left: auto;
+            margin-right: 0.75rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu a.active {
+            color: var(--gold-primary);
+            position: relative;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .signup-btn {
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-section h1 {
+            font-family: 'Kanit', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            color: var(--navy);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0rem 2rem;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 4rem;
+            margin-bottom: 5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 4rem;
+            margin-bottom: 5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .values-section h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .value-item {
+            text-align: center;
+        }
+
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-item h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .value-item p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Footer */
+        /* Footer */
+        .footer {
+            background: #172d69;
+            color: var(--white);
+            padding: 1rem 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            white-space: nowrap;
+        }
+
+        .footer-grid {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+        }
+
+        .footer-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .footer-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #1a2332;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .footer-text div {
+            margin-bottom: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .footer-bottom > div {
+            font-size: 0.7rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .footer-content {
+                flex-wrap: wrap;
+            }
+            
+            .footer-grid {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            
+            .footer-text {
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .footer-grid {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .footer-bottom {
+                width: 100%;
+            }
+
+
+            .story-content h2,
+            .values-section h2,
+            .team-section h2 {
+                font-size: 2rem;
+            }
+
+            .values-section {
+                padding: 2rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-section,
+        .values-section,
+        .stat-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                <span>Trade <strong>Gold</strong></span>
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="ค้นหา...">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/market.html">Market</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/about.html" class="active">About Us</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <a href="Link_From" class="signup-btn">เปิดบัญชี</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>About Us</h1>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Story Section -->
+        <div class="story-section">
+            <div class="story-content">
+                <p>
+                   ยินดีต้อนรับสู่ Trade Gold เว็บนี้สร้างมาเพื่อเป็นก้าวแรกที่มั่นคงสำหรับมือใหม่ในโลกการเทรดทองคำ เราตั้งใจเปลี่ยนเรื่องที่ดูยากและซับซ้อน ให้กลายเป็นข้อมูลที่เข้าใจง่าย พร้อมเคียงข้างคุณตั้งแต่วันแรกที่คุณเริ่มเรียนรู้ จนถึงวันที่คุณสามารถก้าวสู่สนามการลงทุนจริงได้อย่างมั่นใจ
+                </p>
+            </div>
+        </div>
+
+        <!-- Values Section -->
+        <div class="values-section">
+            <h2>ค่านิยมหลักของเรา</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">🎯</div>
+                    <h3>ความแม่นยำ</h3>
+                    <p>เรามุ่งมั่นนำเสนอข้อมูลที่ถูกต้อง แม่นยำ และทันสมัยอยู่เสมอ เพื่อให้นักลงทุนได้รับข้อมูลที่ดีที่สุด</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <h3>ความน่าเชื่อถือ</h3>
+                    <p>สร้างความไว้วางใจผ่านการดำเนินธุรกิจที่โปร่งใส และรับผิดชอบต่อข้อมูลทุกชิ้นที่นำเสนอ</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">💡</div>
+                    <h3>นวัตกรรม</h3>
+                    <p>พัฒนาเครื่องมือและบริการใหม่ๆ อย่างต่อเนื่อง เพื่อตอบสนองความต้องการของนักลงทุนยุคใหม่</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">📚</div>
+                    <h3>การศึกษา</h3>
+                    <p>ส่งเสริมความรู้และความเข้าใจเกี่ยวกับการลงทุนทองคำให้แก่สาธารณะอย่างต่อเนื่อง</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Contact</div>
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>@xxxxxx (Trade Gold)</div></div>
+                    </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text"><div>02-088-9181, 02-088-9185</div></div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>1 ถนนราชดำริ ลุมพินี ปทุมวัน กรุงเทพมหานคร สีลม ซอย 22 ห้อง 2301 ชั้น 23 ถนนเแวนด์ แขวง</div>
+                        <div>สีลม เขตบางรัก กรุงเทพมหานคร 10500</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom"><div>copy right © 2025</div></div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animate numbers on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        if (text.includes('+') || text.includes('/')) return;
+                        
+                        const number = parseInt(text.replace(/\D/g, ''));
+                        if (isNaN(number)) return;
+                        
+                        let current = 0;
+                        const increment = number / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= number) {
+                                stat.textContent = text;
+                                clearInterval(timer);
+                            } else {
+                                stat.textContent = Math.floor(current) + (text.includes('K') ? 'K+' : '+');
+                            }
+                        }, 30);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stats-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

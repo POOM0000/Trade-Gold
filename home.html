@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Gold - ศูนย์ข้อมูลทองคำแห่งชาติ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold-primary: #EDBF43;
+            --gold-dark: #B8860B;
+            --gold-light: #FFD700;
+            --navy: #1E3A8A;
+            --navy-dark: #172d69;
+            --sky-blue: #87CEEB;
+            --sky-light: #A3DFF8;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        .header {
+            background: var(--navy);
+            border-radius: 0%;
+            padding: 0.75rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .logo strong {
+            color: var(--gold-primary);
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 6rem;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-left: auto;
+            margin-right: 0.75rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu a.active {
+            color: var(--gold-primary);
+            position: relative;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .signup-btn {
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('/Image/bg.png') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 100%, var(--white) 15%);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--navy);
+            opacity: 60%;
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="30" r="40" fill="rgba(212,175,55,0.1)"/><circle cx="90" cy="70" r="30" fill="rgba(255,215,0,0.1)"/></svg>');
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-family: 'Kanit', serif;
+            font-size: 7rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+            color: var(--gold-light);
+        }
+
+        .hero-content p {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-btn {
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-btn:hover {
+            background: var(--gold-light);
+            color: var(--text-dark);
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--gold-primary);
+        }
+
+        .section-header h2 {
+            font-family: 'Kanit', serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+        }
+
+        .section-badge {
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+            color: var(--navy);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(237, 191, 67, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .section-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(237, 191, 67, 0.5);
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+        }
+
+        .section-badge:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(237, 191, 67, 0.4);
+        }
+
+        /* Gold Price Section */
+        .gold-price-section {
+            background: var(--white);
+            padding: 1.19rem;
+            border-radius: 11.9px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.785rem;
+        }
+
+        .chart-section {
+            margin-top: 1.05rem;
+        }
+
+        .chart-and-widgets-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.05rem;
+        }
+
+        .chart-with-sidebar {
+            position: relative;
+            width: 100%;
+        }
+
+        .main-chart-container {
+            background: var(--white);
+            border-radius: 10.5px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 350px;
+            width: 100%;
+        }
+
+        .floating-sidebar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+            gap: 1.05rem;
+        }
+
+        /* Country Dropdown - จัดวางฝั่งขวาของ Header */
+        .country-dropdown-container {
+            margin-left: auto; /* ดันไปขวาสุด */
+            padding: 0;
+        }
+
+        .country-dropdown {
+            width: 180px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-family: 'Kanit', sans-serif;
+            background: var(--navy);
+            border: none;
+            border-radius: 10px;
+            font-weight: 500;
+            color: var(--white);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .country-dropdown:hover {
+            background: var(--navy-dark);
+        }
+
+        .country-dropdown:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+        }
+
+        .country-dropdown option {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .tv-widget-item {
+            background: var(--white);
+            border-radius: 10.5px;
+            overflow: hidden;
+            box-shadow: 0 1.4px 7px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            min-height: 84px;
+        }
+
+        .tv-widget-item:hover {
+            transform: translateY(-3.5px);
+            box-shadow: 0 3.5px 14px rgba(212,175,55,0.2);
+        }
+
+        .tradingview-widget-container__widget {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* News Section */
+        .news-section {
+            margin-bottom: 3rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--navy) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .news-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .news-source {
+            font-weight: 600;
+            color: var(--gold-dark);
+        }
+
+        /* Related News Section */
+        .related-news {
+            margin-bottom: 3rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .related-card:hover {
+            transform: scale(1.02);
+        }
+
+        .related-card.large {
+            grid-column: span 2;
+        }
+
+        .related-content {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        .related-image {
+            width: 500px;
+            height: 259.2px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            flex-shrink: 0;
+        }
+
+        .related-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .related-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--navy);
+        }
+
+        .related-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .related-category {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            display: inline-block;
+            width: fit-content;
+            padding: 0.4rem 0.9rem;
+            background: var(--navy-dark);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .related-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            margin-top: auto;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Small News Grid */
+        .small-news-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .small-news-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            display: block;
+            cursor: pointer;
+        }
+
+        .small-news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .small-news-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .small-news-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 160px;
+        }
+
+        .small-news-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .small-news-excerpt {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .small-news-category {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            background: var(--navy-dark);
+            color: var(--white);
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .small-news-meta {
+            padding-top: 0.75rem;
+            margin-top: auto;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Gold Types Section */
+        .gold-types {
+            margin-top: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .type-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .type-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-10px);
+        }
+
+        .type-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: var(--sky-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .type-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .type-subtitle {
+            font-size: 0.95rem;
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .type-description {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content h2 {
+            font-family: 'Kanit', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-light);
+        }
+
+        .cta-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .qr-code {
+            display: inline-block;
+            padding: 1.4rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin: 2rem auto 1rem auto;
+        }
+
+        .qr-code img {
+            max-width: 210px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .qr-placeholder {
+            width: 210px;
+            height: 210px;
+            background: #f8f9fa;
+            border: 3px dashed #e9ecef;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #999;
+            text-align: center;
+            padding: 1.4rem;
+        }
+
+        .qr-code::after {
+            display: none;
+        }
+
+        .cta-btn {
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+        }
+
+        .cta-btn:hover {
+            background: var(--gold-light);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy-dark);
+            color: var(--white);
+            padding: 1rem 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-grid {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+        }
+
+        .footer-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .footer-icon {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #1a2332;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .footer-bottom div {
+            font-size: 0.7rem;
+        }
+
+        .main-chart-container {
+            height: 425px;
+        }
+
+        @media (max-width: 1024px) {
+            .news-grid, .small-news-grid, .types-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 4rem; }
+            .hero-content p { font-size: 1.5rem; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .country-dropdown-container { margin-left: 0; width: 100%; }
+            .country-dropdown { width: 100%; }
+            .news-grid, .small-news-grid, .types-grid { grid-template-columns: 1fr; }
+            .related-content { flex-direction: column; }
+            .related-image { width: 100%; }
+            .footer-content { flex-direction: column; align-items: flex-start; }
+            .footer-grid { flex-direction: column; width: 100%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .gold-price-section, .news-section, .related-news, .gold-types, .cta-section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                <span>Trade <strong>Gold</strong></span>
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="ค้นหา...">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/home.html" class="active">Home</a></li>
+                <li><a href="/market.html">Market</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <a href="Link_From" class="signup-btn">เปิดบัญชี</a>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Trade Gold</h1>
+                <p>สรุปข้อมูลทองคำแบบเข้าใจง่าย เหมาะสำหรับนักลงทุนทุกระดับ</p>
+                <a href="/signup.html" class="hero-btn">
+                    เปิดบัญชี ▶
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="gold-price-section">
+            <div class="section-header">
+                <h2>ราคาทองคำวันนี้</h2>
+                <a href="/market.html" class="section-badge">ดูทั้งหมด ▶</a>
+                
+                <div class="country-dropdown-container">
+                    <select id="countryDropdown" class="country-dropdown" onchange="syncWidgets(this.value, null)">
+                        <option value="USA" selected>🇺🇸 USA</option>
+                        <option value="Thailand">🇹🇭 Thailand</option>
+                        <option value="UK">🇬🇧 UK</option>
+                        <option value="Europe">🇪🇺 Europe</option>
+                        <option value="Japan">🇯🇵 Japan</option>
+                        <option value="Hong Kong">🇭🇰 Hong Kong</option>
+                        <option value="Shanghai">🇨🇳 Shanghai</option>
+                        <option value="Singapore">🇸🇬 Singapore</option>
+                    </select>
+                </div>
+            </div>
+            
+            <section class="chart-section">
+                <div class="chart-and-widgets-wrapper">
+                    <div class="chart-with-sidebar">
+                        <div class="main-chart-container" id="mainChartContainer">
+                            <div class="tradingview-widget-container" style="width:100%; height:100%;">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                                {
+                                "lineWidth": 2,
+                                "lineType": 0,
+                                "chartType": "area",
+                                "fontColor": "rgb(106, 109, 120)",
+                                "gridLineColor": "rgba(46, 46, 46, 0.06)",
+                                "backgroundColor": "#ffffff",
+                                "widgetFontColor": "#0F0F0F",
+                                "upColor": "#22ab94",
+                                "downColor": "#f7525f",
+                                "colorTheme": "light",
+                                "isTransparent": false,
+                                "locale": "en",
+                                "chartOnly": false,
+                                "scalePosition": "right",
+                                "scaleMode": "Normal",
+                                "symbols": [["OANDA:XAUUSD|ALL"]],
+                                "dateRanges": ["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"],
+                                "fontSize": "10",
+                                "headerFontSize": "medium",
+                                "autosize": true,
+                                "width": "100%",
+                                "height": "100%"
+                                }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="floating-sidebar">
+                        <div class="tradingview-widget-container tv-widget-item">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                { "symbol": "PEPPERSTONE:XAUTHB", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                            </script>
+                        </div>
+                        
+                        <div class="tradingview-widget-container tv-widget-item" id="widget1">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                { "symbol": "OANDA:XAUUSD", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                            </script>
+                        </div>
+                        
+                        <div class="tradingview-widget-container tv-widget-item" id="widget3">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                { "symbol": "FOREXCOM:USDTHB", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+
+        <section class="related-news">
+            <div class="section-header">
+                <h2>คู่มือสำหรับมือใหม่ที่ต้องการเริ่มลงทุนในทองคำ</h2>
+                <a href="/blog.html" class="section-badge">ดูทั้งหมด ▶</a>
+            </div>
+            <div id="guideGrid" class="related-grid">
+                <div class="related-card large">
+                    <div class="related-content" style="justify-content: center; align-items: center; min-height: 200px;">
+                        <div style="text-align: center;">
+                            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #EDBF43; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+                            <p style="color: #666;">กำลังโหลดข้อมูล...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="smallNewsGrid" class="small-news-grid">
+            <div class="small-news-card" style="grid-column: 1 / -1;">
+                <div class="small-news-content" style="text-align: center; padding: 2rem;">
+                    <div style="border: 4px solid #f3f3f3; border-top: 4px solid #EDBF43; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+                    <p style="color: #666; margin: 0;">กำลังโหลดข้อมูล...</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="gold-types">
+            <div class="section-header">
+                <h2>ประเภทการเทรดทอง (Gold Types)</h2>
+            </div>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">S</div>
+                    <h3 class="type-title">Spot Gold</h3>
+                    <p class="type-subtitle">ทองคำแท่ง ทองคำทันที</p>
+                    <p class="type-description">ซื้อขายทองคำที่ราคาตลาดในปัจจุบัน เหมาะสำหรับนักลงทุนระยะยาว</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">T</div>
+                    <h3 class="type-title">Thai Gold Bullion</h3>
+                    <p class="type-subtitle">ทองคำแท่ง 96.5%</p>
+                    <p class="type-description">ทองคำแท่งมาตรฐานไทย ความบริสุทธิ์ 96.5% เหมาะสำหรับการออม</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">F</div>
+                    <h3 class="type-title">Futures (TFEX)</h3>
+                    <p class="type-subtitle">สัญญาซื้อขายล่วงหน้า</p>
+                    <p class="type-description">การซื้อขายทองคำในตลาดล่วงหน้า ใช้เงินลงทุนน้อยแต่มีความเสี่ยงสูง</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">E</div>
+                    <h3 class="type-title">Gold ETF</h3>
+                    <p class="type-subtitle">กองทุนรวมทองคำ</p>
+                    <p class="type-description">การลงทุนในทองคำผ่านกองทุนรวม สะดวก มีสภาพคล่องสูง</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>เปิดพอร์ตง่าย เพียงปลายนิ้ว</h2>
+                <div class="qr-code">
+                    <!-- ใส่รูป QR Code ของคุณที่นี่ -->
+                    <div class="qr-placeholder">
+                        วาง QR Code ของคุณที่นี่<br>
+                        (ชื่อไฟล์: qr-code.png)
+                    </div>
+                    <!-- หรือใช้ img tag ถ้ามีไฟล์แล้ว
+                    <img src="qr-code.png" alt="QR Code เปิดบัญชี">
+                    -->
+                </div>
+                <a href="/signup.html" class="cta-btn">เปิดบัญชี ▶</a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Contact</div>
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>@xxxxxx (Trade Gold)</div></div>
+                    </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text"><div>02-088-9181, 02-088-9185</div></div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>1 ถนนราชดำริ ลุมพินี ปทุมวัน กรุงเทพมหานคร สีลม ซอย 22 ห้อง 2301 ชั้น 23 ถนนเแวนด์ แขวง</div>
+                        <div>สีลม เขตบางรัก กรุงเทพมหานคร 10500</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom"><div>copy right © 2025</div></div>
+        </div>
+    </footer>
+
+    <script>
+        const GUIDE_API_URL = 'https://script.google.com/macros/s/AKfycbzTIMUcEl49nXGRMQk_L_TI1XFD28gUNyMt0IXKVWnDiPnV5GorIEEPMswp-Gsv0r1Bhw/exec';
+
+        async function loadAllData() {
+            try {
+                const response = await fetch(GUIDE_API_URL);
+                const data = await response.json();
+                let guides = Array.isArray(data) ? data : (data.articles || []);
+                
+                if (guides.length > 0) {
+                    displayGuideCards(guides);
+                    displaySmallNewsCards(guides);
+                }
+            } catch (error) { console.error('Error loading data:', error); }
+        }
+
+        function displayGuideCards(guides) {
+            const guideGrid = document.getElementById('guideGrid');
+            const guide = guides[0];
+            const title = guide.Title || guide.Question || 'ไม่มีหัวข้อ';
+            const image = guide.Image || '';
+            const excerpt = guide.Excerpt || guide.Answer || '';
+            const category = guide.Category || guide.หมวดหมู่ || 'ทั่วไป';
+            const date = guide.Date || '';
+            const articleId = guide.ID || guide.id || guide.No || guide.no || 1;
+            
+            // Debug: แสดง URL ของรูปภาพ
+            console.log('Image URL:', image);
+            
+            // แปลง Google Drive URL ให้ใช้ googleusercontent.com
+            let imageUrl = image;
+            if (image && image.includes('drive.google.com')) {
+                // ดึง file ID จาก URL
+                let fileId = '';
+                const match1 = image.match(/\/d\/(.*?)\//);
+                const match2 = image.match(/id=(.*?)(&|$)/);
+                
+                if (match1) {
+                    fileId = match1[1];
+                } else if (match2) {
+                    fileId = match2[1];
+                }
+                
+                if (fileId) {
+                    // ใช้ googleusercontent.com แทน
+                    imageUrl = `https://lh3.googleusercontent.com/d/${fileId}`;
+                    console.log('Converted URL:', imageUrl);
+                }
+            }
+            
+            guideGrid.innerHTML = `
+                <a href="/detail.html?id=${articleId}" class="related-card large" style="text-decoration: none; color: inherit;">
+                    <div class="related-content">
+                        <div class="related-image" style="background: linear-gradient(135deg, #EDBF43 0%, #B8860B 100%); position: relative;">
+                            ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📖<span class=\\'related-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : '📖'}
+                            <span class="related-category">${category}</span>
+                        </div>
+                        <div class="related-text">
+                            <h3 class="related-title">${title}</h3>
+                            <p class="related-description">${excerpt}</p>
+                            <div class="related-meta">
+                                ${date ? `<span>${date}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </a>`;
+        }
+
+        function displaySmallNewsCards(guides) {
+            const smallNewsGrid = document.getElementById('smallNewsGrid');
+            const items = guides.slice(1, 5);
+            const bgColors = ['linear-gradient(135deg, #EDBF43 0%, #B8860B 100%)', 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)', 'linear-gradient(135deg, #059669 0%, #047857 100%)', 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)'];
+            let html = '';
+            items.forEach((item, index) => {
+                const category = item.Category || item.หมวดหมู่ || 'ทั่วไป';
+                const date = item.Date || '';
+                const excerpt = item.Excerpt || item.Answer || '';
+                const articleId = item.ID || item.id || item.No || item.no || (index + 2);
+                const bgColor = bgColors[index % bgColors.length];
+                let imageUrl = item.Image || '';
+                
+                // แปลง Google Drive URL
+                if (imageUrl && imageUrl.includes('drive.google.com')) {
+                    let fileId = '';
+                    const match1 = imageUrl.match(/\/d\/(.*?)\//);
+                    const match2 = imageUrl.match(/id=(.*?)(&|$)/);
+                    
+                    if (match1) {
+                        fileId = match1[1];
+                    } else if (match2) {
+                        fileId = match2[1];
+                    }
+                    
+                    if (fileId) {
+                        imageUrl = `https://lh3.googleusercontent.com/d/${fileId}`;
+                    }
+                }
+                
+                html += `
+                <a href="/detail.html?id=${articleId}" class="small-news-card" style="text-decoration: none; color: inherit;">
+                    <div class="small-news-image" style="background: ${bgColor}; position: relative;">
+                        ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📰<span class=\\'small-news-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;">` : '📰'}
+                        <span class="small-news-category">${category}</span>
+                    </div>
+                    <div class="small-news-content">
+                        <h4 class="small-news-title">${item.Title || item.Question}</h4>
+                        <p class="small-news-excerpt">${excerpt}</p>
+                        <div class="small-news-meta">
+                            ${date ? `<span>${date}</span>` : ''}
+                        </div>
+                    </div>
+                </a>`;
+            });
+            smallNewsGrid.innerHTML = html;
+        }
+
+        const countrySymbols = {
+            'USA': { gold: 'OANDA:XAUUSD', currency: 'FX_IDC:USDTHB' },
+            'Thailand': { gold: 'SAXO:XAUTHB', currency: 'FX_IDC:USDTHB' },
+            'UK': { gold: 'FOREXCOM:XAUGBP', currency: 'FX_IDC:GBPTHB' },
+            'Europe': { gold: 'FOREXCOM:XAUEUR', currency: 'FX_IDC:EURTHB' },
+            'Japan': { gold: 'FOREXCOM:XAUJPY', currency: 'FX_IDC:JPYTHB' },
+            'Hong Kong': { gold: 'SAXO:XAUHKD', currency: 'FX_IDC:HKDTHB' },
+            'Shanghai': { gold: 'SAXO:XAUCNH', currency: 'FX_IDC:CNYTHB' },
+            'Singapore': { gold: 'FX_IDC:XAUSGD', currency: 'FX_IDC:SGDTHB' }
+        };
+
+        function reloadWidget(containerId, symbol) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
+            const script = document.createElement('script');
+            script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js';
+            script.async = true;
+            script.innerHTML = JSON.stringify({ symbol: symbol, colorTheme: "light", width: "100%", height: 100 });
+            container.appendChild(script);
+        }
+
+        function reloadMainChart(symbol) {
+            const container = document.getElementById('mainChartContainer');
+            container.innerHTML = '<div class="tradingview-widget-container" style="width:100%; height:100%;"><div class="tradingview-widget-container__widget"></div></div>';
+            const script = document.createElement('script');
+            script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
+            script.async = true;
+            script.innerHTML = JSON.stringify({
+                symbols: [[symbol + "|ALL"]], colorTheme: "light", autosize: true, width: "100%", height: "100%"
+            });
+            container.querySelector('.tradingview-widget-container').appendChild(script);
+        }
+
+        function syncWidgets(country) {
+            const symbols = countrySymbols[country];
+            reloadMainChart(symbols.gold);
+            reloadWidget('widget1', symbols.gold);
+            reloadWidget('widget3', symbols.currency);
+        }
+
+        window.addEventListener('DOMContentLoaded', loadAllData);
+    </script>
+</body>
+</html>

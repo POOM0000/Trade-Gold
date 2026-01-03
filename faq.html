@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>คำถามที่พบบ่อย (FAQ) - Trade Gold</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #EDBF43;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --navy: #1E3A8A;
+            --navy-medium: #1E40AF;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --text-dark: #2c3e50;
+            --sky-blue: #87CEEB;
+            --sky-light: #A3DFF8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Performance Optimization */
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            will-change: scroll-position;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy);
+            padding: 0.75rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo strong {
+            color: var(--gold-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-light);
+            border-radius: 50%;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 6rem;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-left: auto;
+            margin-right: 0.75rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu a.active {
+            color: var(--gold-primary);
+            position: relative;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .signup-btn {
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
+        }
+
+        /* สำหรับ Animation Loading */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 2rem 2rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '❓';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            right: -5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .category-header-1 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: var(--navy);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--gray-medium);
+            padding: 1rem 0;
+            transition: all 0.3s;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--navy);
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--gray-light);
+            color: var(--gold-dark);
+        }
+
+        .faq-icon {
+            font-size: 1rem;
+            transition: transform 0.3s;
+            color: var(--navy);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            will-change: max-height;
+            contain: layout style;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2.5rem;
+            color: var(--white);
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold-light);
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background: var(--gold-primary);
+            color: var(--navy);
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #172d69;
+            color: var(--white);
+            padding: 1rem 0;
+            margin: 0;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            white-space: nowrap;
+        }
+
+        .footer-grid {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+        }
+
+        .footer-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .footer-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #1a2332;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .footer-text div {
+            margin-bottom: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .footer-bottom > div {
+            font-size: 0.7rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .footer-content {
+                flex-wrap: wrap;
+            }
+            
+            .footer-grid {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            
+            .footer-text {
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-title {
+                font-size: 1.3rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .footer-grid {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .footer-bottom {
+                width: 100%;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="/home.html" class="logo">
+                <img src="/Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                <span>Trade <strong>Gold</strong></span>
+            </a>
+            <div class="search-bar">
+                <input type="search" placeholder="ค้นหา...">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/market.html">Market</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/faq.html" class="active">FAQ</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <a href="signup.html" class="signup-btn">เปิดบัญชี</a>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Frequently Asked Questions</h1>
+    </section>
+
+    <div class="container" id="faqContainer">
+        <div id="loadingFaq" style="text-align: center; padding: 4rem 2rem;">
+            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #EDBF43; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+            <p style="color: #666;">กำลังโหลดข้อมูล...</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Contact</div>
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>@xxxxxx (Trade Gold)</div></div>
+                    </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text"><div>02-088-9181, 02-088-9185</div></div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>1 ถนนราชดำริ ลุมพินี ปทุมวัน กรุงเทพมหานคร สีลม ซอย 22 ห้อง 2301 ชั้น 23 ถนนเแวนด์ แขวง</div>
+                        <div>สีลม เขตบางรัก กรุงเทพมหานคร 10500</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom"><div>copy right © 2025</div></div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                const wasActive = item.classList.contains('active');
+                
+                // Close all items in the same section
+                const section = item.closest('.faq-section');
+                section.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                // Open clicked item if it wasn't active
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // ===================================
+        // 📚 ดึงข้อมูล FAQ จาก Database
+        // ===================================
+        
+        const FAQ_API_URL = 'https://script.google.com/macros/s/AKfycbz8aCIBxPlq3WtxHBCNtPKWLok-tCV1N0G8tjRng3hY-nsu6yI6DOnQRZX7PCm13hyF0w/exec';
+        const CACHE_KEY = 'faq_cache';
+        const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+        async function loadFAQs() {
+            try {
+                // ลองโหลดจาก cache ก่อน
+                const cachedData = getCachedData();
+                if (cachedData) {
+                    displayFAQs(cachedData);
+                    return;
+                }
+
+                const response = await fetch(FAQ_API_URL);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data: ' + response.status);
+                }
+                
+                const data = await response.json();
+                
+                // ดึงข้อมูล FAQs
+                let faqs = [];
+                
+                if (Array.isArray(data)) {
+                    faqs = data;
+                } else if (data && typeof data === 'object') {
+                    if (data.faqs && Array.isArray(data.faqs) && data.faqs.length > 0) {
+                        faqs = data.faqs;
+                    } else if (data.articles && Array.isArray(data.articles) && data.articles.length > 0) {
+                        faqs = data.articles;
+                    }
+                }
+                
+                if (faqs && faqs.length > 0) {
+                    setCachedData(faqs);
+                    displayFAQs(faqs);
+                } else {
+                    showEmptyState();
+                }
+                
+            } catch (error) {
+                showErrorState();
+            }
+        }
+
+        function getCachedData() {
+            try {
+                const cached = localStorage.getItem(CACHE_KEY);
+                if (!cached) return null;
+                
+                const { data, timestamp } = JSON.parse(cached);
+                if (Date.now() - timestamp > CACHE_DURATION) {
+                    localStorage.removeItem(CACHE_KEY);
+                    return null;
+                }
+                
+                return data;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function setCachedData(data) {
+            try {
+                localStorage.setItem(CACHE_KEY, JSON.stringify({
+                    data: data,
+                    timestamp: Date.now()
+                }));
+            } catch (e) {
+                // Ignore cache errors
+            }
+        }
+
+        function displayFAQs(faqs) {
+            const faqContainer = document.getElementById('faqContainer');
+            
+            // จัดกลุ่ม FAQ ตาม Category
+            const groupedFAQs = {};
+            faqs.forEach(faq => {
+                const category = faq.Category || faq.category || faq.หมวดหมู่ || 'Frequently Asked Questions';
+                if (!groupedFAQs[category]) {
+                    groupedFAQs[category] = [];
+                }
+                groupedFAQs[category].push(faq);
+            });
+            
+            // ไอคอนตาม Category
+            const categoryIcons = {
+                'Frequently Asked Questions': '❓'
+            };
+            
+            // สร้าง HTML
+            const htmlParts = [];
+            Object.keys(groupedFAQs).forEach(category => {
+                const icon = categoryIcons[category] || '❓';
+                const faqsInCategory = groupedFAQs[category];
+                
+                // ไม่แสดง category header ถ้าเป็น "Frequently Asked Questions"
+                if (category !== 'Frequently Asked Questions') {
+                    htmlParts.push(`
+                        <div class="category-section">
+                            <div class="category-header">
+                                <div class="category-icon">${icon}</div>
+                                <div class="category-title">${category}</div>
+                            </div>
+                            <div class="faq-section">
+                    `);
+                } else {
+                    htmlParts.push(`
+                        <div class="category-section">
+                            <div class="faq-section">
+                    `);
+                }
+                
+                faqsInCategory.forEach(faq => {
+                    const question = faq.Question || faq.question || faq.Title || faq.title || 'ไม่มีคำถาม';
+                    const answer = faq.Answer || faq.answer || faq.Content || faq.content || 'ไม่มีคำตอบ';
+                    
+                    htmlParts.push(`
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span> Q : ${question}</span>
+                                <span class="faq-icon">∨</span>
+                            </div>
+                            <div class="faq-answer">
+                                 A : ${answer}
+                            </div>
+                        </div>
+                    `);
+                });
+                
+                htmlParts.push(`
+                        </div>
+                    </div>
+                `);
+            });
+            
+            faqContainer.innerHTML = htmlParts.join('');
+            
+            // Re-initialize accordion
+            initializeFAQAccordion();
+        }
+
+        function showEmptyState() {
+            const faqContainer = document.getElementById('faqContainer');
+            faqContainer.innerHTML = `
+                <div style="text-align: center; padding: 4rem 2rem;">
+                    <div style="font-size: 4rem; opacity: 0.3; margin-bottom: 1rem;">📭</div>
+                    <h3 style="color: #1E3A8A; margin-bottom: 0.5rem;">ไม่พบคำถาม</h3>
+                    <p style="color: #666;">ยังไม่มีคำถามในระบบในขณะนี้</p>
+                </div>
+            `;
+        }
+
+        function showErrorState() {
+            const faqContainer = document.getElementById('faqContainer');
+            faqContainer.innerHTML = `
+                <div style="text-align: center; padding: 4rem 2rem;">
+                    <div style="font-size: 4rem; opacity: 0.3; margin-bottom: 1rem;">⚠️</div>
+                    <h3 style="color: #1E3A8A; margin-bottom: 0.5rem;">ไม่สามารถโหลดข้อมูลได้</h3>
+                    <p style="color: #666;">กรุณาลองใหม่อีกครั้งในภายหลัง</p>
+                </div>
+            `;
+        }
+
+        function initializeFAQAccordion() {
+            // Re-initialize FAQ accordion after loading from DB
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const wasActive = item.classList.contains('active');
+                    
+                    // Close all items in the same section
+                    const section = item.closest('.faq-section');
+                    section.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                    
+                    // Open clicked item if it wasn't active
+                    if (!wasActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // โหลดข้อมูลทันทีเมื่อ script พร้อม
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadFAQs);
+        } else {
+            loadFAQs();
+        }
+    </script>
+</body>
+</html>

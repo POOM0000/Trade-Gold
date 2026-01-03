@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ราคาทองคำ - Trade Gold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #EDBF43;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --navy: #1E3A8A;
+            --navy-medium: #1E40AF;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --text-dark: #2c3e50;
+            --sky-blue: #87CEEB;
+            --sky-light: #A3DFF8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --green: #059669;
+            --red: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy);
+            padding: 0.75rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo strong {
+            color: var(--gold-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-light);
+            border-radius: 50%;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 6rem;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin-left: auto;
+            margin-right: 0.75rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu a.active {
+            color: var(--gold-primary);
+            position: relative;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .signup-btn {
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 2rem 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .chart-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-header h2 {
+            color: var(--navy);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Price Widgets */
+        .price-widgets-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .price-widgets-header {
+            margin-bottom: 2rem;
+        }
+
+        .price-widgets-header h2 {
+            color: var(--navy);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .price-widgets-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .price-widget-card {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .price-widget-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .country-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gray-medium);
+        }
+
+        .flag {
+            font-size: 2rem;
+        }
+
+        .country-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .tv-widget-item {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Market Hours Grid Timeline */
+        .market-hours-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .market-hours-header {
+            margin-bottom: 2rem;
+        }
+
+        .market-hours-header h2 {
+            color: var(--navy);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Gantt Chart Timeline */
+        .gantt-timeline {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .timeline-header {
+            display: grid;
+            grid-template-columns: 180px repeat(24, minmax(40px, 1fr));
+            gap: 0;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-label {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            border-right: 1px solid var(--white);
+        }
+
+        .timeline-hour {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.75rem 0.15rem;
+            font-size: 0.75rem;
+            text-align: center;
+            border-right: 1px solid var(--white);
+            font-weight: 500;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 180px repeat(24, minmax(40px, 1fr));
+            gap: 0;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .market-label {
+            background: var(--white);
+            padding: 0.75rem;
+            font-weight: 600;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--gray-medium);
+            border-radius: 8px 0 0 8px;
+            font-size: 0.9rem;
+        }
+
+        .market-label .flag {
+            font-size: 1.3rem;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(24, minmax(40px, 1fr));
+            grid-column: 2 / -1;
+            position: relative;
+        }
+
+        .timeline-cell {
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            background: var(--white);
+            min-height: 50px;
+        }
+
+        .timeline-bar {
+            position: absolute;
+            height: 38px;
+            top: 6px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .timeline-bar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .bar-usa {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        .bar-uk {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .bar-europe {
+            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+        }
+
+        .bar-china {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .bar-singapore {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .bar-hongkong {
+            background: linear-gradient(135deg, #6b21a8 0%, #581c87 100%);
+            opacity: 1;
+        }
+
+        .bar-thailand {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .bar-japan {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+
+        .volatility-indicator {
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            display: none;
+        }
+
+        .vol-high {
+            background: #dc2626;
+            animation: pulse-high 2s infinite;
+        }
+
+        .vol-medium {
+            background: #f59e0b;
+        }
+
+        .vol-low {
+            background: #10b981;
+        }
+
+        @keyframes pulse-high {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            50% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+        }
+
+        .timeline-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 15px;
+            border-radius: 4px;
+        }
+
+        /* Timeline Details Modal */
+        .timeline-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .timeline-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gray-light);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--gold-primary);
+            color: var(--white);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-medium);
+        }
+
+        .modal-flag {
+            font-size: 3rem;
+        }
+
+        .modal-title {
+            flex: 1;
+        }
+
+        .modal-title h2 {
+            color: var(--navy);
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-title .time-range {
+            color: var(--gold-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section h3 {
+            color: var(--navy);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-section p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .volatility-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .peak-time-list {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold-primary);
+        }
+
+        .peak-time-list li {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .factors-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .factors-list li {
+            padding: 0.75rem;
+            background: var(--gray-light);
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .factors-list li::before {
+            content: "💡";
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        /* Footer */
+        .footer {
+            background: #172d69;
+            color: var(--white);
+            padding: 1rem 0;
+            margin: 0;
+            width: 100%;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            white-space: nowrap;
+        }
+
+        .footer-grid {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex: 1;
+        }
+
+        .footer-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .footer-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #1a2332;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .footer-text div {
+            margin-bottom: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .footer-bottom > div {
+            font-size: 0.7rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .price-widgets-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-content {
+                flex-wrap: wrap;
+            }
+            
+            .footer-grid {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            
+            .footer-text {
+                white-space: normal;
+            }
+
+            .gantt-timeline {
+                overflow-x: auto;
+            }
+
+            .timeline-hour {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.1rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .price-widgets-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-header,
+            .timeline-row {
+                grid-template-columns: 140px repeat(24, minmax(35px, 1fr));
+            }
+
+            .market-label {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .timeline-bar {
+                font-size: 0.65rem;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 3;
+                flex-basis: 100%;
+                margin: 1rem 0 0 0;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .chart-container {
+                padding: 1rem;
+            }
+
+            .price-widgets-container {
+                padding: 1rem;
+            }
+
+            .price-widgets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .country-header {
+                font-size: 0.9rem;
+            }
+
+            .flag {
+                font-size: 1.5rem;
+            }
+
+            .market-hours-container {
+                padding: 1rem;
+            }
+
+            .gantt-timeline {
+                padding: 0.5rem;
+            }
+
+            .timeline-header,
+            .timeline-row {
+                grid-template-columns: 120px repeat(24, minmax(30px, 1fr));
+            }
+
+            .market-label {
+                padding: 0.5rem 0.3rem;
+                font-size: 0.75rem;
+            }
+
+            .market-label .flag {
+                font-size: 1.1rem;
+            }
+
+            .timeline-bar {
+                font-size: 0.6rem;
+                height: 32px;
+            }
+
+            .timeline-hour {
+                font-size: 0.65rem;
+                padding: 0.5rem 0.05rem;
+            }
+
+            .timeline-legend {
+                gap: 0.75rem;
+                font-size: 0.75rem;
+            }
+
+            .legend-color {
+                width: 25px;
+                height: 12px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .footer-grid {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .footer-bottom {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                <span>Trade <strong>Gold</strong></span>
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="ค้นหา...">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/market.html" class="active">Market</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <a href="Link_From" class="signup-btn">เปิดบัญชี</a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>ราคาทองคำวันนี้</h1>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Charts Section -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <h2>📊 กราฟราคาทองคำ</h2>
+            </div>
+            <div class="tradingview-widget-container" style="height: 400px; width: 100%;">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                {
+                    "width": "100%",
+                    "height": 400,
+                    "autosize": true,
+                    "symbol": "FOREXCOM:XAUUSD",
+                    "interval": "D",
+                    "timezone": "Asia/Bangkok",
+                    "theme": "light",
+                    "style": "1",
+                    "locale": "en",
+                    "enable_publishing": false,
+                    "allow_symbol_change": true,
+                    "calendar": false,
+                    "support_host": "https://www.tradingview.com"
+                }
+                </script>
+            </div>
+        </div>
+
+        <!-- Price Widgets Section -->
+        <div class="price-widgets-container">
+            <div class="price-widgets-header">
+                <h2>🌍 ราคาทองคำรายประเทศ</h2>
+            </div>
+            <div class="price-widgets-grid">
+                <!-- USA -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">US</span>
+                        <span class="country-name">อเมริกา (USA)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "FOREXCOM:XAUUSD", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- UK -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">GB</span>
+                        <span class="country-name">อังกฤษ (UK)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "FOREXCOM:XAUGBP", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- Europe -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">EU</span>
+                        <span class="country-name">ยุโรป (Europe)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "FOREXCOM:XAUEUR", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- Japan -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">JP</span>
+                        <span class="country-name">ญี่ปุ่น (Japan)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "FOREXCOM:XAUJPY", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- Thailand -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">TH</span>
+                        <span class="country-name">ไทย (Thailand)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "SAXO:XAUTHB", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- Hong Kong -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">HK</span>
+                        <span class="country-name">ฮ่องกง (Hong Kong)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "SAXO:XAUHKD", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- China (Shanghai) -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">CN</span>
+                        <span class="country-name">เซี่ยงไฮ้ (Shanghai)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "SAXO:XAUCNH", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+
+                <!-- Singapore -->
+                <div class="price-widget-card">
+                    <div class="country-header">
+                        <span class="flag">SG</span>
+                        <span class="country-name">สิงคโปร์ (Singapore)</span>
+                    </div>
+                    <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            { "symbol": "FX_IDC:XAUSGD", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Hours Grid Timeline -->
+        <div class="market-hours-container">
+            <div class="market-hours-header">
+                <h2>🕐 เวลาเปิด-ปิดตลาดทองคำทั่วโลก (24 ชั่วโมง)</h2>
+            </div>
+            <div class="gantt-timeline">
+                <!-- Timeline Header -->
+                <div class="timeline-header">
+                    <div class="timeline-label">ตลาด / เวลา</div>
+                    <div class="timeline-hour">00:00</div>
+                    <div class="timeline-hour">01:00</div>
+                    <div class="timeline-hour">02:00</div>
+                    <div class="timeline-hour">03:00</div>
+                    <div class="timeline-hour">04:00</div>
+                    <div class="timeline-hour">05:00</div>
+                    <div class="timeline-hour">06:00</div>
+                    <div class="timeline-hour">07:00</div>
+                    <div class="timeline-hour">08:00</div>
+                    <div class="timeline-hour">09:00</div>
+                    <div class="timeline-hour">10:00</div>
+                    <div class="timeline-hour">11:00</div>
+                    <div class="timeline-hour">12:00</div>
+                    <div class="timeline-hour">13:00</div>
+                    <div class="timeline-hour">14:00</div>
+                    <div class="timeline-hour">15:00</div>
+                    <div class="timeline-hour">16:00</div>
+                    <div class="timeline-hour">17:00</div>
+                    <div class="timeline-hour">18:00</div>
+                    <div class="timeline-hour">19:00</div>
+                    <div class="timeline-hour">20:00</div>
+                    <div class="timeline-hour">21:00</div>
+                    <div class="timeline-hour">22:00</div>
+                    <div class="timeline-hour">23:00</div>
+                </div>
+
+                <!-- Japan Market: 06:00 - 15:00 -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">JP</span>
+                        <span>โตเกียว</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-bar bar-japan" style="left: 25%; width: 37.5%;" onclick="openTimelineModal('japan')">
+                            06:00 - 15:00
+                            <span class="volatility-indicator vol-low"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shanghai (SGE): 08:00 - 14:30, 19:00 - 01:30 -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">CN</span>
+                        <span>เซี่ยงไฮ้</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <!-- รอบเช้า 08:00-14:30 -->
+                        <div class="timeline-bar bar-china" style="left: 33.33%; width: 27.08%;" onclick="openTimelineModal('shanghai')">
+                            08:00-14:30
+                            <span class="volatility-indicator vol-medium"></span>
+                        </div>
+                        <!-- รอบค่ำ 00:00-01:30 -->
+                        <div class="timeline-bar bar-china" style="left: 0%; width: 6.25%;" onclick="openTimelineModal('shanghai')">
+                            <span class="volatility-indicator vol-medium"></span>
+                        </div>
+                        <!-- รอบค่ำ 19:00-23:59 -->
+                        <div class="timeline-bar bar-china" style="left: 79.17%; width: 20.83%;" onclick="openTimelineModal('shanghai')">
+                            19:00-01:30
+                            <span class="volatility-indicator vol-medium"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hong Kong (CGSE): 24 hours electronic -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">HK</span>
+                        <span>ฮ่องกง</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <!-- ตลาดอิเล็กทรอนิกส์ 24 ชม. -->
+                        <div class="timeline-bar bar-hongkong" style="left: 0%; width: 100%;" onclick="openTimelineModal('hongkong')">
+                            24 ชั่วโมง
+                            <span class="volatility-indicator vol-medium"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Singapore: 08:00 - 16:00 -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">SG</span>
+                        <span>สิงคโปร์</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-bar bar-singapore" style="left: 33.33%; width: 33.33%;" onclick="openTimelineModal('singapore')">
+                            08:00 - 16:00
+                            <span class="volatility-indicator vol-medium"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thailand: 09:20 - 17:00 -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">TH</span>
+                        <span>กรุงเทพ</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <!-- 09:20-17:00 (38.89% to 70.83% = 31.94% width) -->
+                        <div class="timeline-bar bar-thailand" style="left: 38.89%; width: 31.94%;" onclick="openTimelineModal('thailand')">
+                            09:20-17:00
+                            <span class="volatility-indicator vol-medium"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Europe: 14:00 - 22:00 -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">EU</span>
+                        <span>ยุโรป</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-bar bar-europe" style="left: 58.33%; width: 33.33%;" onclick="openTimelineModal('europe')">
+                            14:00 - 22:00
+                            <span class="volatility-indicator vol-high"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- London: 14:00 - 23:00 -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">GB</span>
+                        <span>ลอนดอน</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-bar bar-uk" style="left: 58.33%; width: 37.5%;" onclick="openTimelineModal('london')">
+                            14:00 - 23:00
+                            <span class="volatility-indicator vol-high"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- USA New York: 19:00 - 04:00 (next day) -->
+                <div class="timeline-row">
+                    <div class="market-label">
+                        <span class="flag">US</span>
+                        <span>วอชิงตัน ดี.ซี.</span>
+                    </div>
+                    <div class="timeline-grid">
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <div class="timeline-cell"></div>
+                        <!-- Split bar: 00:00-03:00 -->
+                        <div class="timeline-bar bar-usa" style="left: 0%; width: 12.5%;" onclick="openTimelineModal('usa')">
+                            00:00-03:00
+                            <span class="volatility-indicator vol-high"></span>
+                        </div>
+                        <!-- Split bar: 19:00-23:59 -->
+                        <div class="timeline-bar bar-usa" style="left: 79.17%; width: 20.83%;" onclick="openTimelineModal('usa')">
+                            19:00-00:00
+                            <span class="volatility-indicator vol-high"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="timeline-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);"></div>
+                        <span>ความผันผวนสูงสุด (USA)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);"></div>
+                        <span>ความผันผวนสูง (London)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);"></div>
+                        <span>ความผันผวนสูง (ยุโรป - EU)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);"></div>
+                        <span>ความผันผวนปานกลาง (ไทย, เซี่ยงไฮ้, สิงคโปร์)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #6b21a8 0%, #581c87 100%);"></div>
+                        <span>ตลาด 24 ชม. (ฮ่องกง อิเล็กทรอนิกส์)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);"></div>
+                        <span>ความผันผวนต่ำ (ญี่ปุ่น)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Contact</div>
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>@xxxxxx (Trade Gold)</div></div>
+                    </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text"><div>02-088-9181, 02-088-9185</div></div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>1 ถนนราชดำริ ลุมพินี ปทุมวัน กรุงเทพมหานคร สีลม ซอย 22 ห้อง 2301 ชั้น 23 ถนนเแวนด์ แขวง</div>
+                        <div>สีลม เขตบางรัก กรุงเทพมหานคร 10500</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom"><div>copy right © 2025</div></div>
+        </div>
+    </footer>
+
+    <!-- Timeline Details Modal -->
+    <div class="timeline-modal" id="timelineModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTimelineModal()">×</button>
+            <div class="modal-header">
+                <span class="modal-flag" id="modalFlag"></span>
+                <div class="modal-title">
+                    <h2 id="modalMarketName"></h2>
+                    <div class="time-range" id="modalTimeRange"></div>
+                </div>
+            </div>
+            <div class="modal-section">
+                <h3>📊 ระดับความผันผวน</h3>
+                <div id="modalVolatility"></div>
+            </div>
+            <div class="modal-section">
+                <h3>⏰ ช่วงเวลาที่ผันผวนที่สุด</h3>
+                <div class="peak-time-list" id="modalPeakTime"></div>
+            </div>
+            <div class="modal-section">
+                <h3>🔍 ปัจจัยหลักที่ส่งผลต่อราคา</h3>
+                <ul class="factors-list" id="modalFactors"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Market data
+        const marketData = {
+            japan: {
+                flag: '🇯🇵',
+                name: 'ญี่ปุ่น (Tokyo)',
+                time: '06:00 - 15:00 น.',
+                volatility: 'ต่ำ - ปานกลาง',
+                volatilityClass: 'volatility-low',
+                peakTime: '07:00 – 09:00 น.',
+                factors: [
+                    'ตลาดแรกของเอเชียที่เริ่มขยับ',
+                    'สภาพคล่องยังไม่สูงมาก เหมาะสำหรับติดตามทิศทางเบื้องต้น',
+                    'ค่าเงินเยน (JPY) มีผลต่อราคาทองคำในตลาดญี่ปุ่น',
+                    'ข่าวสารเศรษฐกิจในโซนเอเชียแปซิฟิก',
+                    'นโยบายการเงินของธนาคารกลางญี่ปุ่น (BOJ)'
+                ]
+            },
+            china: {
+                flag: '🇨🇳',
+                name: 'เซี่ยงไฮ้ / ฮ่องกง',
+                time: '08:00 - 16:00 น.',
+                volatility: 'ปานกลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '09:00 – 10:30 น. และ 13:30 – 14:30 น.',
+                factors: [
+                    'อุปสงค์ทองคำจากจีน (ผู้บริโภครายใหญ่ที่สุดของโลก)',
+                    'ข่าวเศรษฐกิจจีน เช่น GDP, ดัชนีผู้จัดการฝ่ายจัดซื้อ (PMI)',
+                    'เทศกาลสำคัญ เช่น ตรุษจีน, เทศกาลไหว้พระจันทร์',
+                    'นโยบายการค้าและค่าเงินหยวน (CNY)',
+                    'ตลาดทองคำ Shanghai Gold Exchange (SGE)'
+                ]
+            },
+            shanghai: {
+                flag: '🇨🇳',
+                name: 'เซี่ยงไฮ้ (SGE)',
+                time: '08:00 - 14:30 น. และ 19:00 - 01:30 น. (รอบค่ำ)',
+                volatility: 'ปานกลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '09:00 – 10:30 น. และ 19:00 – 21:00 น.',
+                factors: [
+                    'ศูนย์กลางทองคำกายภาพรายใหญ่ที่สุดในโลก',
+                    'มีรอบค่ำ (19:00 - 01:30 น.) เพิ่มสภาพคล่อง',
+                    'ตลาดแลกเปลี่ยนหลักของจีน ยึดตามเวลาทำการที่แน่นอน',
+                    'เน้นการซื้อขายด้วยสกุลเงินหยวน (CNY)',
+                    'อุปสงค์ทองคำจากจีน (ผู้บริโภครายใหญ่ที่สุดของโลก)',
+                    'Shanghai Gold Exchange (SGE) ครองส่วนแบ่งการค้าทองคำกายภาพโลก'
+                ]
+            },
+            hongkong: {
+                flag: '🇭🇰',
+                name: 'ฮ่องกง (CGSE)',
+                time: '08:00 - 16:00 น. (กายภาพ) + 24 ชม. (อิเล็กทรอนิกส์)',
+                volatility: 'ปานกลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '08:00 – 10:00 น., 14:00 – 16:00 น., 19:00 – 23:00 น.',
+                factors: [
+                    'ศูนย์กลางการค้าทองคำสำคัญในเอเชีย เชื่อมต่อราคาโลก',
+                    'ศูนย์กลางทองคำเสรี (Chinese Gold & Silver Exchange Society)',
+                    'ตลาดอิเล็กทรอนิกส์ทำงาน 24 ชั่วโมง เชื่อมต่อกับลอนดอนและนิวยอร์ก',
+                    'จุดเชื่อมระหว่างตลาดเอเชียกับตลาดตะวันตก',
+                    'ไม่มีการหยุดพักเที่ยง มีสภาพคล่องสูง',
+                    'ค่าเงินดอลลาร์ฮ่องกง (HKD) และความสัมพันธ์กับหยวน'
+                ]
+            },
+            singapore: {
+                flag: '🇸🇬',
+                name: 'สิงคโปร์',
+                time: '08:00 - 16:00 น.',
+                volatility: 'ปานกลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '08:30 – 10:00 น.',
+                factors: [
+                    'ศูนย์กลางการค้าทองคำสำคัญในเอเชีย',
+                    'เชื่อมต่อราคาทองคำโลกกับตลาดในภูมิภาค',
+                    'การซื้อขายทองคำแท่งในตลาดเอเชียตะวันออกเฉียงใต้',
+                    'อุปสงค์จากประเทศเพื่อนบ้าน (มาเลเซีย, อินโดนีเซีย, ไทย)',
+                    'ค่าเงินดอลลาร์สิงคโปร์ (SGD)'
+                ]
+            },
+            thailand: {
+                flag: '🇹🇭',
+                name: 'ไทย (สมาคมค้าทองคำ)',
+                time: '09:20 - 17:00 น.',
+                volatility: 'ปานกลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '09:20 – 11:00 น. และ 14:00 – 16:00 น.',
+                factors: [
+                    'เริ่มประกาศราคาสมาคมค้าทองคำเวลา 09:20 น.',
+                    'ปรับเปลี่ยนราคาตามความผันผวนของราคาโลกตลอดวัน',
+                    'ค่าเงินบาท (THB) ต่อดอลลาร์สหรัฐฯ',
+                    'ราคาทองคำโลก (XAUUSD)',
+                    'อุปสงค์ทองคำรูปพรรณและทองคำแท่งในประเทศ',
+                    'เศรษฐกิจไทยและการท่องเที่ยว'
+                ]
+            },
+            europe: {
+                flag: '🇪🇺',
+                name: 'ยุโรป (Zurich / Paris / Frankfurt)',
+                time: '14:00 - 22:00 น.',
+                volatility: 'สูง',
+                volatilityClass: 'volatility-high',
+                peakTime: '14:00 – 16:00 น. และ 19:00 – 22:00 น.',
+                factors: [
+                    'ศูนย์กลางทองคำแท่ง (Swiss Gold) คุณภาพสูงระดับโลก',
+                    'นโยบายเงินเฟ้อและดอกเบี้ยของธนาคารกลางยุโรป (ECB)',
+                    'ค่าเงินยูโร (EUR) ต่อดอลลาร์สหรัฐฯ',
+                    'ข่าวเศรษฐกิจเยอรมนี ฝรั่งเศส และสวิตเซอร์แลนด์',
+                    'ตลาดทองคำในซูริก (Zurich) เป็นศูนย์กลางการกลั่นทองคำระดับโลก',
+                    'นโยบายการเงินและการคลังของสหภาพยุโรป',
+                    'ความไม่แน่นอนทางการเมืองในยุโรป'
+                ]
+            },
+            london: {
+                flag: '🇬🇧',
+                name: 'ลอนดอน / ยุโรป (LBMA)',
+                time: '14:00 - 23:00 น.',
+                volatility: 'สูง',
+                volatilityClass: 'volatility-high',
+                peakTime: '15:00 – 16:00 น. (Gold Fixing) และ 19:00 – 22:00 น.',
+                factors: [
+                    'ลอนดอน (LBMA) เป็นศูนย์กลางที่กำหนดราคากลางโลก',
+                    'การกำหนดราคา Gold Fixing ที่ส่งผลต่อตลาดทั่วโลก',
+                    'ตลาดทองคำที่ใหญ่ที่สุดในโลกด้านมูลค่าการซื้อขาย',
+                    'การทับซ้อนกับตลาดนิวยอร์ก (19:00-23:00 น.) ทำให้ผันผวนสูง',
+                    'ค่าเงินปอนด์สเตอร์ลิง (GBP) และยูโร (EUR)',
+                    'ข่าวเศรษฐกิจยุโรปและอังกฤษ'
+                ]
+            },
+            usa: {
+                flag: '🇺🇸',
+                name: 'สหรัฐอเมริกา (New York)',
+                time: '19:00 - 03:00 / 04:00 น. (วันถัดไป)',
+                volatility: 'สูงสุด',
+                volatilityClass: 'volatility-high',
+                peakTime: '19:00 – 23:00 น. (ทับซ้อนกับลอนดอน)',
+                factors: [
+                    'ตลาดที่ผันผวนที่สุด โดยเฉพาะช่วงประกาศข่าวเศรษฐกิจ',
+                    'ตัวเลขเศรษฐกิจสหรัฐฯ (CPI, Non-farm Payrolls, GDP, ดัชนีความเชื่อมั่น)',
+                    'นโยบายดอกเบี้ยของ Federal Reserve (Fed) มีผลกระทบทันที',
+                    'ดัชนีดอลลาร์สหรัฐฯ (DXY) เป็นตัวขับเคลื่อนหลัก',
+                    'ตลาดหุ้นสหรัฐฯและความเสี่ยงโลก (Risk-off/Risk-on)',
+                    'ข่าวภูมิรัฐศาสตร์และความตึงเครียดระหว่างประเทศ',
+                    'ปริมาณการซื้อขายสูงสุดในช่วงนี้'
+                ]
+            }
+        };
+
+        // Open modal function
+        function openTimelineModal(market) {
+            const data = marketData[market];
+            if (!data) return;
+
+            document.getElementById('modalFlag').textContent = data.flag;
+            document.getElementById('modalMarketName').textContent = data.name;
+            document.getElementById('modalTimeRange').textContent = data.time;
+            
+            // Volatility
+            const volDiv = document.getElementById('modalVolatility');
+            volDiv.innerHTML = `<div class="volatility-display ${data.volatilityClass}">${data.volatility}</div>`;
+            
+            // Peak time
+            document.getElementById('modalPeakTime').innerHTML = `<p>${data.peakTime}</p>`;
+            
+            // Factors
+            const factorsList = document.getElementById('modalFactors');
+            factorsList.innerHTML = data.factors.map(factor => `<li>${factor}</li>`).join('');
+            
+            document.getElementById('timelineModal').classList.add('active');
+        }
+
+        // Close modal function
+        function closeTimelineModal() {
+            document.getElementById('timelineModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('timelineModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTimelineModal();
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
