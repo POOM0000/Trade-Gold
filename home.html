@@ -141,7 +141,7 @@
 
         /* Hero Section */
         .hero {
-            background: url('/Image/bg.png') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 100%, var(--white) 15%);
+            background: url('Image/bg.png') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 100%, var(--white) 15%);
             color: var(--white);
             padding: 3rem 2rem 1.5rem 2rem;
             position: relative;
@@ -859,10 +859,12 @@
 <body>
     <header class="header">
         <div class="nav-container">
-            <div class="logo">
-                <img src="/Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
-                <span>Trade <strong>Gold</strong></span>
-            </div>
+            <a href="home.html" class="logo">
+                <div class="logo">
+                    <img src="Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                    <span>Trade <strong>Gold</strong></span>
+                </div>
+            </a>
             <div class="search-bar">
                 <input type="search" placeholder="ค้นหา...">
             </div>
