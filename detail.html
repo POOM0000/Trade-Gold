@@ -343,6 +343,17 @@
             justify-content: center;
             min-height: 400px;
             text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
         }
 
         .loading-spinner {
@@ -352,7 +363,7 @@
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
-            margin-bottom: 1rem;
+            margin: 0 auto 1rem;
         }
 
         @keyframes spin {
@@ -515,8 +526,10 @@
     <div class="article-container">
         <!-- Loading State -->
         <div id="loadingState" class="loading-container">
-            <div class="loading-spinner"></div>
-            <p style="color: #666;">กำลังโหลดบทความ...</p>
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p style="color: #666;">กำลังโหลดบทความ...</p>
+            </div>
         </div>
 
         <!-- Error State -->
