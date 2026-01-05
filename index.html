@@ -2,17 +2,756 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trade Gold</title>
-
+  
   <!-- Redirect ไปหน้า home.html -->
   <meta http-equiv="refresh" content="0; url=home.html">
-
-  <!-- เผื่อ browser เก่า -->
+  
   <script>
     window.location.href = "home.html";
   </script>
 </head>
 <body>
   <p>กำลังพาไปหน้าแรก...</p>
+
+  <!-- NAVBAR TEMPLATE (สำหรับดึงไปใช้หน้าอื่น) -->
+  <template id="navbar-template">
+    <header class="header">
+        <div class="nav-container">
+            <a href="home.html">
+                <div class="logo">
+                    <img src="Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                    <span>Trade <strong>Gold</strong></span>
+                </div>
+            </a>
+            <div class="search-bar-container">
+                <div class="search-bar">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="search" id="searchInput" placeholder="ค้นหาบทความ..." autocomplete="off">
+                    <button class="clear-search" id="clearSearch" style="display: none;">✕</button>
+                </div>
+                <div class="search-dropdown" id="searchDropdown"></div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="home.html" data-page="home">Home</a></li>
+                <li><a href="market.html" data-page="market">Market</a></li>
+                <li><a href="blog.html" data-page="blog">Blog</a></li>
+                <li><a href="faq.html" data-page="faq">FAQ</a></li>
+                <li><a href="about.html" data-page="about">About Us</a></li>
+                <li><a href="contact.html" data-page="contact">Contact</a></li>
+            </ul>
+            <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" target="_blank" class="signup-btn">เปิดบัญชี</a>
+        </div>
+    </header>
+  </template>
+
+  <!-- FOOTER TEMPLATE (สำหรับดึงไปใช้หน้าอื่น) -->
+  <template id="footer-template">
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-title">Contact</div>
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>@555qutex (Trade Gold)</div>
+                    </div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>02-088-9181, 02-088-9185</div>
+                    </div>
+                </div>
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="footer-text">
+                        <div>1 ถนนราชดำริ ลุมพินี ปทุมวัน กรุงเทพมหานคร สีลม ซอย 22 ห้อง 2301 ชั้น 23 ถนนแวนเดอร์ แขวง</div>
+                        <div>สีลม เขตบางรัก กรุงเทพมหานคร 10500</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>copy right © 2025</div>
+            </div>
+        </div>
+    </footer>
+  </template>
+
+  <!-- SHARED STYLES (สำหรับ Navbar และ Footer) -->
+  <style id="shared-styles">
+    :root {
+        --gold-primary: #EDBF43;
+        --gold-light: #FFD700;
+        --gold-dark: #B8860B;
+        --navy: #1E3A8A;
+        --navy-dark: #172d69;
+        --navy-medium: #1E40AF;
+        --white: #ffffff;
+        --gray-light: #f8f9fa;
+        --gray-medium: #e9ecef;
+        --text-dark: #2c3e50;
+        --sky-blue: #87CEEB;
+        --sky-light: #A3DFF8;
+        --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Header Navigation */
+    .header {
+        background: var(--navy);
+        padding: 0.75rem 2rem;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--white);
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .logo strong {
+        color: var(--gold-primary);
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    /* Search Bar with Dropdown */
+    .search-bar-container {
+        position: relative;
+        flex: 1;
+        max-width: 400px;
+        margin: 0 6rem;
+    }
+
+    .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        color: #666;
+        pointer-events: none;
+    }
+
+    .search-bar input {
+        width: 100%;
+        padding: 0.5rem 2.5rem 0.5rem 2.8rem;
+        border: none;
+        border-radius: 25px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+    /* ซ่อน default clear button ของ browser */
+    .search-bar input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    
+    .search-bar input[type="search"]::-ms-clear {
+        display: none;
+    }
+
+    .search-bar input:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(237, 191, 67, 0.3);
+    }
+
+    .clear-search {
+        position: absolute;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.2rem 0.4rem;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+
+    .clear-search:hover {
+        background: #f0f0f0;
+        color: #333;
+    }
+
+    /* Search Dropdown */
+    .search-dropdown {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        max-height: 400px;
+        overflow-y: auto;
+        display: none;
+        z-index: 1001;
+    }
+
+    .search-dropdown.active {
+        display: block;
+    }
+
+    .search-dropdown-header {
+        padding: 0.75rem 1rem;
+        background: var(--gray-light);
+        border-radius: 12px 12px 0 0;
+        font-weight: 600;
+        color: var(--navy);
+        font-size: 0.9rem;
+        border-bottom: 2px solid var(--gold-primary);
+    }
+
+    .search-result-item {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--gray-light);
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .search-result-item:hover {
+        background: var(--gray-light);
+        padding-left: 1.5rem;
+    }
+
+    .search-result-item:last-child {
+        border-bottom: none;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .search-result-image {
+        width: 80px;
+        height: 60px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 8px;
+        flex-shrink: 0;
+        margin-right: 12px;
+        background-color: #f0f0f0;
+    }
+    
+    .search-result-icon {
+        width: 80px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        flex-shrink: 0;
+        margin-right: 12px;
+    }
+
+    .search-result-content {
+        flex: 1;
+    }
+
+    .search-result-title {
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 0.25rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .search-result-meta {
+        font-size: 0.8rem;
+        color: #666;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .search-result-category {
+        background: var(--gold-primary);
+        padding: 0.1rem 0.5rem;
+        border-radius: 10px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .search-no-results {
+        padding: 2rem;
+        text-align: center;
+        color: #666;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        margin-left: auto;
+        margin-right: 0.75rem;
+    }
+
+    .nav-menu a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.3s;
+    }
+
+    .nav-menu a:hover {
+        opacity: 0.8;
+    }
+
+    .nav-menu a.active {
+        color: var(--gold-primary);
+        position: relative;
+    }
+
+    .nav-menu a.active::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--gold-primary);
+    }
+
+    .signup-btn {
+        background: var(--gold-primary);
+        color: var(--text-dark);
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .signup-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    .footer {
+        background: var(--navy-dark);
+        color: var(--white);
+        padding: 1rem 0;
+        margin-top: 4rem;
+        width: 100%;
+    }
+
+    .footer-content {
+        max-width: 100%;
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .footer-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--white);
+    }
+
+    .footer-grid {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        flex: 1;
+    }
+
+    .footer-item {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+    }
+
+    .footer-icon {
+        width: 32px;
+        height: 32px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: #1a2332;
+    }
+
+    .footer-text {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .footer-bottom div {
+        font-size: 0.7rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .search-bar-container {
+            display: none;
+        }
+
+        .nav-menu {
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .footer-grid {
+            flex-direction: column;
+            width: 100%;
+            gap: 1rem;
+        }
+    }
+  </style>
+
+  <!-- JAVASCRIPT สำหรับดึง Navbar และ Footer พร้อม Search Functionality -->
+  <script id="shared-components-script">
+    // ข้อมูลบทความทั้งหมด (จะโหลดจาก Google Sheets)
+    window.allArticles = [];
+    window.articlesLoaded = false;
+
+    // ฟังก์ชันโหลดข้อมูลบทความจาก Apps Script
+    async function loadArticlesData() {
+      try {
+        console.log('Loading articles data from Apps Script...');
+        
+        // ใช้ GUIDE_API_URL ถ้ามีการกำหนดไว้ใน page หรือใช้ default
+        const APPS_SCRIPT_URL = window.GUIDE_API_URL || 'https://script.google.com/macros/s/AKfycbzTIMUcEl49nXGRMQk_L_TI1XFD28gUNyMt0IXKVWnDiPnV5GorIEEPMswp-Gsv0r1Bhw/exec';
+        
+        const response = await fetch(APPS_SCRIPT_URL);
+        const data = await response.json();
+        
+        // Apps Script ส่งข้อมูลมาเป็น array ของ objects
+        window.allArticles = Array.isArray(data) ? data : (data.articles || []);
+        window.allArticles = window.allArticles.filter(article => article.Title || article.Question); // กรองเฉพาะที่มีหัวข้อ
+        
+        window.articlesLoaded = true;
+        console.log('Articles loaded from Apps Script:', window.allArticles.length);
+      } catch (error) {
+        console.error('Error loading articles:', error);
+        window.articlesLoaded = true; // Set to true anyway to prevent blocking
+      }
+    }
+
+    // ฟังก์ชันค้นหาบทความ
+    function searchArticles(query) {
+      if (!window.articlesLoaded || window.allArticles.length === 0) {
+        console.log('Articles not loaded yet');
+        return [];
+      }
+      
+      if (!query || query.trim() === '') {
+        return window.allArticles.slice(0, 3); // ถ้าไม่มีคำค้นหา แสดง 3 บทล่าสุด
+      }
+      
+      const lowerQuery = query.toLowerCase();
+      return window.allArticles.filter(article => {
+        const title = (article.Title || article.Question || '').toLowerCase();
+        const excerpt = (article.Excerpt || article.Answer || '').toLowerCase();
+        const category = (article.Category || article.หมวดหมู่ || '').toLowerCase();
+        
+        return title.includes(lowerQuery) || 
+               excerpt.includes(lowerQuery) || 
+               category.includes(lowerQuery);
+      }).slice(0, 10); // แสดงสูงสุด 10 ผลลัพธ์
+    }
+
+    // ฟังก์ชันแสดงผลลัพธ์ใน Dropdown
+    function displaySearchResults(results, query) {
+      const dropdown = document.getElementById('searchDropdown');
+      if (!dropdown) {
+        console.log('Dropdown element not found');
+        return;
+      }
+      
+      if (!window.articlesLoaded) {
+        dropdown.innerHTML = `
+          <div class="search-dropdown-header">กำลังโหลดข้อมูล...</div>
+          <div class="search-no-results">
+            <p>⏳ กำลังโหลดข้อมูล...</p>
+          </div>
+        `;
+        return;
+      }
+      
+      if (results.length === 0) {
+        dropdown.innerHTML = `
+          <div class="search-dropdown-header">ไม่พบผลลัพธ์</div>
+          <div class="search-no-results">
+            <p>ไม่พบบทความที่ตรงกับ "${query}"</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const headerText = query ? `ผลการค้นหา "${query}"` : 'บทความล่าสุด';
+      let html = `<div class="search-dropdown-header">${headerText}</div>`;
+      
+      results.forEach(article => {
+        const title = article.Title || article.Question || 'ไม่มีหัวข้อ';
+        const category = article.Category || article.หมวดหมู่ || 'ทั่วไป';
+        const date = article.Date || '';
+        const articleId = article.ID || article.id || article.No || article.no || 1;
+        const image = article.Image || '';
+        
+        // Category emojis
+        const categoryEmojis = {
+          'การลงทุน': '💰',
+          'วิเคราะห์': '📊',
+          'ข่าวสาร': '📰',
+          'เทคนิค': '🔧',
+          'ทั่วไป': '📖'
+        };
+        const emoji = categoryEmojis[category] || '📖';
+        
+        // ตรวจสอบว่ามีรูปหรือไม่
+        let imageHtml = '';
+        if (image && image.trim() !== '') {
+          // มีรูป - แปลง Google Drive URL
+          let imageUrl = image;
+          if (image.includes('drive.google.com')) {
+            let fileId = '';
+            const match1 = image.match(/\/d\/(.*?)\//);
+            const match2 = image.match(/id=(.*?)(&|$)/);
+            
+            if (match1) {
+              fileId = match1[1];
+            } else if (match2) {
+              fileId = match2[1];
+            }
+            
+            if (fileId) {
+              imageUrl = `https://lh3.googleusercontent.com/d/${fileId}`;
+            }
+          }
+          imageHtml = `<div class="search-result-image" style="background-image: url('${imageUrl}')"></div>`;
+        } else {
+          // ไม่มีรูป - แสดง emoji
+          imageHtml = `<div class="search-result-icon">${emoji}</div>`;
+        }
+        
+        html += `
+          <a href="detail.html?id=${articleId}" class="search-result-item">
+            ${imageHtml}
+            <div class="search-result-content">
+              <div class="search-result-title">${title}</div>
+              <div class="search-result-meta">
+                <span class="search-result-category">${category}</span>
+                ${date ? `<span>• ${date}</span>` : ''}
+              </div>
+            </div>
+          </a>
+        `;
+      });
+      
+      dropdown.innerHTML = html;
+      console.log('Search results displayed:', results.length);
+    }
+
+    // ฟังก์ชันจัดการ Search Bar
+    function setupSearchBar() {
+      console.log('Setting up search bar...');
+      
+      // รอให้ elements พร้อมใช้งาน - เพิ่มเวลารอให้มากขึ้น
+      setTimeout(() => {
+        const searchInput = document.getElementById('searchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
+        const clearButton = document.getElementById('clearSearch');
+        
+        console.log('Search elements:', { 
+          searchInput: !!searchInput, 
+          searchDropdown: !!searchDropdown, 
+          clearButton: !!clearButton 
+        });
+        
+        if (!searchInput || !searchDropdown || !clearButton) {
+          console.error('Search elements not found! Retrying in 1 second...');
+          // ลองอีกครั้งหลัง 1 วินาที
+          setTimeout(setupSearchBar, 1000);
+          return;
+        }
+        
+        console.log('✅ All search elements found!');
+        
+        // เมื่อ focus ที่ search bar แสดงบทความล่าสุด 3 บท
+        searchInput.addEventListener('focus', () => {
+          console.log('Search input focused');
+          const results = searchArticles('');
+          displaySearchResults(results, '');
+          searchDropdown.classList.add('active');
+        });
+        
+        // เมื่อพิมพ์ในช่องค้นหา
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value;
+          console.log('Search query:', query);
+          
+          // แสดง/ซ่อนปุ่ม clear
+          clearButton.style.display = query ? 'block' : 'none';
+          
+          const results = searchArticles(query);
+          displaySearchResults(results, query);
+          searchDropdown.classList.add('active');
+        });
+        
+        // ปุ่ม clear
+        clearButton.addEventListener('click', () => {
+          searchInput.value = '';
+          clearButton.style.display = 'none';
+          const results = searchArticles('');
+          displaySearchResults(results, '');
+          searchInput.focus();
+        });
+        
+        // ปิด dropdown เมื่อคลิกข้างนอก
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.search-bar-container')) {
+            searchDropdown.classList.remove('active');
+          }
+        });
+        
+        // กด Enter เพื่อไปยังผลลัพธ์แรก
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const firstResult = searchDropdown.querySelector('.search-result-item');
+            if (firstResult) {
+              window.location.href = firstResult.getAttribute('href');
+            }
+          }
+        });
+        
+        console.log('Search bar setup complete');
+      }, 1000); // เพิ่มเวลารอเป็น 1 วินาที
+    }
+
+    // ฟังก์ชันโหลด Navbar และ Footer
+    function loadSharedComponents() {
+      console.log('Loading shared components...');
+      fetch('index.html')
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          
+          // ดึง Navbar Template (เฉพาะเมื่อยังไม่มี navbar)
+          const navbarPlaceholder = document.getElementById('navbar-placeholder');
+          const navbarTemplate = doc.getElementById('navbar-template');
+          
+          if (navbarTemplate && navbarPlaceholder && navbarPlaceholder.children.length === 0) {
+            console.log('Appending navbar...');
+            const navbarContent = navbarTemplate.content.cloneNode(true);
+            navbarPlaceholder.appendChild(navbarContent);
+            
+            // เพิ่ม active class ให้กับหน้าปัจจุบัน
+            setActiveNavItem();
+            
+            // Setup Search Bar หลังจากโหลด Navbar เสร็จ
+            setupSearchBar();
+          } else if (navbarPlaceholder && navbarPlaceholder.children.length > 0) {
+            console.log('Navbar already exists, setting up search bar only...');
+            // ถ้า navbar มีอยู่แล้ว แค่ setup search bar
+            setupSearchBar();
+          }
+          
+          // ดึง Footer Template (เฉพาะเมื่อยังไม่มี footer)
+          const footerPlaceholder = document.getElementById('footer-placeholder');
+          const footerTemplate = doc.getElementById('footer-template');
+          
+          if (footerTemplate && footerPlaceholder && footerPlaceholder.children.length === 0) {
+            console.log('Appending footer...');
+            const footerContent = footerTemplate.content.cloneNode(true);
+            footerPlaceholder.appendChild(footerContent);
+          }
+          
+          // ดึง Styles
+          const sharedStyles = doc.getElementById('shared-styles');
+          if (sharedStyles && !document.getElementById('shared-styles-injected')) {
+            const styleElement = document.createElement('style');
+            styleElement.id = 'shared-styles-injected';
+            styleElement.textContent = sharedStyles.textContent;
+            document.head.appendChild(styleElement);
+          }
+        })
+        .catch(error => console.error('Error loading components:', error));
+    }
+
+    // ฟังก์ชันกำหนด active class
+    function setActiveNavItem() {
+      const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
+      const navLinks = document.querySelectorAll('.nav-menu a');
+      
+      navLinks.forEach(link => {
+        const pageName = link.getAttribute('data-page');
+        if (pageName === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    // โหลดข้อมูลบทความทันทีเมื่อ script โหลด
+    loadArticlesData();
+
+    // เรียกใช้งานเมื่อ DOM โหลดเสร็จ
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadSharedComponents);
+    } else {
+      loadSharedComponents();
+    }
+  </script>
 </body>
 </html>
