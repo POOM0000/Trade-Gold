@@ -711,7 +711,6 @@
             background: var(--white);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin: 2rem auto 1rem auto;
         }
 
         .qr-code img {
@@ -722,8 +721,8 @@
         }
 
         .qr-placeholder {
-            width: 210px;
-            height: 210px;
+            width: 100%;
+            height: 100%;
             background: #f8f9fa;
             border: 3px dashed #e9ecef;
             border-radius: 15px;
@@ -733,7 +732,6 @@
             font-size: 0.85rem;
             color: #999;
             text-align: center;
-            padding: 1.4rem;
         }
 
         .qr-code::after {
@@ -880,7 +878,7 @@
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a href="signup.html" class="signup-btn">เปิดบัญชี</a>
+            <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" class="signup-btn">เปิดบัญชี</a>
         </div>
     </header>
 
@@ -890,7 +888,7 @@
             <div class="hero-content">
                 <h1>Trade Gold</h1>
                 <p>สรุปข้อมูลทองคำแบบเข้าใจง่าย เหมาะสำหรับนักลงทุนทุกระดับ</p>
-                <a href="/signup.html" class="hero-btn">
+                <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" class="hero-btn">
                     เปิดบัญชี ▶
                 </a>
             </div>
@@ -901,7 +899,7 @@
         <section class="gold-price-section">
             <div class="section-header">
                 <h2>ราคาทองคำวันนี้</h2>
-                <a href="/market.html" class="section-badge">ดูทั้งหมด ▶</a>
+                <a href="market.html" class="section-badge">ดูทั้งหมด ▶</a>
                 
                 <div class="country-dropdown-container">
                     <select id="countryDropdown" class="country-dropdown" onchange="syncWidgets(this.value, null)">
@@ -983,7 +981,7 @@
         <section class="related-news">
             <div class="section-header">
                 <h2>คู่มือสำหรับมือใหม่ที่ต้องการเริ่มลงทุนในทองคำ</h2>
-                <a href="/blog.html" class="section-badge">ดูทั้งหมด ▶</a>
+                <a href="blog.html" class="section-badge">ดูทั้งหมด ▶</a>
             </div>
             <div id="guideGrid" class="related-grid">
                 <div class="related-card large">
@@ -1058,16 +1056,11 @@
             <div class="cta-content">
                 <h2>เปิดพอร์ตง่าย เพียงปลายนิ้ว</h2>
                 <div class="qr-code">
-                    <!-- ใส่รูป QR Code ของคุณที่นี่ -->
                     <div class="qr-placeholder">
-                        วาง QR Code ของคุณที่นี่<br>
-                        (ชื่อไฟล์: qr-code.png)
+                        <img src="Image/qr-code.png" alt="QR Code เปิดบัญชี">
                     </div>
-                    <!-- หรือใช้ img tag ถ้ามีไฟล์แล้ว
-                    <img src="qr-code.png" alt="QR Code เปิดบัญชี">
-                    -->
                 </div>
-                <a href="/signup.html" class="cta-btn">เปิดบัญชี ▶</a>
+                <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" class="cta-btn">เปิดบัญชี ▶</a>
             </div>
         </section>
     </div>
@@ -1083,7 +1076,7 @@
                         </svg>
                     </div>
                     <div class="footer-text">
-                        <div>@xxxxxx (Trade Gold)</div></div>
+                        <div>@555qutex (Trade Gold)</div></div>
                     </div>
                 <div class="footer-item">
                     <div class="footer-icon">
@@ -1208,7 +1201,7 @@
                 }
                 
                 html += `
-                <a href="/detail.html?id=${articleId}" class="small-news-card" style="text-decoration: none; color: inherit;">
+                <a href="detail.html?id=${articleId}" class="small-news-card" style="text-decoration: none; color: inherit;">
                     <div class="small-news-image" style="background: ${bgColor}; position: relative;">
                         ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📰<span class=\\'small-news-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;">` : '📰'}
                         <span class="small-news-category">${category}</span>
