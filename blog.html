@@ -427,18 +427,25 @@ body {
 
         async function loadBlogArticles() {
             try {
-                const response = await fetch(BLOG_API_URL);
+                // เพิ่ม timestamp เพื่อป้องกัน cache
+                const timestamp = new Date().getTime();
+                const response = await fetch(`${BLOG_API_URL}?v=${timestamp}`);
                 if (!response.ok) throw new Error('Failed to fetch data');
                 const data = await response.json();
                 let articles = Array.isArray(data) ? data : (data.articles || data.faqs || []);
                 
                 if (articles.length > 0) {
                     articles.sort((a, b) => new Date(b.Date || b.date || '1900-01-01') - new Date(a.Date || a.date || '1900-01-01'));
+                    
+                    console.log('📊 Loaded blog articles:', articles.length);
+                    console.log('📅 Latest article date:', articles[0].Date || articles[0].date);
+                    
                     displayBlogArticles(articles);
                 } else {
                     showEmptyState();
                 }
             } catch (error) {
+                console.error('❌ Error loading blog articles:', error);
                 showErrorState();
             }
         }

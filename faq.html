@@ -282,19 +282,12 @@
         // ===================================
         
         const FAQ_API_URL = 'https://script.google.com/macros/s/AKfycbz8aCIBxPlq3WtxHBCNtPKWLok-tCV1N0G8tjRng3hY-nsu6yI6DOnQRZX7PCm13hyF0w/exec';
-        const CACHE_KEY = 'faq_cache';
-        const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
         async function loadFAQs() {
             try {
-                // ลองโหลดจาก cache ก่อน
-                const cachedData = getCachedData();
-                if (cachedData) {
-                    displayFAQs(cachedData);
-                    return;
-                }
-
-                const response = await fetch(FAQ_API_URL);
+                // เพิ่ม timestamp เพื่อป้องกัน cache (ไม่ใช้ localStorage cache อีกต่อไป)
+                const timestamp = new Date().getTime();
+                const response = await fetch(`${FAQ_API_URL}?v=${timestamp}`);
                 
                 if (!response.ok) {
                     throw new Error('Failed to fetch data: ' + response.status);
@@ -316,7 +309,7 @@
                 }
                 
                 if (faqs && faqs.length > 0) {
-                    setCachedData(faqs);
+                    console.log('📊 Loaded FAQs:', faqs.length);
                     displayFAQs(faqs);
                 } else {
                     showEmptyState();
@@ -324,34 +317,6 @@
                 
             } catch (error) {
                 showErrorState();
-            }
-        }
-
-        function getCachedData() {
-            try {
-                const cached = localStorage.getItem(CACHE_KEY);
-                if (!cached) return null;
-                
-                const { data, timestamp } = JSON.parse(cached);
-                if (Date.now() - timestamp > CACHE_DURATION) {
-                    localStorage.removeItem(CACHE_KEY);
-                    return null;
-                }
-                
-                return data;
-            } catch (e) {
-                return null;
-            }
-        }
-
-        function setCachedData(data) {
-            try {
-                localStorage.setItem(CACHE_KEY, JSON.stringify({
-                    data: data,
-                    timestamp: Date.now()
-                }));
-            } catch (e) {
-                // Ignore cache errors
             }
         }
 

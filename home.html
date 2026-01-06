@@ -887,15 +887,26 @@
 
         async function loadAllData() {
             try {
-                const response = await fetch(GUIDE_API_URL);
+                // เพิ่ม timestamp เพื่อป้องกัน cache
+                const timestamp = new Date().getTime();
+                const response = await fetch(`${GUIDE_API_URL}?v=${timestamp}`);
                 const data = await response.json();
                 let guides = Array.isArray(data) ? data : (data.articles || []);
                 
+                // เรียงข้อมูลตามวันที่ (ใหม่สุดก่อน)
                 if (guides.length > 0) {
+                    guides.sort((a, b) => {
+                        return new Date(b.Date || 0) - new Date(a.Date || 0);
+                    });
+                    
+                    console.log('📊 Loaded articles:', guides.length);
+                    console.log('📅 Latest article date:', guides[0].Date);
+                    console.log('🆔 Latest article ID:', guides[0].ID);
+                    
                     displayGuideCards(guides);
                     displaySmallNewsCards(guides);
                 }
-            } catch (error) { console.error('Error loading data:', error); }
+            } catch (error) { console.error('❌ Error loading data:', error); }
         }
 
         function displayGuideCards(guides) {
