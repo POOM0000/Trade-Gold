@@ -117,9 +117,24 @@
         background: var(--navy);
         padding: 0.75rem 2rem;
         box-shadow: var(--shadow);
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 1000;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    /* เพิ่มเงาเมื่อ scroll */
+    .header.scrolled {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        padding: 0.5rem 2rem;
+    }
+
+    /* เพิ่ม padding-top ให้ body เพื่อไม่ให้เนื้อหาถูกบัง */
+    body {
+        padding-top: 70px; /* ปรับตามความสูงของ navbar */
     }
 
     .nav-container {
@@ -743,14 +758,47 @@
       });
     }
 
+    // ฟังก์ชันจัดการ Sticky Navbar Effect
+    function setupStickyNavbar() {
+      const header = document.querySelector('.header');
+      if (!header) return;
+
+      let lastScroll = 0;
+
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        // เพิ่ม class "scrolled" เมื่อ scroll ลงมา
+        if (currentScroll > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        lastScroll = currentScroll;
+      });
+    }
+
+    // เรียกใช้ setupStickyNavbar หลังจากโหลด navbar
+    function initializeStickyEffect() {
+      setTimeout(() => {
+        setupStickyNavbar();
+        console.log('✅ Sticky navbar effect initialized');
+      }, 500);
+    }
+
     // โหลดข้อมูลบทความทันทีเมื่อ script โหลด
     loadArticlesData();
 
     // เรียกใช้งานเมื่อ DOM โหลดเสร็จ
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadSharedComponents);
+      document.addEventListener('DOMContentLoaded', () => {
+        loadSharedComponents();
+        initializeStickyEffect();
+      });
     } else {
       loadSharedComponents();
+      initializeStickyEffect();
     }
   </script>
 </body>
