@@ -241,14 +241,14 @@
         }
 
         .dropdown-flag {
-            width: 42px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            background: var(--white);
-            padding: 4px;
-            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            border: 2px solid rgba(237, 191, 67, 0.3);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         .custom-dropdown-selected span {
@@ -293,6 +293,17 @@
             font-size: 1rem;
             font-family: 'Kanit', sans-serif;
             transition: background 0.2s;
+        }
+
+        .custom-option img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(237, 191, 67, 0.3);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         .custom-option:hover {
@@ -834,7 +845,7 @@
                     <!-- Custom Dropdown -->
                     <div class="custom-dropdown" id="customDropdown">
                         <div class="custom-dropdown-selected" id="dropdownSelected">
-                            <img src="https://flagcdn.com/w20/us.png" alt="USA" class="dropdown-flag">
+                            <img src="https://hatscripts.github.io/circle-flags/flags/us.svg" alt="USA" class="dropdown-flag">
                             <span>USA</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" class="dropdown-arrow">
                                 <path fill="#ffffff" d="M6 9L1 4h10z"/>
@@ -842,35 +853,35 @@
                         </div>
                         <div class="custom-dropdown-options" id="dropdownOptions">
                             <div class="custom-option" data-value="USA" data-flag="us">
-                                <img src="https://flagcdn.com/w20/us.png" alt="USA" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/us.svg" alt="USA" class="dropdown-flag">
                                 <span>USA</span>
                             </div>
                             <div class="custom-option" data-value="Thailand" data-flag="th">
-                                <img src="https://flagcdn.com/w20/th.png" alt="Thailand" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/th.svg" alt="Thailand" class="dropdown-flag">
                                 <span>Thailand</span>
                             </div>
                             <div class="custom-option" data-value="UK" data-flag="gb">
-                                <img src="https://flagcdn.com/w20/gb.png" alt="UK" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/gb.svg" alt="UK" class="dropdown-flag">
                                 <span>UK</span>
                             </div>
                             <div class="custom-option" data-value="Europe" data-flag="eu">
-                                <img src="https://flagcdn.com/w20/eu.png" alt="Europe" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/eu.svg" alt="Europe" class="dropdown-flag">
                                 <span>Europe</span>
                             </div>
                             <div class="custom-option" data-value="Japan" data-flag="jp">
-                                <img src="https://flagcdn.com/w20/jp.png" alt="Japan" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/jp.svg" alt="Japan" class="dropdown-flag">
                                 <span>Japan</span>
                             </div>
                             <div class="custom-option" data-value="Hong Kong" data-flag="hk">
-                                <img src="https://flagcdn.com/w20/hk.png" alt="Hong Kong" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/hk.svg" alt="Hong Kong" class="dropdown-flag">
                                 <span>Hong Kong</span>
                             </div>
                             <div class="custom-option" data-value="Shanghai" data-flag="cn">
-                                <img src="https://flagcdn.com/w20/cn.png" alt="Shanghai" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/cn.svg" alt="Shanghai" class="dropdown-flag">
                                 <span>Shanghai</span>
                             </div>
                             <div class="custom-option" data-value="Singapore" data-flag="sg">
-                                <img src="https://flagcdn.com/w20/sg.png" alt="Singapore" class="dropdown-flag">
+                                <img src="https://hatscripts.github.io/circle-flags/flags/sg.svg" alt="Singapore" class="dropdown-flag">
                                 <span>Singapore</span>
                             </div>
                         </div>
@@ -1245,7 +1256,7 @@
                     const text = option.querySelector('span').textContent;
                     
                     // Update selected display
-                    selected.querySelector('img').src = `https://flagcdn.com/w20/${flag}.png`;
+                    selected.querySelector('img').src = `https://hatscripts.github.io/circle-flags/flags/${flag}.svg`;
                     selected.querySelector('span').textContent = text;
                     
                     // Update hidden select
