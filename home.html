@@ -9,815 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --gold-primary: #EDBF43;
-            --gold-dark: #B8860B;
-            --gold-light: #FFD700;
-            --navy: #1E3A8A;
-            --navy-dark: #172d69;
-            --sky-blue: #87CEEB;
-            --sky-light: #A3DFF8;
-            --white: #ffffff;
-            --text-dark: #1a1a1a;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-/* Hero Section */
-        .hero {
-            background: url('Image/bg.png') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 100%, var(--white) 15%);
-            color: var(--white);
-            padding: 3rem 2rem 1.5rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--navy);
-            opacity: 60%;
-            z-index: 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="30" r="40" fill="rgba(212,175,55,0.1)"/><circle cx="90" cy="70" r="30" fill="rgba(255,215,0,0.1)"/></svg>');
-            background-size: cover;
-            z-index: 1;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content h1 {
-            font-family: 'Kanit', serif;
-            font-size: 7rem;
-            font-weight: 900;
-            margin-bottom: 5px;
-            color: var(--gold-light);
-        }
-
-        .hero-content p {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-
-        .hero-btn {
-            background: var(--gold-primary);
-            color: var(--text-dark);
-            padding: 0.75rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            animation: pulse 2s infinite;
-        }
-
-        .hero-btn:hover {
-            background: var(--gold-light);
-            color: var(--text-dark);
-            transform: scale(1.05);
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Section Headers */
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--gold-primary);
-        }
-
-        .section-header h2 {
-            font-family: 'Kanit', serif;
-            font-size: 1.8rem;
-            color: var(--navy);
-        }
-
-        .section-badge {
-            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
-            color: var(--navy);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(237, 191, 67, 0.3);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .section-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(237, 191, 67, 0.5);
-            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-        }
-
-        .section-badge:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 6px rgba(237, 191, 67, 0.4);
-        }
-
-        /* Gold Price Section */
-        .gold-price-section {
-            background: var(--white);
-            padding: 1.19rem;
-            border-radius: 11.9px;
-            box-shadow: var(--shadow);
-            margin-bottom: 1.785rem;
-        }
-
-        .chart-section {
-            margin-top: 1.05rem;
-        }
-
-        .chart-and-widgets-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 1.05rem;
-        }
-
-        .chart-with-sidebar {
-            position: relative;
-            width: 100%;
-        }
-
-        .main-chart-container {
-            background: var(--white);
-            border-radius: 10.5px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            min-height: 350px;
-            width: 100%;
-        }
-
-        .floating-sidebar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
-            gap: 1.05rem;
-        }
-
-        /* Country Dropdown - จัดวางฝั่งขวาของ Header */
-        .country-dropdown-container {
-            margin-left: auto;
-            padding: 0;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Custom Dropdown */
-        .custom-dropdown {
-            position: relative;
-            width: 220px;
-        }
-
-        .custom-dropdown-selected {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0.75rem 1.25rem;
-            background: var(--navy);
-            color: var(--white);
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: 'Kanit', sans-serif;
-            font-weight: 500;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-        }
-
-        .custom-dropdown-selected:hover {
-            background: var(--navy-dark);
-        }
-
-        .dropdown-flag {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            border: 2px solid rgba(237, 191, 67, 0.3);
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        .custom-dropdown-selected span {
-            flex: 1;
-        }
-
-        .dropdown-arrow {
-            transition: transform 0.3s;
-        }
-
-        .custom-dropdown.active .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .custom-dropdown-options {
-            position: absolute;
-            top: calc(100% + 5px);
-            left: 0;
-            right: 0;
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 100;
-        }
-
-        .custom-dropdown.active .custom-dropdown-options {
-            max-height: 500px;
-            opacity: 1;
-        }
-
-        .custom-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0.85rem 1.25rem;
-            cursor: pointer;
-            color: var(--navy);
-            font-size: 1rem;
-            font-family: 'Kanit', sans-serif;
-            transition: background 0.2s;
-        }
-
-        .custom-option img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(237, 191, 67, 0.3);
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        .custom-option:hover {
-            background: var(--gray-light);
-        }
-
-        .custom-option.selected {
-            background: var(--gold-primary);
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .flag-icon-display {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 18px;
-            pointer-events: none;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .flag-icon-display img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .country-dropdown {
-            width: 160px;
-            padding: 0.5rem 1rem 0.5rem 45px;
-            font-size: 0.9rem;
-            font-family: 'Kanit', sans-serif;
-            background: var(--navy);
-            border: none;
-            border-radius: 10px;
-            font-weight: 500;
-            color: var(--white);
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            padding-right: 2.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-
-        .country-dropdown:hover {
-            background: var(--navy-dark);
-        }
-
-        .country-dropdown:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
-        }
-
-        .country-dropdown option {
-            background: var(--white);
-            color: var(--navy);
-            padding: 0.5rem 0.5rem 0.5rem 40px;
-            background-repeat: no-repeat;
-            background-position: 10px center;
-            background-size: 20px 15px;
-        }
-
-
-        .tv-widget-item {
-            background: var(--white);
-            border-radius: 10.5px;
-            overflow: hidden;
-            box-shadow: 0 1.4px 7px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            min-height: 84px;
-        }
-
-        .tv-widget-item:hover {
-            transform: translateY(-3.5px);
-            box-shadow: 0 3.5px 14px rgba(212,175,55,0.2);
-        }
-
-        .tradingview-widget-container__widget {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* News Section */
-        .news-section {
-            margin-bottom: 3rem;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .news-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .news-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .news-image {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--navy) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--white);
-        }
-
-        .news-content {
-            padding: 1.5rem;
-        }
-
-        .news-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--navy);
-        }
-
-        .news-description {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .news-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #999;
-        }
-
-        .news-source {
-            font-weight: 600;
-            color: var(--gold-dark);
-        }
-
-        /* Related News Section */
-        .related-news {
-            margin-bottom: 3rem;
-        }
-
-        .related-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .related-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            display: block;
-            cursor: pointer;
-        }
-
-        .related-card:hover {
-            transform: scale(1.02);
-        }
-
-        .related-card.large {
-            grid-column: span 2;
-        }
-
-        .related-content {
-            display: flex;
-            gap: 1.5rem;
-            padding: 1.5rem;
-        }
-
-        .related-image {
-            width: 500px;
-            height: 259.2px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            flex-shrink: 0;
-        }
-
-        .related-text {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .related-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-            color: var(--navy);
-        }
-
-        .related-description {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
-            flex: 1;
-        }
-
-        .related-category {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            display: inline-block;
-            width: fit-content;
-            padding: 0.4rem 0.9rem;
-            background: var(--navy-dark);
-            color: var(--white);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-
-        .related-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            margin-top: auto;
-            border-top: 1px solid #e5e7eb;
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        /* Small News Grid */
-        .small-news-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .small-news-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            display: block;
-            cursor: pointer;
-        }
-
-        .small-news-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .small-news-image {
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            position: relative;
-        }
-
-        .small-news-content {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            min-height: 160px;
-        }
-
-        .small-news-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            color: var(--navy);
-        }
-
-        .small-news-excerpt {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 0.5rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .small-news-category {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            display: inline-block;
-            padding: 0.3rem 0.7rem;
-            background: var(--navy-dark);
-            color: var(--white);
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-
-        .small-news-meta {
-            padding-top: 0.75rem;
-            margin-top: auto;
-            border-top: 1px solid #e5e7eb;
-            font-size: 0.8rem;
-            color: #666;
-        }
-
-        /* Gold Types Section */
-        .gold-types {
-            margin-top: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .types-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .type-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: all 0.3s;
-            border: 3px solid transparent;
-        }
-
-        .type-card:hover {
-            border-color: var(--gold-primary);
-            transform: translateY(-10px);
-        }
-
-        .type-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            background: var(--sky-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--navy);
-        }
-
-        .type-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--navy);
-        }
-
-        .type-subtitle {
-            font-size: 0.95rem;
-            color: var(--gold-dark);
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .type-description {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy) 100%);
-            color: var(--white);
-            padding: 4rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-content h2 {
-            font-family: 'Kanit', serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--gold-light);
-        }
-
-        .cta-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .qr-code {
-            display: inline-block;
-            padding: 1.4rem;
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .qr-code img {
-            max-width: 210px;
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .qr-placeholder {
-            width: 100%;
-            height: 100%;
-            background: #f8f9fa;
-            border: 3px dashed #e9ecef;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            color: #999;
-            text-align: center;
-        }
-
-        .qr-code::after {
-            display: none;
-        }
-
-        .cta-btn {
-            background: var(--gold-primary);
-            color: var(--text-dark);
-            padding: 1rem 3rem;
-            border-radius: 30px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            margin-top: 1.5rem;
-        }
-
-        .cta-btn:hover {
-            background: var(--gold-light);
-            transform: scale(1.05);
-        }
-
-.main-chart-container {
-            height: 425px;
-        }
-
-        @media (max-width: 1024px) {
-            .news-grid, .small-news-grid, .types-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 4rem; }
-            .hero-content p { font-size: 1.5rem; }
-            .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-            .country-dropdown-container { margin-left: 0; width: 100%; }
-            .country-dropdown { width: 100%; }
-            .news-grid, .small-news-grid, .types-grid { grid-template-columns: 1fr; }
-            .related-content { flex-direction: column; }
-            .related-image { width: 100%; }
-
-}
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .gold-price-section, .news-section, .related-news, .gold-types, .cta-section {
-            animation: fadeIn 0.6s ease-out;
-        }
-    </style>
+    <style>*{margin:0;padding:0;box-sizing:border-box}:root{--gold-primary:#EDBF43;--gold-dark:#B8860B;--gold-light:#FFD700;--navy:#1E3A8A;--navy-dark:#172d69;--sky-blue:#87CEEB;--sky-light:#A3DFF8;--white:#ffffff;--text-dark:#1a1a1a;--shadow:0 10px 30px rgba(0,0,0,0.1)}body{font-family:'Kanit',sans-serif;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);color:var(--text-dark);line-height:1.6}.hero{background:url('Image/bg.png') center center/cover no-repeat,linear-gradient(135deg,var(--navy) 100%,var(--white) 15%);color:var(--white);padding:3rem 2rem 1.5rem 2rem;position:relative;overflow:hidden}.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);opacity:60%;z-index:0}.hero::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="30" r="40" fill="rgba(212,175,55,0.1)"/><circle cx="90" cy="70" r="30" fill="rgba(255,215,0,0.1)"/></svg>');background-size:cover;z-index:1}.hero-container{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}.hero-content h1{font-family:'Kanit',serif;font-size:7rem;font-weight:900;margin-bottom:5px;color:var(--gold-light)}.hero-content p{font-size:2rem;margin-bottom:1.5rem;opacity:0.9}.hero-btn{background:var(--gold-primary);color:var(--text-dark);padding:0.75rem 2rem;border-radius:30px;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;font-weight:600;transition:all 0.3s;animation:pulse 2s infinite}.hero-btn:hover{background:var(--gold-light);color:var(--text-dark);transform:scale(1.05)}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,0.7)}50%{box-shadow:0 0 0 10px rgba(212,175,55,0)}}.container{max-width:1400px;margin:0 auto;padding:2rem}.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:0.5rem;border-bottom:3px solid var(--gold-primary)}.section-header h2{font-family:'Kanit',serif;font-size:1.8rem;color:var(--navy)}.section-badge{background:linear-gradient(135deg,var(--gold-primary) 0%,var(--gold-dark) 100%);color:var(--navy);padding:0.5rem 1.5rem;border-radius:25px;font-size:0.9rem;font-weight:600;border:none;cursor:pointer;transition:all 0.3s ease;box-shadow:0 2px 8px rgba(237,191,67,0.3);text-decoration:none;display:inline-block}.section-badge:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(237,191,67,0.5);background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold-primary) 100%)}.section-badge:active{transform:translateY(0);box-shadow:0 2px 6px rgba(237,191,67,0.4)}.gold-price-section{background:var(--white);padding:1.19rem;border-radius:11.9px;box-shadow:var(--shadow);margin-bottom:1.785rem}.chart-section{margin-top:1.05rem}.chart-and-widgets-wrapper{display:flex;flex-direction:column;gap:1.05rem}.chart-with-sidebar{position:relative;width:100%}.main-chart-container{background:var(--white);border-radius:10.5px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.05);min-height:350px;width:100%}.floating-sidebar{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:1.05rem}.country-dropdown-container{margin-left:auto;padding:0;position:relative;display:inline-block}.custom-dropdown{position:relative;width:220px}.custom-dropdown-selected{display:flex;align-items:center;gap:12px;padding:0.75rem 1.25rem;background:var(--navy);color:var(--white);border-radius:10px;cursor:pointer;font-size:1rem;font-family:'Kanit',sans-serif;font-weight:500;box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:all 0.3s}.custom-dropdown-selected:hover{background:var(--navy-dark)}.dropdown-flag{width:40px;height:40px;object-fit:cover;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.15);border:2px solid rgba(237,191,67,0.3);image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}.custom-dropdown-selected span{flex:1}.dropdown-arrow{transition:transform 0.3s}.custom-dropdown.active .dropdown-arrow{transform:rotate(180deg)}.custom-dropdown-options{position:absolute;top:calc(100%+5px);left:0;right:0;background:var(--white);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.15);overflow:hidden;max-height:0;opacity:0;transition:all 0.3s;z-index:100}.custom-dropdown.active .custom-dropdown-options{max-height:500px;opacity:1}.custom-option{display:flex;align-items:center;gap:12px;padding:0.85rem 1.25rem;cursor:pointer;color:var(--navy);font-size:1rem;font-family:'Kanit',sans-serif;transition:background 0.2s}.custom-option img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(237,191,67,0.3);box-shadow:0 1px 4px rgba(0,0,0,0.1);image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}.custom-option:hover{background:var(--gray-light)}.custom-option.selected{background:var(--gold-primary);color:var(--white);font-weight:600}.flag-icon-display{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:24px;height:18px;pointer-events:none;z-index:1;display:flex;align-items:center;justify-content:center}.flag-icon-display img{width:100%;height:100%;object-fit:cover;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.2)}.country-dropdown{width:160px;padding:0.5rem 1rem 0.5rem 45px;font-size:0.9rem;font-family:'Kanit',sans-serif;background:var(--navy);border:none;border-radius:10px;font-weight:500;color:var(--white);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;box-shadow:0 4px 10px rgba(0,0,0,0.1);cursor:pointer}.country-dropdown:hover{background:var(--navy-dark)}.country-dropdown:focus{outline:none;box-shadow:0 0 0 3px rgba(30,58,138,0.2)}.country-dropdown option{background:var(--white);color:var(--navy);padding:0.5rem 0.5rem 0.5rem 40px;background-repeat:no-repeat;background-position:10px center;background-size:20px 15px}.tv-widget-item{background:var(--white);border-radius:10.5px;overflow:hidden;box-shadow:0 1.4px 7px rgba(0,0,0,0.05);transition:transform 0.3s,box-shadow 0.3s;min-height:84px}.tv-widget-item:hover{transform:translateY(-3.5px);box-shadow:0 3.5px 14px rgba(212,175,55,0.2)}.tradingview-widget-container__widget{width:100%;height:100%}.news-section{margin-bottom:3rem}.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.5rem}.news-card{background:var(--white);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);transition:transform 0.3s,box-shadow 0.3s;cursor:pointer}.news-card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,0,0,0.15)}.news-image{width:100%;height:180px;background:linear-gradient(135deg,var(--sky-blue) 0%,var(--navy) 100%);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--white)}.news-content{padding:1.5rem}.news-title{font-weight:700;font-size:1.1rem;margin-bottom:0.5rem;color:var(--navy)}.news-description{font-size:0.9rem;color:#666;margin-bottom:1rem;line-height:1.5}.news-meta{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:#999}.news-source{font-weight:600;color:var(--gold-dark)}.related-news{margin-bottom:3rem}.related-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:1.5rem}.related-card{background:var(--white);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);transition:all 0.3s;display:block;cursor:pointer}.related-card:hover{transform:scale(1.02)}.related-card.large{grid-column:span 2}.related-content{display:flex;gap:1.5rem;padding:1.5rem}.related-image{width:500px;height:259.2px;border-radius:10px;background:linear-gradient(135deg,#ff6b6b 0%,#ee5a6f 100%);display:flex;align-items:center;justify-content:center;font-size:6rem;flex-shrink:0}.related-text{flex:1;display:flex;flex-direction:column}.related-title{font-weight:700;font-size:1.2rem;margin-bottom:0.75rem;color:var(--navy)}.related-description{font-size:0.95rem;color:#666;line-height:1.6;flex:1}.related-category{position:absolute;top:12px;right:12px;display:inline-block;width:fit-content;padding:0.4rem 0.9rem;background:var(--navy-dark);color:var(--white);border-radius:20px;font-size:0.85rem;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2);z-index:10}.related-meta{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;margin-top:auto;border-top:1px solid #e5e7eb;font-size:0.85rem;color:#666}.small-news-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:1.5rem}.small-news-card{background:var(--white);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);transition:all 0.3s;display:block;cursor:pointer}.small-news-card:hover{transform:translateY(-5px)}.small-news-image{width:100%;height:150px;background:linear-gradient(135deg,var(--gold-primary) 0%,var(--gold-dark) 100%);display:flex;align-items:center;justify-content:center;font-size:2.5rem;position:relative}.small-news-content{padding:1rem;display:flex;flex-direction:column;min-height:160px}.small-news-title{font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;color:var(--navy)}.small-news-excerpt{font-size:0.85rem;color:#666;line-height:1.5;margin-bottom:0.5rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}.small-news-category{position:absolute;top:8px;right:8px;display:inline-block;padding:0.3rem 0.7rem;background:var(--navy-dark);color:var(--white);border-radius:15px;font-size:0.75rem;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2);z-index:10}.small-news-meta{padding-top:0.75rem;margin-top:auto;border-top:1px solid #e5e7eb;font-size:0.8rem;color:#666}.gold-types{margin-top:4rem;margin-bottom:3rem}.types-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:1.5rem}.type-card{background:var(--white);padding:2rem;border-radius:15px;box-shadow:var(--shadow);text-align:center;transition:all 0.3s;border:3px solid transparent}.type-card:hover{border-color:var(--gold-primary);transform:translateY(-10px)}.type-icon{width:80px;height:80px;margin:0 auto 1rem;background:var(--sky-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:700;color:var(--navy)}.type-title{font-weight:700;font-size:1.2rem;margin-bottom:0.5rem;color:var(--navy)}.type-subtitle{font-size:0.95rem;color:var(--gold-dark);font-weight:600;margin-bottom:0.75rem}.type-description{font-size:0.85rem;color:#666;line-height:1.5}.cta-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy) 100%);color:var(--white);padding:4rem 2rem;border-radius:20px;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden}.cta-content h2{font-family:'Kanit',serif;font-size:2rem;margin-bottom:1.5rem;color:var(--gold-light)}.cta-content{display:flex;flex-direction:column;align-items:center}.qr-code{display:inline-block;padding:1.4rem;background:var(--white);border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3)}.qr-code img{max-width:210px;width:100%;height:auto;display:block}.qr-placeholder{width:100%;height:100%;background:#f8f9fa;border:3px dashed #e9ecef;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:#999;text-align:center}.qr-code::after{display:none}.cta-btn{background:var(--gold-primary);color:var(--text-dark);padding:1rem 3rem;border-radius:30px;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;font-weight:700;font-size:1.1rem;transition:all 0.3s;margin-top:1.5rem}.cta-btn:hover{background:var(--gold-light);transform:scale(1.05)}.main-chart-container{height:425px}@media (max-width:1024px){.news-grid,.small-news-grid,.types-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:768px){.hero-content h1{font-size:4rem}.hero-content p{font-size:1.5rem}.section-header{flex-direction:column;align-items:flex-start;gap:0.5rem}.country-dropdown-container{margin-left:0;width:100%}.country-dropdown{width:100%}.news-grid,.small-news-grid,.types-grid{grid-template-columns:1fr}.related-content{flex-direction:column}.related-image{width:100%}}@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}.gold-price-section,.news-section,.related-news,.gold-types,.cta-section{animation:fadeIn 0.6s ease-out}</style>
 
 </head>
 <body>
@@ -826,9 +18,9 @@
 <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Trade Gold</h1>
+                <h1 id="heroBannerTitle">Trade Gold</h1>
                 <p>สรุปข้อมูลทองคำแบบเข้าใจง่าย เหมาะสำหรับนักลงทุนทุกระดับ</p>
-                <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" target="_blank" class="hero-btn">
+                <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" target="_blank" rel="noopener" class="hero-btn">
                     เปิดบัญชี ▶
                 </a>
             </div>
@@ -845,7 +37,7 @@
                     <!-- Custom Dropdown -->
                     <div class="custom-dropdown" id="customDropdown">
                         <div class="custom-dropdown-selected" id="dropdownSelected">
-                            <img src="https://hatscripts.github.io/circle-flags/flags/us.svg" alt="USA" class="dropdown-flag">
+                            <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/us.svg" alt="USA" class="dropdown-flag">
                             <span>USA</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" class="dropdown-arrow">
                                 <path fill="#ffffff" d="M6 9L1 4h10z"/>
@@ -853,35 +45,35 @@
                         </div>
                         <div class="custom-dropdown-options" id="dropdownOptions">
                             <div class="custom-option" data-value="USA" data-flag="us">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/us.svg" alt="USA" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/us.svg" alt="USA" class="dropdown-flag">
                                 <span>USA</span>
                             </div>
                             <div class="custom-option" data-value="Thailand" data-flag="th">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/th.svg" alt="Thailand" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/th.svg" alt="Thailand" class="dropdown-flag">
                                 <span>Thailand</span>
                             </div>
                             <div class="custom-option" data-value="UK" data-flag="gb">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/gb.svg" alt="UK" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/gb.svg" alt="UK" class="dropdown-flag">
                                 <span>UK</span>
                             </div>
                             <div class="custom-option" data-value="Europe" data-flag="eu">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/eu.svg" alt="Europe" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/eu.svg" alt="Europe" class="dropdown-flag">
                                 <span>Europe</span>
                             </div>
                             <div class="custom-option" data-value="Japan" data-flag="jp">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/jp.svg" alt="Japan" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/jp.svg" alt="Japan" class="dropdown-flag">
                                 <span>Japan</span>
                             </div>
                             <div class="custom-option" data-value="Hong Kong" data-flag="hk">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/hk.svg" alt="Hong Kong" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/hk.svg" alt="Hong Kong" class="dropdown-flag">
                                 <span>Hong Kong</span>
                             </div>
                             <div class="custom-option" data-value="Shanghai" data-flag="cn">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/cn.svg" alt="Shanghai" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/cn.svg" alt="Shanghai" class="dropdown-flag">
                                 <span>Shanghai</span>
                             </div>
                             <div class="custom-option" data-value="Singapore" data-flag="sg">
-                                <img src="https://hatscripts.github.io/circle-flags/flags/sg.svg" alt="Singapore" class="dropdown-flag">
+                                <img loading="lazy" src="https://hatscripts.github.io/circle-flags/flags/sg.svg" alt="Singapore" class="dropdown-flag">
                                 <span>Singapore</span>
                             </div>
                         </div>
@@ -937,7 +129,7 @@
                     </div>
             
                     <div class="floating-sidebar">
-                        <div class="tradingview-widget-container tv-widget-item">
+                        <div class="tradingview-widget-container tv-widget-item" id="widget0">
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
                                 { "symbol": "PEPPERSTONE:XAUTHB", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
@@ -1025,7 +217,7 @@
                     <div class="type-icon">F</div>
                     <h3 class="type-title">Futures (TFEX)</h3>
                     <p class="type-subtitle">สัญญาซื้อขายล่วงหน้า</p>
-                    <p class="type-description">การซื้อขายทองคำในตลาดล่วงหน้า ใช้เงินลงทุนน้อยแต่มีความเสี่ยงสูง</p>
+                    <p class="type-description">การซื้อขายทองคำในตลาดล่วงหน้า ใช้ทองคำลงทุนน้อยแต่มีความเสี่ยงสูง</p>
                 </div>
                 <div class="type-card">
                     <div class="type-icon">E</div>
@@ -1041,15 +233,18 @@
                 <h2>เปิดพอร์ตง่าย เพียงปลายนิ้ว</h2>
                 <div class="qr-code">
                     <div class="qr-placeholder">
-                        <img src="Image/qr-code.png" alt="QR Code เปิดบัญชี">
+                        <img loading="lazy" src="Image/qr-code.png" alt="QR Code เปิดบัญชี">
                     </div>
                 </div>
-                <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" target="_blank" class="cta-btn">เปิดบัญชี ▶</a>
+                <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" target="_blank" rel="noopener" class="cta-btn">เปิดบัญชี ▶</a>
             </div>
         </section>
     </div>
 
     <div id="footer-placeholder"></div>
+
+    <!-- Switch Button Placeholder -->
+    <div id="switch-button-placeholder"></div>
 
     <script>
         // Apps Script URL สำหรับดึงข้อมูลบทความ
@@ -1069,20 +264,42 @@
                 const data = await response.json();
                 let guides = Array.isArray(data) ? data : (data.articles || []);
                 
+                // กรองบทความตาม Mode
+                const currentMode = localStorage.getItem('tradeSiteMode') || 'gold';
+                const modePrefix = currentMode === 'silver' ? '#Silver' : '#Gold';
+                
+                // กรองเฉพาะบทความที่ Link ขึ้นต้นด้วย mode ที่เลือก
+                guides = guides.filter(article => {
+                    const link = article.Link || '';
+                    return link.toLowerCase().startsWith(modePrefix.toLowerCase());
+                });
+                
                 // เรียงข้อมูลตามวันที่ (ใหม่สุดก่อน)
                 if (guides.length > 0) {
                     guides.sort((a, b) => {
                         return new Date(b.Date || 0) - new Date(a.Date || 0);
                     });
                     
-                    console.log('📊 Loaded articles:', guides.length);
+                    console.log(`📊 Loaded ${currentMode} articles:`, guides.length);
                     console.log('📅 Latest article date:', guides[0].Date);
                     console.log('🆔 Latest article ID:', guides[0].ID);
+                    console.log('🔗 Mode filter:', modePrefix);
                     
                     displayGuideCards(guides);
                     displaySmallNewsCards(guides);
+                } else {
+                    // แสดงข้อความว่าไม่มีบทความสำหรับ mode นี้
+                    document.getElementById('guideGrid').innerHTML = `
+                        <div class="related-card large">
+                            <div class="related-content" style="justify-content: center; align-items: center; min-height: 200px;">
+                                <p style="text-align: center; color: #666;">ยังไม่มีบทความสำหรับ ${currentMode === 'silver' ? 'เงิน' : 'ทองคำ'}</p>
+                            </div>
+                        </div>`;
+                    document.getElementById('smallNewsGrid').innerHTML = '';
                 }
-            } catch (error) { console.error('❌ Error loading data:', error); }
+            } catch (error) { 
+                console.error('❌ Error loading data:', error);
+            }
         }
 
         function displayGuideCards(guides) {
@@ -1123,7 +340,7 @@
                 <a href="detail.html?id=${articleId}" class="related-card large" style="text-decoration: none; color: inherit;">
                     <div class="related-content">
                         <div class="related-image" style="background: linear-gradient(135deg, #EDBF43 0%, #B8860B 100%); position: relative;">
-                            ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📖<span class=\\'related-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : '📖'}
+                            ${imageUrl ? `<img loading="lazy" src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📖<span class=\\'related-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : '📖'}
                             <span class="related-category">${category}</span>
                         </div>
                         <div class="related-text">
@@ -1170,7 +387,7 @@
                 html += `
                 <a href="detail.html?id=${articleId}" class="small-news-card" style="text-decoration: none; color: inherit;">
                     <div class="small-news-image" style="background: ${bgColor}; position: relative;">
-                        ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📰<span class=\\'small-news-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;">` : '📰'}
+                        ${imageUrl ? `<img loading="lazy" src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='📰<span class=\\'small-news-category\\'>${category}</span>';" style="width:100%;height:100%;object-fit:cover;">` : '📰'}
                         <span class="small-news-category">${category}</span>
                     </div>
                     <div class="small-news-content">
@@ -1186,14 +403,46 @@
         }
 
         const countrySymbols = {
-            'USA': { gold: 'OANDA:XAUUSD', currency: 'FX_IDC:USDTHB' },
-            'Thailand': { gold: 'SAXO:XAUTHB', currency: 'FX_IDC:USDTHB' },
-            'UK': { gold: 'FOREXCOM:XAUGBP', currency: 'FX_IDC:GBPTHB' },
-            'Europe': { gold: 'FOREXCOM:XAUEUR', currency: 'FX_IDC:EURTHB' },
-            'Japan': { gold: 'FOREXCOM:XAUJPY', currency: 'FX_IDC:JPYTHB' },
-            'Hong Kong': { gold: 'SAXO:XAUHKD', currency: 'FX_IDC:HKDTHB' },
-            'Shanghai': { gold: 'SAXO:XAUCNH', currency: 'FX_IDC:CNYTHB' },
-            'Singapore': { gold: 'FX_IDC:XAUSGD', currency: 'FX_IDC:SGDTHB' }
+            'USA': { 
+                gold: 'OANDA:XAUUSD', 
+                silver: 'OANDA:XAGUSD',
+                currency: 'FX_IDC:USDTHB' 
+            },
+            'Thailand': { 
+                gold: 'SAXO:XAUTHB', 
+                silver: 'FX_IDC:XAGTHB',
+                currency: 'FX_IDC:USDTHB' 
+            },
+            'UK': { 
+                gold: 'FOREXCOM:XAUGBP', 
+                silver: 'FX_IDC:XAGGBP',
+                currency: 'FX_IDC:GBPTHB' 
+            },
+            'Europe': { 
+                gold: 'FOREXCOM:XAUEUR', 
+                silver: 'OANDA:XAGEUR',
+                currency: 'FX_IDC:EURTHB' 
+            },
+            'Japan': { 
+                gold: 'FOREXCOM:XAUJPY', 
+                silver: 'FX_IDC:XAGJPY',
+                currency: 'FX_IDC:JPYTHB' 
+            },
+            'Hong Kong': { 
+                gold: 'SAXO:XAUHKD', 
+                silver: 'OANDA:XAGHKD',
+                currency: 'FX_IDC:HKDTHB' 
+            },
+            'Shanghai': { 
+                gold: 'SAXO:XAUCNH', 
+                silver: 'FX_IDC:XAGCNY',
+                currency: 'FX_IDC:CNYTHB' 
+            },
+            'Singapore': { 
+                gold: 'FX_IDC:XAUSGD', 
+                silver: 'FX_IDC:XAGSGD',
+                currency: 'FX_IDC:SGDTHB' 
+            }
         };
 
         function reloadWidget(containerId, symbol) {
@@ -1220,8 +469,19 @@
 
         function syncWidgets(country) {
             const symbols = countrySymbols[country];
-            reloadMainChart(symbols.gold);
-            reloadWidget('widget1', symbols.gold);
+            const mode = localStorage.getItem('tradeSiteMode') || 'gold';
+            const metalSymbol = mode === 'silver' ? symbols.silver : symbols.gold;
+            
+            reloadMainChart(metalSymbol);
+            
+            // Widget 0 - ราคาทองคำไทย (เปลี่ยนตาม mode)
+            const thaiSymbol = mode === 'silver' ? 'FX_IDC:XAGTHB' : 'PEPPERSTONE:XAUTHB';
+            reloadWidget('widget0', thaiSymbol);
+            
+            // Widget 1 - ราคาทองคำตามประเทศที่เลือก
+            reloadWidget('widget1', metalSymbol);
+            
+            // Widget 3 - อัตราแลกเปลี่ยน (ไม่เปลี่ยน)
             reloadWidget('widget3', symbols.currency);
         }
 
@@ -1281,6 +541,25 @@
         window.addEventListener('DOMContentLoaded', () => {
             loadAllData();
             initCustomDropdown();
+            
+            // Sync widgets based on current mode on load
+            const currentCountry = document.getElementById('countryDropdown').value || 'USA';
+            const currentMode = localStorage.getItem('tradeSiteMode') || 'gold';
+            syncWidgets(currentCountry);
+            
+            // Listen for mode changes from other components
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'tradeSiteMode') {
+                    const country = document.getElementById('countryDropdown').value || 'USA';
+                    syncWidgets(country);
+                }
+            });
+            
+            // Listen for custom event from switch button
+            window.addEventListener('modeChanged', (e) => {
+                const country = document.getElementById('countryDropdown').value || 'USA';
+                syncWidgets(country);
+            });
         });
     </script>
 
@@ -1318,6 +597,14 @@
                 }
                 
                 // ดึง Styles
+
+                // ดึง Switch Button Template
+                const switchButtonTemplate = doc.getElementById('switch-button-template');
+                if (switchButtonTemplate) {
+                    const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+                    document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
+                    console.log('✅ Switch button loaded!');
+                }
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
                     const styleElement = document.createElement('style');
@@ -1338,6 +625,70 @@
                     
                     window.sharedScriptLoaded = true;
                     console.log('✅ Shared components script loaded!');
+                    
+                    // ฟังก์ชันสลับคำตาม Mode
+                    function updateTextByMode() {
+                        const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+                        
+                        // เปลี่ยน Banner Title
+                        const heroBannerTitle = document.getElementById('heroBannerTitle');
+                        if (heroBannerTitle) {
+                            heroBannerTitle.textContent = isSilverMode ? 'Trade Silver' : 'Trade Gold';
+                        }
+                        
+                        // สลับคำในเนื้อหา
+                        const textReplacements = {
+                            'ทองคำ': isSilverMode ? 'เงิน' : 'ทองคำ',
+                            'ทอง': isSilverMode ? 'เงิน' : 'ทอง',
+                            'Gold': isSilverMode ? 'Silver' : 'Gold'
+                        };
+                        
+                        // หาและแทนที่ข้อความ (ยกเว้น script tags)
+                        function replaceText(element) {
+                            if (element.nodeType === Node.TEXT_NODE) {
+                                let text = element.textContent;
+                                let modified = false;
+                                
+                                for (const [oldText, newText] of Object.entries(textReplacements)) {
+                                    if (text.includes(oldText)) {
+                                        text = text.replace(new RegExp(oldText, 'g'), newText);
+                                        modified = true;
+                                    }
+                                }
+                                
+                                if (modified) {
+                                    element.textContent = text;
+                                }
+                            } else if (element.nodeType === Node.ELEMENT_NODE && 
+                                       element.tagName !== 'SCRIPT' && 
+                                       element.tagName !== 'STYLE' &&
+                                       !element.classList.contains('no-translate')) {
+                                for (const child of element.childNodes) {
+                                    replaceText(child);
+                                }
+                            }
+                        }
+                        
+                        // แทนที่ข้อความในเนื้อหาหลัก
+                        const mainContent = document.body;
+                        if (mainContent) {
+                            replaceText(mainContent);
+                        }
+                        
+                        console.log(`✅ Text updated to ${isSilverMode ? 'Silver' : 'Gold'} mode`);
+                    }
+                    
+                    // เรียกใช้ครั้งแรก
+                    setTimeout(() => {
+                        updateTextByMode();
+                    }, 600);
+                    
+                    // ฟังการเปลี่ยนแปลง mode
+                    window.addEventListener('modeChanged', () => {
+                        updateTextByMode();
+                        // Reload ข้อมูลบทความเมื่อเปลี่ยน Mode
+                        loadAllData();
+                    });
                 }
             })
             .catch(error => console.error('Error loading components:', error));

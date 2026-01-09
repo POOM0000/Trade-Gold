@@ -6,486 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>บทความ - Trade Gold</title>
     <link rel="icon" type="image/png" href="image/logo.png">
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold-primary: #EDBF43;
-            --gold-light: #FFD700;
-            --gold-dark: #B8860B;
-            --navy: #1E3A8A;
-            --navy-medium: #1E40AF;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray-medium: #e9ecef;
-            --text-dark: #2c3e50;
-            --sky-blue: #87CEEB;
-            --sky-light: #A3DFF8;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --green: #059669;
-            --red: #dc2626;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-/* Breadcrumb */
-        .breadcrumb {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-
-        .breadcrumb a {
-            color: var(--navy);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-primary);
-        }
-
-        .breadcrumb span {
-            color: #9ca3af;
-        }
-
-        /* Navigation Styles */
-        .nav-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            gap: 2rem;
-            position: relative;
-            padding-top: 2rem;
-        }
-
-        .table-of-contents {
-            width: 280px;
-            flex-shrink: 0;
-            position: sticky;
-            top: 100px;
-            align-self: flex-start;
-            background: var(--white);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
-        }
-
-        .toc-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--navy);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--gold-primary);
-        }
-
-        .toc-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .toc-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        .toc-list a {
-            display: block;
-            color: var(--text-dark);
-            text-decoration: none;
-            padding: 0.5rem 0.75rem;
-            border-radius: 8px;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-            border: 2px solid transparent;
-        }
-
-        .toc-list a:hover {
-            background: var(--gray-light);
-            color: var(--navy);
-            padding-left: 1rem;
-            border-color: var(--gray-medium);
-        }
-
-        .toc-list a.active {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            color: var(--navy);
-            font-weight: 600;
-            border: 2px solid var(--gold-primary);
-            box-shadow: 0 2px 8px rgba(237, 191, 67, 0.3);
-        }
-
-        .toc-list a.active:hover {
-            padding-left: 0.75rem;
-            border-color: var(--gold-dark);
-        }
-
-        .toc-item-parent {
-            position: relative;
-        }
-
-        .toc-item-parent > .toc-parent-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .toc-item-parent > .toc-parent-wrapper:hover {
-            background: var(--gray-light);
-            border-color: var(--gray-medium);
-        }
-
-        .toc-item-parent > .toc-parent-wrapper.active {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid var(--gold-primary);
-            box-shadow: 0 2px 8px rgba(237, 191, 67, 0.3);
-        }
-
-        .toc-item-parent > .toc-parent-wrapper.active:hover {
-            border-color: var(--gold-dark);
-        }
-
-        .toc-item-parent > .toc-parent-wrapper > a {
-            flex: 1;
-            border: none !important;
-            background: none !important;
-            box-shadow: none !important;
-            padding: 0.5rem 0.75rem;
-        }
-
-        .toc-item-parent > .toc-parent-wrapper > a:hover {
-            background: none !important;
-            padding-left: 0.75rem !important;
-        }
-
-        .toc-item-parent > .toc-parent-wrapper.active > a {
-            color: var(--navy);
-            font-weight: 600;
-        }
-
-        .toc-toggle-btn {
-            background: none;
-            border: none;
-            color: var(--navy);
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 0.5rem 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            transition: all 0.3s;
-            flex-shrink: 0;
-        }
-
-        .toc-toggle-btn:hover {
-            background: var(--gray-light);
-        }
-
-        .toc-toggle-btn.collapsed {
-            transform: rotate(-90deg);
-        }
-
-        .toc-submenu {
-            list-style: none;
-            padding: 0.75rem;
-            padding-left: 1.5rem;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-            overflow: hidden;
-            max-height: 500px;
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            opacity: 1;
-            background: var(--gray-light);
-            border: 2px solid var(--gray-medium);
-            border-radius: 8px;
-        }
-
-        .toc-submenu.collapsed {
-            max-height: 0;
-            opacity: 0;
-            margin-top: 0;
-            margin-bottom: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            border-color: transparent;
-        }
-
-        .toc-submenu li {
-            margin-bottom: 0.25rem;
-        }
-
-        .toc-submenu li:last-child {
-            margin-bottom: 0;
-        }
-
-        .toc-submenu a {
-            padding: 0.4rem 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        /* Mobile TOC Toggle */
-        .toc-toggle {
-            display: none;
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--gold-primary);
-            color: var(--navy);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-
-        .toc-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* Article Container */
-        .article-container {
-            flex: 1;
-            margin-bottom: 4rem;
-        }
-
-        .article-category {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            display: inline-block;
-            background: var(--navy);
-            color: var(--white);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-
-        .article-title {
-            font-size: 2.5rem;
-            color: var(--white);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            color: var(--white);
-            font-size: 0.95rem;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .article-featured-image {
-            width: 100%;
-            height: 500px;
-            background: url('Image/Book.png') center center/cover no-repeat, linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 3rem;
-            margin-bottom: 0;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .article-featured-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--navy);
-            opacity: 0.5;
-            z-index: 0;
-        }
-
-        .article-featured-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            z-index: 1;
-        }
-        
-        .article-header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Article Content */
-        .article-content {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 0;
-        }
-
-        .article-content h2 {
-            font-size: 2rem;
-            color: var(--navy);
-            margin: 2rem 0 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--gold-primary);
-            scroll-margin-top: 120px;
-        }
-
-        .article-content h3 {
-            font-size: 1.5rem;
-            color: var(--navy);
-            margin: 1.5rem 0 1rem;
-            scroll-margin-top: 120px;
-        }
-
-        .article-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-dark);
-        }
-
-        .article-content ul, .article-content ol {
-            margin: 1.5rem 0;
-            padding-left: 2rem;
-        }
-
-        .article-content li {
-            margin-bottom: 0.75rem;
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        .article-content blockquote {
-            background: var(--gray-light);
-            border-left: 5px solid var(--gold-primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 10px;
-            font-style: italic;
-            color: #555;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid var(--gold-primary);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 4px 15px rgba(237, 191, 67, 0.2);
-        }
-
-        .highlight-box h4 {
-            color: var(--navy);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .highlight-box p, .highlight-box li {
-            color: var(--text-dark);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .nav-wrapper {
-                flex-direction: column;
-            }
-
-            .table-of-contents {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 300px;
-                height: 100vh;
-                max-height: 100vh;
-                z-index: 999;
-                transition: left 0.3s;
-                border-radius: 0;
-            }
-
-            .table-of-contents.active {
-                left: 0;
-            }
-
-            .toc-toggle {
-                display: block;
-            }
-
-            .toc-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.5);
-                z-index: 998;
-            }
-
-            .toc-overlay.active {
-                display: block;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .article-title {
-                font-size: 1.8rem;
-            }
-
-            .article-content {
-                padding: 2rem 1.5rem;
-            }
-
-            .article-content h2 {
-                font-size: 1.5rem;
-            }
-
-            .article-featured-image {
-                height: 400px;
-            }
-        }
-    </style>
+    <style>:root{--gold-primary:#EDBF43;--gold-light:#FFD700;--gold-dark:#B8860B;--navy:#1E3A8A;--navy-medium:#1E40AF;--white:#ffffff;--gray-light:#f8f9fa;--gray-medium:#e9ecef;--text-dark:#2c3e50;--sky-blue:#87CEEB;--sky-light:#A3DFF8;--shadow:0 10px 30px rgba(0,0,0,0.1);--green:#059669;--red:#dc2626}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Kanit',sans-serif;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);color:var(--text-dark);line-height:1.8}.breadcrumb{max-width:1200px;margin:2rem auto;padding:0 2rem;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:#6b7280}.breadcrumb a{color:var(--navy);text-decoration:none;transition:color 0.3s}.breadcrumb a:hover{color:var(--gold-primary)}.breadcrumb span{color:#9ca3af}.nav-wrapper{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;gap:2rem;position:relative;padding-top:2rem}.table-of-contents{width:280px;flex-shrink:0;position:sticky;top:100px;align-self:flex-start;background:var(--white);border-radius:15px;padding:1.5rem;box-shadow:var(--shadow);max-height:calc(100vh - 120px);overflow-y:auto}.toc-title{font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--gold-primary)}.toc-list{list-style:none;padding:0}.toc-list li{margin-bottom:0.5rem}.toc-list a{display:block;color:var(--text-dark);text-decoration:none;padding:0.5rem 0.75rem;border-radius:8px;transition:all 0.3s;font-size:0.95rem;border:2px solid transparent}.toc-list a:hover{background:var(--gray-light);color:var(--navy);padding-left:1rem;border-color:var(--gray-medium)}.toc-list a.active{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);color:var(--navy);font-weight:600;border:2px solid var(--gold-primary);box-shadow:0 2px 8px rgba(237,191,67,0.3)}.toc-list a.active:hover{padding-left:0.75rem;border-color:var(--gold-dark)}.toc-item-parent{position:relative}.toc-item-parent>.toc-parent-wrapper{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;border-radius:8px;transition:all 0.3s;border:2px solid transparent}.toc-item-parent>.toc-parent-wrapper:hover{background:var(--gray-light);border-color:var(--gray-medium)}.toc-item-parent>.toc-parent-wrapper.active{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);border:2px solid var(--gold-primary);box-shadow:0 2px 8px rgba(237,191,67,0.3)}.toc-item-parent>.toc-parent-wrapper.active:hover{border-color:var(--gold-dark)}.toc-item-parent>.toc-parent-wrapper>a{flex:1;border:none !important;background:none !important;box-shadow:none !important;padding:0.5rem 0.75rem}.toc-item-parent>.toc-parent-wrapper>a:hover{background:none !important;padding-left:0.75rem !important}.toc-item-parent>.toc-parent-wrapper.active>a{color:var(--navy);font-weight:600}.toc-toggle-btn{background:none;border:none;color:var(--navy);font-size:0.9rem;cursor:pointer;padding:0.5rem 0.75rem;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all 0.3s;flex-shrink:0}.toc-toggle-btn:hover{background:var(--gray-light)}.toc-toggle-btn.collapsed{transform:rotate(-90deg)}.toc-submenu{list-style:none;padding:0.75rem;padding-left:1.5rem;margin-top:0.5rem;margin-bottom:0.5rem;overflow:hidden;max-height:500px;transition:max-height 0.3s ease-in-out,opacity 0.3s ease-in-out;opacity:1;background:var(--gray-light);border:2px solid var(--gray-medium);border-radius:8px}.toc-submenu.collapsed{max-height:0;opacity:0;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;border-color:transparent}.toc-submenu li{margin-bottom:0.25rem}.toc-submenu li:last-child{margin-bottom:0}.toc-submenu a{padding:0.4rem 0.5rem;font-size:0.9rem}.toc-toggle{display:none;position:fixed;bottom:2rem;right:2rem;background:var(--gold-primary);color:var(--navy);border:none;border-radius:50%;width:60px;height:60px;font-size:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.3);cursor:pointer;z-index:1000;transition:all 0.3s}.toc-toggle:hover{transform:scale(1.1)}.article-container{flex:1;margin-bottom:4rem}.article-category{position:absolute;top:12px;right:12px;display:inline-block;background:var(--navy);color:var(--white);padding:0.5rem 1.5rem;border-radius:25px;font-size:0.9rem;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.3);z-index:10}.article-meta{display:flex;align-items:center;gap:2rem;color:var(--white);font-size:0.95rem}.meta-item{display:flex;align-items:center;gap:0.5rem}.article-featured-image{width:100%;height:500px;background:url('Image/Book.png') center center/cover no-repeat,linear-gradient(135deg,var(--navy) 0%,var(--navy-medium) 100%);border-radius:20px;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem;margin-bottom:0;overflow:hidden;position:relative}.article-featured-image::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);opacity:0.5;z-index:0}.article-featured-image::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);z-index:1}.article-header-content{position:relative;z-index:2}.article-content{background:var(--white);border-radius:20px;padding:3rem;box-shadow:var(--shadow);margin-bottom:0}.article-content h2{font-size:2rem;color:var(--navy);margin:2rem 0 1rem;padding-bottom:0.5rem;border-bottom:3px solid var(--gold-primary);scroll-margin-top:120px}.article-content h3{font-size:1.5rem;color:var(--navy);margin:1.5rem 0 1rem;scroll-margin-top:120px}.article-content p{margin-bottom:1.5rem;font-size:1.1rem;line-height:1.8;color:var(--text-dark)}.article-content ul,.article-content ol{margin:1.5rem 0;padding-left:2rem}.article-content li{margin-bottom:0.75rem;font-size:1.05rem;line-height:1.8}.article-content blockquote{background:var(--gray-light);border-left:5px solid var(--gold-primary);padding:1.5rem;margin:2rem 0;border-radius:10px;font-style:italic;color:#555}.highlight-box{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);border:2px solid var(--gold-primary);border-radius:15px;padding:2rem;margin:2rem 0;box-shadow:0 4px 15px rgba(237,191,67,0.2)}.highlight-box h4{color:var(--navy);margin-bottom:1rem;font-size:1.3rem}.highlight-box p,.highlight-box li{color:var(--text-dark)}@media (max-width:1024px){.nav-wrapper{flex-direction:column}.table-of-contents{position:fixed;top:0;left:-100%;width:300px;height:100vh;max-height:100vh;z-index:999;transition:left 0.3s;border-radius:0}.table-of-contents.active{left:0}.toc-toggle{display:block}.toc-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:998}.toc-overlay.active{display:block}}@media (max-width:768px){.article-content{padding:2rem 1.5rem}.article-content h2{font-size:1.5rem}.article-featured-image{height:400px}}</style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -541,14 +66,11 @@
             <div class="article-featured-image" id="articleImage">
                 <span class="article-category">📘 Guide Book</span>
                 <div class="article-header-content">
-                    <h1 class="article-title" id="articleTitle">101-คู่มือเทรดทองคำสำหรับมือใหม่</h1>
                     <div class="article-meta">
                         <div class="meta-item">
-                            <span>📅</span>
                             <span id="articleDate">22 ธันวาคม 2025</span>
                         </div>
                         <div class="meta-item">
-                            <span>✍️</span>
                             <span>โดย Trade Gold Team</span>
                         </div>
                     </div>
@@ -558,7 +80,7 @@
             <div class="article-content">
                 <h2 id="what-is-gold-trading">💰 ทองคำคืออะไร และทำไมถึงเป็นที่นิยมในวงการเทรด?</h2>
 
-                <p>ทองคำเป็นโลหะมีค่าที่ได้รับการยอมรับว่าเป็น <strong>"ทรัพย์สินปลอดภัย" (Safe Haven Asset)</strong> มาตั้งแต่สมัยโบราณ ในโลกของการเทรด ทองคำมีบทบาทสำคัญเป็นเครื่องมือในการป้องกันความเสี่ยงจากเงินเฟ้อ (Inflation Hedge) และความผันผวนของตลาดการเงิน</p>
+                <p>ทองคำเป็นโลหะมีค่าที่ได้รับการยอมรับว่าเป็น <strong>"ทรัพย์สินปลอดภัย" (Safe Haven Asset)</strong> มาตั้งแต่สมัยโบราณ ในโลกของการเทรด ทองคำมีบทบาทสำคัญเป็นเครื่องมือในการป้องกันความเสี่ยงจากทองคำเฟ้อ (Inflation Hedge) และความผันผวนของตลาดการทองคำ</p>
 
                 <p>การเทรดทองคำในปัจจุบันไม่ได้หมายถึงการซื้อขายทองคำแท่งหรือทองรูปพรรณเท่านั้น แต่รวมถึงการเทรดผ่านตราสารอนุพันธ์ต่างๆ เช่น <strong>Gold Futures, Gold CFDs, Gold ETFs</strong> และ <strong>Gold Spot</strong> ซึ่งทำให้นักเทรดสามารถเข้าถึงตลาดทองคำได้ง่ายขึ้นและมีความยืดหยุ่นมากกว่าเดิม</p>
 
@@ -568,7 +90,7 @@
                     <li><strong>สภาพคล่องสูง:</strong> ตลาดทองคำมีสภาพคล่องสูง ซื้อขายได้ตลอด 24 ชั่วโมง</li>
                     <li><strong>ป้องกันความเสี่ยง:</strong> ราคาทองมักเคลื่อนไหวสวนทางกับตลาดหุ้นและดอลลาร์</li>
                     <li><strong>โอกาสในการทำกำไร:</strong> มีความผันผวนที่เหมาะสมทั้งในระยะสั้นและระยะยาว</li>
-                    <li><strong>เข้าถึงง่าย:</strong> สามารถเริ่มต้นด้วยเงินทุนไม่มาก และมีแพลตฟอร์มเทรดที่หลากหลาย</li>
+                    <li><strong>เข้าถึงง่าย:</strong> สามารถเริ่มต้นด้วยทองคำทุนไม่มาก และมีแพลตฟอร์มเทรดที่หลากหลาย</li>
                 </ul>
 
                 <h2 id="trading-methods">📊 วิธีการเทรดทองคำ</h2>
@@ -592,7 +114,7 @@
                     <ul>
                         <li>เทรดในช่วงเวลาที่มีความผันผวนสูง (เช่น 20:00-24:00 เวลาไทย)</li>
                         <li>ใช้ Stop Loss ทุกครั้ง</li>
-                        <li>จำกัดความเสี่ยงไม่เกิน 2% ของเงินทุนต่อออเดอร์</li>
+                        <li>จำกัดความเสี่ยงไม่เกิน 2% ของทองคำทุนต่อออเดอร์</li>
                         <li>ติดตามข่าวเศรษฐกิจสำคัญ เช่น CPI, Non-farm Payrolls</li>
                     </ul>
                 </div>
@@ -621,7 +143,7 @@
                 <ul>
                     <li><strong>ดัชนีดอลลาร์ (DXY):</strong> ราคาทองมักเคลื่อนไหวสวนทางกับดอลลาร์</li>
                     <li><strong>อัตราดอกเบี้ย Fed:</strong> ดอกเบี้ยสูง = กดดันทองคำ</li>
-                    <li><strong>เงินเฟ้อ (CPI):</strong> เงินเฟ้อสูง = หนุนราคาทองคำ</li>
+                    <li><strong>ทองคำเฟ้อ (CPI):</strong> ทองคำเฟ้อสูง = หนุนราคาทองคำ</li>
                     <li><strong>ความตึงเครียดทางภูมิรัฐศาสตร์:</strong> เพิ่มความต้องการทองคำเป็น Safe Haven</li>
                 </ul>
 
@@ -633,7 +155,7 @@
                         <li><strong>ใช้ Stop Loss เสมอ:</strong> กำหนดจุดขาดทุนสูงสุดที่ยอมรับได้</li>
                         <li><strong>Risk-Reward Ratio:</strong> ควรมีอัตราส่วนอย่างน้อย 1:2</li>
                         <li><strong>ไม่ลงทุนเกินกำลัง:</strong> ใช้เลเวอเรจอย่างระมัดระวัง</li>
-                        <li><strong>กระจายความเสี่ยง:</strong> อย่าเอาเงินทั้งหมดลงในออเดอร์เดียว</li>
+                        <li><strong>กระจายความเสี่ยง:</strong> อย่าเอาทองคำทั้งหมดลงในออเดอร์เดียว</li>
                         <li><strong>มีแผนการเทรด:</strong> วางแผน Entry, Exit, และ Stop Loss ล่วงหน้า</li>
                     </ol>
                 </div>
@@ -643,8 +165,8 @@
                 <ol>
                     <li><strong>เรียนรู้พื้นฐาน:</strong> ศึกษาหลักการเทรดและปัจจัยที่ส่งผลต่อราคาทองคำ</li>
                     <li><strong>เปิดบัญชีเทรด:</strong> เลือกโบรกเกอร์ที่มีความน่าเชื่อถือ</li>
-                    <li><strong>ฝึกฝนด้วย Demo Account:</strong> ทดลองเทรดด้วยเงินเสมือนก่อน</li>
-                    <li><strong>เริ่มต้นด้วยเงินน้อย:</strong> ลงทุนด้วยเงินที่พร้อมเสีย</li>
+                    <li><strong>ฝึกฝนด้วย Demo Account:</strong> ทดลองเทรดด้วยทองคำเสมือนก่อน</li>
+                    <li><strong>เริ่มต้นด้วยทองคำน้อย:</strong> ลงทุนด้วยทองคำที่พร้อมเสีย</li>
                     <li><strong>ติดตามและปรับปรุง:</strong> บันทึกการเทรดและเรียนรู้จากประสบการณ์</li>
                 </ol>
 
@@ -672,6 +194,9 @@
     </div>
 
     <div id="footer-placeholder"></div>
+
+    <!-- Switch Button Placeholder -->
+    <div id="switch-button-placeholder"></div>
 
     <!-- Mobile TOC Toggle Button -->
     <button class="toc-toggle" id="tocToggle" aria-label="Toggle Table of Contents">
@@ -864,6 +389,14 @@
                     document.getElementById('footer-placeholder').appendChild(footerContent);
                 }
                 
+                
+                // ดึง Switch Button Template
+                const switchButtonTemplate = doc.getElementById('switch-button-template');
+                if (switchButtonTemplate) {
+                    const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+                    document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
+                    console.log('✅ Switch button loaded!');
+                }
                 // ดึง Styles
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
@@ -883,6 +416,57 @@
                     window.sharedScriptLoaded = true;
                     console.log('✅ Shared components script loaded!');
                 }
+                
+                // ฟังก์ชันสลับคำตาม Mode
+                setTimeout(() => {
+                    function updateTextByMode() {
+                        const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+                        
+                        const textReplacements = {
+                            'ทองคำ': isSilverMode ? 'เงิน' : 'ทองคำ',
+                            'ทอง': isSilverMode ? 'เงิน' : 'ทอง',
+                            'Gold': isSilverMode ? 'Silver' : 'Gold'
+                        };
+                        
+                        function replaceText(element) {
+                            if (element.nodeType === Node.TEXT_NODE) {
+                                let text = element.textContent;
+                                let modified = false;
+                                
+                                for (const [oldText, newText] of Object.entries(textReplacements)) {
+                                    if (text.includes(oldText)) {
+                                        text = text.replace(new RegExp(oldText, 'g'), newText);
+                                        modified = true;
+                                    }
+                                }
+                                
+                                if (modified) {
+                                    element.textContent = text;
+                                }
+                            } else if (element.nodeType === Node.ELEMENT_NODE && 
+                                       element.tagName !== 'SCRIPT' && 
+                                       element.tagName !== 'STYLE' &&
+                                       !element.classList.contains('no-translate')) {
+                                for (const child of element.childNodes) {
+                                    replaceText(child);
+                                }
+                            }
+                        }
+                        
+                        const mainContent = document.body;
+                        if (mainContent) {
+                            replaceText(mainContent);
+                        }
+                        
+                        console.log(`✅ Guide page text updated to ${isSilverMode ? 'Silver' : 'Gold'} mode`);
+                    }
+                    
+                    updateTextByMode();
+                    
+                    window.addEventListener('modeChanged', () => {
+                        updateTextByMode();
+                    });
+                }, 600);
             })
             .catch(error => console.error('Error loading components:', error));
     </script>

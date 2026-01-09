@@ -9,369 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold-primary: #EDBF43;
-            --gold-light: #FFD700;
-            --gold-dark: #B8860B;
-            --navy: #1E3A8A;
-            --navy-dark: #172d69;
-            --navy-medium: #1E40AF;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray-medium: #e9ecef;
-            --text-dark: #2c3e50;
-            --sky-blue: #87CEEB;
-            --sky-light: #A3DFF8;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-
-body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-@keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
-        }
-
-        /* Page Header */
-        .page-header {
-            padding: 2rem 2rem;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .page-header h1 {
-            font-family: 'Kanit', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            margin-top: 1rem;
-            color: var(--navy);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        /* Category Tabs */
-        .category-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .category-tab {
-            padding: 1rem 2rem;
-            background: var(--white);
-            border: 2px solid var(--gray-medium);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-            font-family: 'Kanit', sans-serif;
-            font-weight: 600;
-        }
-
-        .category-tab:hover,
-        .category-tab.active {
-            background: var(--navy-medium);
-            color: var(--white);
-            border-color: var(--gold-primary);
-            transform: translateY(-2px);
-        }
-
-        /* Knowledge Grid */
-        .knowledge-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.4rem;
-            margin-bottom: 2.1rem;
-        }
-
-        .knowledge-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 11px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            min-height: 364px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .knowledge-card:hover {
-            transform: translateY(-3.5px);
-            box-shadow: 0 5.6px 17.5px rgba(0,0,0,0.15);
-        }
-
-        .knowledge-image {
-            height: 200px;
-            width: 150;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
-            position: relative;
-        }
-
-        .knowledge-content {
-            padding: 1.4rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            position: relative;
-            min-height: 210px;
-        }
-
-        .knowledge-category {
-            position: absolute;
-            top: 8.4px;
-            right: 8.4px;
-            display: inline-block;
-            width: fit-content;
-            padding: 0.28rem 0.63rem;
-            background: var(--navy-dark);
-            color: var(--gray-light);
-            border-radius: 14px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            white-space: nowrap;
-            box-shadow: 0 1.4px 5.6px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-
-        .knowledge-card h3 {
-            font-size: 0.98rem;
-            margin-bottom: 0.7rem;
-            color: var(--navy);
-        }
-
-        .knowledge-description {
-            color: #666;
-            line-height: 1.56;
-            margin-bottom: 1.05rem;
-            flex: 1;
-            font-size: 0.88rem;
-        }
-
-        .knowledge-meta {
-            display: flex !important;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.7rem;
-            flex-wrap: nowrap;
-            padding-top: 0.7rem;
-            border-top: 1px solid var(--gray-medium);
-            font-size: 0.63rem;
-            color: #666;
-            min-height: 1.75rem;
-            margin-top: auto;
-        }
-        
-        .knowledge-meta span {
-            display: inline-flex !important;
-            align-items: center;
-            gap: 0.21rem;
-            font-weight: 400;
-            color: #666;
-        }
-
-        /* Featured Article */
-        .featured-article {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border: 3px solid var(--gold-primary);
-        }
-
-        .featured-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-        }
-
-        .featured-image-section {
-            background: url('Image/Book.png') center center/cover no-repeat, linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .featured-image-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--navy);
-            opacity: 0.5;
-            z-index: 0;
-        }
-
-        .featured-text-section {
-            padding: 3rem;
-        }
-
-        .featured-tag {
-            display: inline-block;
-            background: var(--navy);
-            color: var(--white);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .featured-article h2 {
-            font-size: 2rem;
-            color: var(--navy);
-            margin-bottom: 1rem;
-        }
-
-        .featured-description {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .read-more-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--navy);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .read-more-btn:hover {
-            background: var(--navy-dark);
-            transform: scale(1.05);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .faq-section h2 {
-            font-size: 2rem;
-            color: var(--navy);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border: 2px solid var(--gray-medium);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .faq-question:hover {
-            background: var(--gold-light);
-        }
-
-        .faq-answer {
-            padding: 1.5rem;
-            display: none;
-            line-height: 1.8;
-            color: #666;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        .faq-icon {
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .knowledge-card {
-            animation: fadeIn 0.6s ease-out;
-        }
-
-@media (max-width: 1200px) {
-
-}
-
-        @media (max-width: 768px) {
-            
-            .page-header h1 { font-size: 2rem; }
-            .knowledge-grid { grid-template-columns: 1fr; }
-            .featured-content { grid-template-columns: 1fr; }
-            .featured-image-section { font-size: 5rem; padding: 2rem; }
-            .category-tab { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
-
-}
-    </style>
+    <style>:root{--gold-primary:#EDBF43;--gold-light:#FFD700;--gold-dark:#B8860B;--navy:#1E3A8A;--navy-dark:#172d69;--navy-medium:#1E40AF;--white:#ffffff;--gray-light:#f8f9fa;--gray-medium:#e9ecef;--text-dark:#2c3e50;--sky-blue:#87CEEB;--sky-light:#A3DFF8;--shadow:0 10px 30px rgba(0,0,0,0.1)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;padding:0;width:100%}body{font-family:'Kanit',sans-serif;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);color:var(--text-dark);line-height:1.6}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,0.7)}50%{box-shadow:0 0 0 10px rgba(212,175,55,0)}}.page-header{padding:2rem 2rem;text-align:center;color:var(--white)}.page-header h1{font-family:'Kanit',serif;font-size:3.5rem;margin-bottom:1rem;margin-top:1rem;color:var(--navy)}.container{max-width:1400px;margin:0 auto;padding:3rem 2rem}.category-tabs{display:flex;gap:1rem;margin-bottom:3rem;flex-wrap:wrap;justify-content:center}.category-tab{padding:1rem 2rem;background:var(--white);border:2px solid var(--gray-medium);border-radius:30px;cursor:pointer;transition:all 0.3s;font-size:1rem;font-family:'Kanit',sans-serif;font-weight:600}.category-tab:hover,.category-tab.active{background:var(--navy-medium);color:var(--white);border-color:var(--gold-primary);transform:translateY(-2px)}.knowledge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:2.1rem}.knowledge-card{background:var(--white);border-radius:10px;overflow:hidden;box-shadow:0 3px 11px rgba(0,0,0,0.08);transition:all 0.3s;cursor:pointer;display:flex;flex-direction:column;min-height:364px;text-decoration:none;color:inherit}.knowledge-card:hover{transform:translateY(-3.5px);box-shadow:0 5.6px 17.5px rgba(0,0,0,0.15)}.knowledge-image{height:200px;width:150;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold-primary) 100%);position:relative}.knowledge-content{padding:1.4rem;display:flex;flex-direction:column;flex:1;position:relative;min-height:210px}.knowledge-category{position:absolute;top:8.4px;right:8.4px;display:inline-block;width:fit-content;padding:0.28rem 0.63rem;background:var(--navy-dark);color:var(--gray-light);border-radius:14px;font-size:0.8rem;font-weight:600;white-space:nowrap;box-shadow:0 1.4px 5.6px rgba(0,0,0,0.2);z-index:10}.knowledge-card h3{font-size:0.98rem;margin-bottom:0.7rem;color:var(--navy)}.knowledge-description{color:#666;line-height:1.56;margin-bottom:1.05rem;flex:1;font-size:0.88rem}.knowledge-meta{display:flex !important;justify-content:space-between;align-items:center;gap:0.7rem;flex-wrap:nowrap;padding-top:0.7rem;border-top:1px solid var(--gray-medium);font-size:0.63rem;color:#666;min-height:1.75rem;margin-top:auto}.knowledge-meta span{display:inline-flex !important;align-items:center;gap:0.21rem;font-weight:400;color:#666}.featured-article{background:var(--white);border-radius:15px;overflow:hidden;margin-bottom:3rem;box-shadow:0 4px 20px rgba(0,0,0,0.1);border:3px solid var(--gold-primary)}.featured-content{display:grid;grid-template-columns:1fr 1fr;gap:0}.featured-image-section{background:url('Image/Book.png') center center/cover no-repeat,linear-gradient(135deg,var(--gold-primary) 0%,var(--gold-dark) 100%);display:flex;align-items:center;justify-content:center;font-size:8rem;padding:3rem;position:relative;overflow:hidden}.featured-image-section::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);opacity:0.5;z-index:0}.featured-text-section{padding:3rem}.featured-tag{display:inline-block;background:var(--navy);color:var(--white);padding:0.5rem 1.5rem;border-radius:25px;font-weight:600;margin-bottom:1.5rem}.featured-article h2{font-size:2rem;color:var(--navy);margin-bottom:1rem}.featured-description{color:#666;line-height:1.8;margin-bottom:2rem}.read-more-btn{display:inline-block;padding:1rem 2rem;background:var(--navy);color:var(--white);text-decoration:none;border-radius:30px;font-weight:600;transition:all 0.3s}.read-more-btn:hover{background:var(--navy-dark);transform:scale(1.05)}.faq-section{background:var(--white);border-radius:15px;padding:3rem;margin-bottom:3rem;box-shadow:0 2px 10px rgba(0,0,0,0.05)}.faq-section h2{font-size:2rem;color:var(--navy);margin-bottom:2rem;text-align:center}.faq-item{margin-bottom:1.5rem;border:2px solid var(--gray-medium);border-radius:10px;overflow:hidden}.faq-question{padding:1.5rem;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);cursor:pointer;font-weight:600;display:flex;justify-content:space-between;align-items:center;transition:all 0.3s}.faq-question:hover{background:var(--gold-light)}.faq-answer{padding:1.5rem;display:none;line-height:1.8;color:#666}.faq-item.active .faq-answer{display:block}.faq-icon{font-size:1.5rem;transition:transform 0.3s}.faq-item.active .faq-icon{transform:rotate(180deg)}@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}.knowledge-card{animation:fadeIn 0.6s ease-out}@media (max-width:1200px){}@media (max-width:768px){.page-header h1{font-size:2rem}.knowledge-grid{grid-template-columns:1fr}.featured-content{grid-template-columns:1fr}.featured-image-section{font-size:5rem;padding:2rem}.category-tab{padding:0.75rem 1.5rem;font-size:0.9rem}}</style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -422,6 +60,9 @@ body {
 
     <div id="footer-placeholder"></div>
 
+    <!-- Switch Button Placeholder -->
+    <div id="switch-button-placeholder"></div>
+
     <script>
         const BLOG_API_URL = 'https://script.google.com/macros/s/AKfycbzTIMUcEl49nXGRMQk_L_TI1XFD28gUNyMt0IXKVWnDiPnV5GorIEEPMswp-Gsv0r1Bhw/exec';
 
@@ -434,11 +75,22 @@ body {
                 const data = await response.json();
                 let articles = Array.isArray(data) ? data : (data.articles || data.faqs || []);
                 
+                // กรองบทความตาม Mode
+                const currentMode = localStorage.getItem('tradeSiteMode') || 'gold';
+                const modePrefix = currentMode === 'silver' ? '#Silver' : '#Gold';
+                
+                // กรองเฉพาะบทความที่ Link ขึ้นต้นด้วย mode ที่เลือก
+                articles = articles.filter(article => {
+                    const link = article.Link || '';
+                    return link.toLowerCase().startsWith(modePrefix.toLowerCase());
+                });
+                
                 if (articles.length > 0) {
                     articles.sort((a, b) => new Date(b.Date || b.date || '1900-01-01') - new Date(a.Date || a.date || '1900-01-01'));
                     
-                    console.log('📊 Loaded blog articles:', articles.length);
+                    console.log(`📊 Loaded ${currentMode} blog articles:`, articles.length);
                     console.log('📅 Latest article date:', articles[0].Date || articles[0].date);
+                    console.log('🔗 Mode filter:', modePrefix);
                     
                     displayBlogArticles(articles);
                 } else {
@@ -491,7 +143,7 @@ body {
                 return `
                     <a href="detail.html?id=${articleId}" class="knowledge-card" data-category="${category}">
                         <div class="knowledge-image" style="background:${bgColor}; position: relative;">
-                            ${imageUrl ? `<img src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.innerHTML='📄<span class=\\'knowledge-category\\'>${category}</span>';" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">` : '📄'}
+                            ${imageUrl ? `<img loading="lazy" src="${imageUrl}" onerror="console.error('Failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='none'; this.parentElement.innerHTML='📄<span class=\\'knowledge-category\\'>${category}</span>';" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">` : '📄'}
                             <span class="knowledge-category" style="${imageUrl ? 'position:absolute;' : ''}">${category}</span>
                         </div>
                         <div class="knowledge-content">
@@ -508,11 +160,30 @@ body {
 
         function createCategoryTabs(articles) {
             const categoryTabsContainer = document.getElementById('categoryTabs');
-            const categories = [...new Set(articles.map(a => a.Category || a.หมวดหมู่ || 'ทั่วไป'))].sort();
-            let tabsHTML = `<button class="category-tab active" data-category="ทั้งหมด">ทั้งหมด</button>`;
-            categories.forEach(cat => {
-                tabsHTML += `<button class="category-tab" data-category="${cat}">${cat}</button>`;
+            
+            // กำหนดลำดับ Category ที่ต้องการ
+            const categoryOrder = ['ทั้งหมด', 'พื้นฐาน', 'การลงทุน', 'วิเคราะห์ตลาด', 'เทคนิค', 'กฎหมาย'];
+            
+            // ดึง categories ที่มีจริงจากบทความ
+            const existingCategories = [...new Set(articles.map(a => a.Category || a.หมวดหมู่ || 'ทั่วไป'))];
+            
+            // สร้าง tabs ตามลำดับที่กำหนด โดยแสดงเฉพาะที่มีบทความ
+            let tabsHTML = '';
+            categoryOrder.forEach(cat => {
+                if (cat === 'ทั้งหมด') {
+                    tabsHTML += `<button class="category-tab active" data-category="ทั้งหมด">ทั้งหมด</button>`;
+                } else if (existingCategories.includes(cat)) {
+                    tabsHTML += `<button class="category-tab" data-category="${cat}">${cat}</button>`;
+                }
             });
+            
+            // เพิ่ม categories ที่ไม่อยู่ในลำดับที่กำหนด (ถ้ามี)
+            existingCategories.forEach(cat => {
+                if (!categoryOrder.includes(cat)) {
+                    tabsHTML += `<button class="category-tab" data-category="${cat}">${cat}</button>`;
+                }
+            });
+            
             categoryTabsContainer.innerHTML = tabsHTML;
         }
 
@@ -576,6 +247,14 @@ body {
                     document.getElementById('footer-placeholder').appendChild(footerContent);
                 }
                 
+                
+                // ดึง Switch Button Template
+                const switchButtonTemplate = doc.getElementById('switch-button-template');
+                if (switchButtonTemplate) {
+                    const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+                    document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
+                    console.log('✅ Switch button loaded!');
+                }
                 // ดึง Styles
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
@@ -595,6 +274,59 @@ body {
                     window.sharedScriptLoaded = true;
                     console.log('✅ Shared components script loaded!');
                 }
+                
+                // ฟังก์ชันสลับคำตาม Mode
+                setTimeout(() => {
+                    function updateTextByMode() {
+                        const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+                        
+                        const textReplacements = {
+                            'ทองคำ': isSilverMode ? 'เงิน' : 'ทองคำ',
+                            'ทอง': isSilverMode ? 'เงิน' : 'ทอง',
+                            'Gold': isSilverMode ? 'Silver' : 'Gold'
+                        };
+                        
+                        function replaceText(element) {
+                            if (element.nodeType === Node.TEXT_NODE) {
+                                let text = element.textContent;
+                                let modified = false;
+                                
+                                for (const [oldText, newText] of Object.entries(textReplacements)) {
+                                    if (text.includes(oldText)) {
+                                        text = text.replace(new RegExp(oldText, 'g'), newText);
+                                        modified = true;
+                                    }
+                                }
+                                
+                                if (modified) {
+                                    element.textContent = text;
+                                }
+                            } else if (element.nodeType === Node.ELEMENT_NODE && 
+                                       element.tagName !== 'SCRIPT' && 
+                                       element.tagName !== 'STYLE' &&
+                                       !element.classList.contains('no-translate')) {
+                                for (const child of element.childNodes) {
+                                    replaceText(child);
+                                }
+                            }
+                        }
+                        
+                        const mainContent = document.body;
+                        if (mainContent) {
+                            replaceText(mainContent);
+                        }
+                        
+                        console.log(`✅ Blog page text updated to ${isSilverMode ? 'Silver' : 'Gold'} mode`);
+                    }
+                    
+                    updateTextByMode();
+                    
+                    window.addEventListener('modeChanged', () => {
+                        updateTextByMode();
+                        // Reload บทความเมื่อเปลี่ยน Mode
+                        loadBlogArticles();
+                    });
+                }, 600);
             })
             .catch(error => console.error('Error loading components:', error));
     </script>

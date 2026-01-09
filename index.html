@@ -21,7 +21,7 @@
         <div class="nav-container">
             <a href="home.html">
                 <div class="logo">
-                    <img src="Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
+                    <img loading="lazy" src="Image/logo.png" alt="Trade Gold Logo" class="logo-icon">
                     <span>Trade <strong>Gold</strong></span>
                 </div>
             </a>
@@ -44,7 +44,7 @@
                 <li><a href="about.html" data-page="about">About Us</a></li>
                 <li><a href="contact.html" data-page="contact">Contact</a></li>
             </ul>
-            <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" target="_blank" class="signup-btn">เปิดบัญชี</a>
+            <a href="https://forms.gle/39UFCgrYbdfTVmhZ9" target="_blank" rel="noopener" class="signup-btn">เปิดบัญชี</a>
         </div>
     </header>
   </template>
@@ -72,7 +72,7 @@
                         </svg>
                     </div>
                     <div class="footer-text">
-                        <div>02-088-9181, 02-088-9185</div>
+                        <div>02-xxx-xxxx, 02-xxx-xxxx</div>
                     </div>
                 </div>
                 <div class="footer-item">
@@ -92,6 +92,21 @@
             </div>
         </div>
     </footer>
+  </template>
+
+  <!-- SWITCH WEB BUTTON TEMPLATE (ปุ่มลอยสำหรับสลับ Gold/Silver) -->
+  <template id="switch-button-template">
+    <div class="switch-web-button" id="switchWebButton">
+        <div class="switch-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+        </div>
+        <span class="switch-text">Switch to <strong id="switchTargetText">Silver</strong></span>
+    </div>
   </template>
 
   <!-- SHARED STYLES (สำหรับ Navbar และ Footer) -->
@@ -143,6 +158,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    /* ลบเส้นใต้จากลิงก์โลโก้ */
+    .nav-container > a {
+        text-decoration: none;
     }
 
     .logo {
@@ -472,6 +492,125 @@
             gap: 1rem;
         }
     }
+
+    /* Switch Web Button (ปุ่มลอย) */
+    .switch-web-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+        color: var(--white);
+        padding: 1rem 1.5rem;
+        border-radius: 50px;
+        box-shadow: 0 8px 25px rgba(237, 191, 67, 0.4);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+        z-index: 999;
+        font-size: 1rem;
+        font-weight: 500;
+        user-select: none;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Silver Mode: ปุ่มเป็นสีทอง (ตรงข้าม) */
+    body.silver-mode .switch-web-button {
+        background: linear-gradient(135deg, #EDBF43 0%, #B8860B 100%);
+        box-shadow: 0 8px 25px rgba(237, 191, 67, 0.4);
+    }
+
+    /* Gold Mode: ปุ่มเป็นสีเงิน (ตรงข้าม) */
+    body.gold-mode .switch-web-button {
+        background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+        box-shadow: 0 8px 25px rgba(192, 192, 192, 0.4);
+    }
+
+    .switch-web-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(237, 191, 67, 0.6);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    body.silver-mode .switch-web-button:hover {
+        box-shadow: 0 12px 35px rgba(237, 191, 67, 0.6);
+    }
+
+    body.gold-mode .switch-web-button:hover {
+        box-shadow: 0 12px 35px rgba(192, 192, 192, 0.6);
+    }
+
+    .switch-web-button:active {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(237, 191, 67, 0.5);
+    }
+
+    .switch-icon {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        padding: 4px;
+    }
+
+    .switch-icon svg {
+        animation: rotate 3s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .switch-text {
+        font-family: 'Kanit', sans-serif;
+        letter-spacing: 0.3px;
+    }
+
+    .switch-text strong {
+        font-weight: 700;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive สำหรับปุ่ม Switch */
+    @media (max-width: 768px) {
+        .switch-web-button {
+            bottom: 20px;
+            right: 20px;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .switch-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .switch-text {
+            font-size: 0.85rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .switch-web-button {
+            bottom: 15px;
+            right: 15px;
+            padding: 0.7rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .switch-text {
+            display: none;
+        }
+
+        .switch-icon {
+            margin: 0;
+        }
+    }
   </style>
 
   <!-- JAVASCRIPT สำหรับดึง Navbar และ Footer พร้อม Search Functionality -->
@@ -694,6 +833,172 @@
       }, 1000); // เพิ่มเวลารอเป็น 1 วินาที
     }
 
+    // ฟังก์ชันปรับ Theme ตาม mode
+    function applyTheme() {
+      const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+      const root = document.documentElement;
+      
+      // เพิ่ม class ใน body สำหรับจัดการสีปุ่ม
+      document.body.classList.remove('gold-mode', 'silver-mode');
+      
+      if (isSilverMode) {
+        // Silver Theme - ปุ่มเป็นสีทอง (ตรงข้าม)
+        document.body.classList.add('silver-mode');
+        
+        // เปลี่ยนสีเงิน
+        root.style.setProperty('--gold-primary', '#C0C0C0');
+        root.style.setProperty('--gold-light', '#E8E8E8');
+        root.style.setProperty('--gold-dark', '#A8A8A8');
+        
+        // เปลี่ยนสีน้ำเงิน → แดง
+        root.style.setProperty('--navy', '#B91C1C'); // แดงเข้ม
+        root.style.setProperty('--navy-dark', '#7F1D1D'); // แดงเข้มมาก
+        root.style.setProperty('--navy-medium', '#DC2626'); // แดงกลาง
+        
+        // เปลี่ยนพื้นหลังทั้งหมดเป็นสีดำ
+        root.style.setProperty('--sky-blue', '#000000'); // ดำ
+        root.style.setProperty('--sky-light', '#1a1a1a'); // ดำอ่อน
+        
+        // เปลี่ยน body background เป็นสีดำ
+        document.body.style.background = 'linear-gradient(180deg, #1a1a1a 0%, #000000 100%)';
+        
+        // เปลี่ยนชื่อใน Title และ Logo
+        document.title = document.title.replace('Gold', 'Silver');
+        
+        // เปลี่ยน Logo text
+        setTimeout(() => {
+          const logoText = document.querySelector('.logo span');
+          if (logoText) {
+            logoText.innerHTML = 'Trade <strong>Silver</strong>';
+          }
+          
+          // เปลี่ยน Footer text
+          const footerTexts = document.querySelectorAll('.footer-text');
+          footerTexts.forEach(text => {
+            if (text.textContent.includes('Trade Gold')) {
+              text.innerHTML = text.innerHTML.replace('Trade Gold', 'Trade Silver');
+            }
+          });
+          
+          // เพิ่มฟิลเตอร์สีดำให้ Banner (ถ้าอยู่หน้า home)
+          const heroBanner = document.querySelector('.hero');
+          if (heroBanner) {
+            heroBanner.style.position = 'relative';
+            
+            // ลบ overlay เดิม (ถ้ามี)
+            const existingOverlay = heroBanner.querySelector('.hero-dark-overlay');
+            if (existingOverlay) {
+              existingOverlay.remove();
+            }
+            
+            // สร้าง dark overlay ใหม่
+            const darkOverlay = document.createElement('div');
+            darkOverlay.className = 'hero-dark-overlay';
+            darkOverlay.style.cssText = `
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.7);
+              z-index: 1;
+              pointer-events: none;
+            `;
+            heroBanner.insertBefore(darkOverlay, heroBanner.firstChild);
+            
+            // ปรับ z-index ของเนื้อหาใน banner
+            const heroContent = heroBanner.querySelector('.hero-content');
+            if (heroContent) {
+              heroContent.style.position = 'relative';
+              heroContent.style.zIndex = '2';
+            }
+          }
+        }, 500);
+        
+        console.log('✅ Silver theme applied (Button: Gold, Background: Black)');
+      } else {
+        // Gold Theme - ปุ่มเป็นสีเงิน (ตรงข้าม)
+        document.body.classList.add('gold-mode');
+        
+        // รีเซ็ตสีกลับเป็นค่าเริ่มต้น (น้ำเงิน + ฟ้า)
+        root.style.setProperty('--navy', '#1E3A8A');
+        root.style.setProperty('--navy-dark', '#172d69');
+        root.style.setProperty('--navy-medium', '#1E40AF');
+        root.style.setProperty('--sky-blue', '#87CEEB');
+        root.style.setProperty('--sky-light', '#A3DFF8');
+        
+        // รีเซ็ต body background
+        document.body.style.background = '';
+        
+        // ลบ dark overlay จาก banner (ถ้ามี)
+        setTimeout(() => {
+          const heroBanner = document.querySelector('.hero');
+          if (heroBanner) {
+            const overlay = heroBanner.querySelector('.hero-dark-overlay');
+            if (overlay) {
+              overlay.remove();
+            }
+          }
+        }, 500);
+        
+        console.log('✅ Gold theme active (Button: Silver, Colors: Blue)');
+      }
+    }
+
+    // เรียกใช้ Theme ทันทีเมื่อโหลดหน้า
+    function initializeTheme() {
+      applyTheme();
+    }
+
+    // ฟังก์ชันสลับระหว่าง Trade Gold และ Trade Silver
+    function switchWebsite() {
+      console.log('Switching website...');
+      
+      // ตรวจสอบว่าอยู่ที่ Trade Gold หรือ Trade Silver
+      const currentMode = localStorage.getItem('tradeSiteMode') || 'gold';
+      
+      // สลับ mode โดยบันทึกใน localStorage
+      if (currentMode === 'gold') {
+        // เปลี่ยนเป็น Silver mode
+        localStorage.setItem('tradeSiteMode', 'silver');
+        console.log('Switched to Silver mode');
+      } else {
+        // เปลี่ยนกลับเป็น Gold mode
+        localStorage.setItem('tradeSiteMode', 'gold');
+        console.log('Switched to Gold mode');
+      }
+      
+      // รีโหลดหน้าเพื่อใช้ theme ใหม่
+      window.location.reload();
+    }
+
+    // ฟังก์ชัน Setup Switch Button
+    function setupSwitchButton() {
+      console.log('Setting up switch button...');
+      
+      setTimeout(() => {
+        const switchButton = document.getElementById('switchWebButton');
+        const switchTargetText = document.getElementById('switchTargetText');
+        
+        if (!switchButton || !switchTargetText) {
+          console.error('Switch button elements not found!');
+          return;
+        }
+        
+        // ตรวจสอบ mode ปัจจุบันจาก localStorage
+        const currentMode = localStorage.getItem('tradeSiteMode') || 'gold';
+        const isSilverMode = currentMode === 'silver';
+        
+        // อัพเดทข้อความบนปุ่ม
+        switchTargetText.textContent = isSilverMode ? 'Gold' : 'Silver';
+        
+        // เพิ่ม event listener
+        switchButton.addEventListener('click', switchWebsite);
+        
+        console.log('✅ Switch button setup complete');
+      }, 500);
+    }
+
     // ฟังก์ชันโหลด Navbar และ Footer
     function loadSharedComponents() {
       console.log('Loading shared components...');
@@ -731,6 +1036,22 @@
             console.log('Appending footer...');
             const footerContent = footerTemplate.content.cloneNode(true);
             footerPlaceholder.appendChild(footerContent);
+          }
+          
+          // ดึง Switch Button Template (เฉพาะเมื่อยังไม่มี switch button)
+          const switchButtonPlaceholder = document.getElementById('switch-button-placeholder');
+          const switchButtonTemplate = doc.getElementById('switch-button-template');
+          
+          if (switchButtonTemplate && switchButtonPlaceholder && switchButtonPlaceholder.children.length === 0) {
+            console.log('Appending switch button...');
+            const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+            switchButtonPlaceholder.appendChild(switchButtonContent);
+            
+            // Setup Switch Button หลังจากโหลดเสร็จ
+            setupSwitchButton();
+          } else if (switchButtonPlaceholder && switchButtonPlaceholder.children.length > 0) {
+            console.log('Switch button already exists, setting it up...');
+            setupSwitchButton();
           }
           
           // ดึง Styles
@@ -789,6 +1110,9 @@
 
     // โหลดข้อมูลบทความทันทีเมื่อ script โหลด
     loadArticlesData();
+
+    // เริ่มต้น Theme ทันที
+    initializeTheme();
 
     // เรียกใช้งานเมื่อ DOM โหลดเสร็จ
     if (document.readyState === 'loading') {

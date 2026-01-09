@@ -9,229 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold-primary: #EDBF43;
-            --gold-light: #FFD700;
-            --gold-dark: #B8860B;
-            --navy: #1E3A8A;
-            --navy-medium: #1E40AF;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray-medium: #e9ecef;
-            --text-dark: #2c3e50;
-            --sky-blue: #87CEEB;
-            --sky-light: #A3DFF8;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Performance Optimization */
-        html {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            color: var(--text-dark);
-            line-height: 1.6;
-            will-change: scroll-position;
-        }
-
-@keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
-        }
-
-        /* สำหรับ Animation Loading */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Page Header */
-        .page-header {
-            padding: 2rem 2rem;
-            text-align: center;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 2rem;
-        }
-
-        /* Category Section */
-        .category-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--navy);
-        }
-
-        .category-header-1 {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            color: var(--navy);
-        }
-
-        .category-icon {
-            font-size: 2.5rem;
-        }
-
-        .category-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--gray-medium);
-            padding: 1rem 0;
-            transition: all 0.3s;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--navy);
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .faq-question:hover {
-            background: var(--gray-light);
-            color: var(--gold-dark);
-        }
-
-        .faq-icon {
-            font-size: 1rem;
-            transition: transform 0.3s;
-            color: var(--navy);
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            color: #666;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            will-change: max-height;
-            contain: layout style;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding-top: 1rem;
-            padding-left: 0.5rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-medium) 100%);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 2.5rem;
-            color: var(--white);
-        }
-
-        .cta-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--gold-light);
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-btn {
-            background: var(--gold-primary);
-            color: var(--navy);
-            padding: 1rem 3rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .cta-btn:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
-        }
-
-/* Responsive */
-        @media (max-width: 1200px) {
-
-}
-
-        @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 2.5rem;
-            }
-
-            .category-title {
-                font-size: 1.3rem;
-            }
-
-.faq-question {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <style>:root{--gold-primary:#EDBF43;--gold-light:#FFD700;--gold-dark:#B8860B;--navy:#1E3A8A;--navy-medium:#1E40AF;--white:#ffffff;--gray-light:#f8f9fa;--gray-medium:#e9ecef;--text-dark:#2c3e50;--sky-blue:#87CEEB;--sky-light:#A3DFF8;--shadow:0 10px 30px rgba(0,0,0,0.1)}*{margin:0;padding:0;box-sizing:border-box}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body{font-family:'Kanit',sans-serif;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);color:var(--text-dark);line-height:1.6;will-change:scroll-position}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,0.7)}50%{box-shadow:0 0 0 10px rgba(212,175,55,0)}}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}.page-header{padding:2rem 2rem;text-align:center;color:var(--white);position:relative;overflow:hidden}.page-header h1{font-size:3.5rem;margin-bottom:1rem;color:var(--navy);position:relative;z-index:1}.container{max-width:1200px;margin:0 auto;padding:2rem 2rem}.category-section{margin-bottom:2.5rem}.category-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;color:var(--navy)}.category-header-1{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;color:var(--navy)}.category-icon{font-size:2.5rem}.category-title{font-size:1.8rem;font-weight:700}.faq-section{background:var(--white);border-radius:15px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,0.08)}.faq-item{border-bottom:1px solid var(--gray-medium);padding:1rem 0;transition:all 0.3s}.faq-item:last-child{border-bottom:none}.faq-question{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:1.2rem;font-weight:600;color:var(--navy);padding:0.5rem;border-radius:8px;transition:all 0.3s}.faq-question:hover{background:var(--gray-light);color:var(--gold-dark)}.faq-icon{font-size:1rem;transition:transform 0.3s;color:var(--navy)}.faq-item.active .faq-icon{transform:rotate(180deg)}.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease-out;color:#666;font-size:1.05rem;line-height:1.8;will-change:max-height;contain:layout style}.faq-item.active .faq-answer{max-height:500px;padding-top:1rem;padding-left:0.5rem}.cta-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-medium) 100%);border-radius:20px;padding:2rem;text-align:center;margin-top:2.5rem;color:var(--white)}.cta-section h2{font-size:2rem;margin-bottom:1rem;color:var(--gold-light)}.cta-section p{font-size:1.1rem;margin-bottom:2rem;opacity:0.9}.cta-btn{background:var(--gold-primary);color:var(--navy);padding:1rem 3rem;border-radius:30px;text-decoration:none;font-weight:600;font-size:1.1rem;display:inline-block;transition:all 0.3s}.cta-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 5px 20px rgba(212,175,55,0.4)}@media (max-width:1200px){}@media (max-width:768px){.page-header h1{font-size:2.5rem}.category-title{font-size:1.3rem}.faq-question{font-size:1rem}}</style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
@@ -258,6 +36,9 @@
     </div>
 
     <div id="footer-placeholder"></div>
+
+    <!-- Switch Button Placeholder -->
+    <div id="switch-button-placeholder"></div>
 
     <script>
         // FAQ accordion
@@ -475,6 +256,14 @@
                     document.getElementById('footer-placeholder').appendChild(footerContent);
                 }
                 
+                
+                // ดึง Switch Button Template
+                const switchButtonTemplate = doc.getElementById('switch-button-template');
+                if (switchButtonTemplate) {
+                    const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+                    document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
+                    console.log('✅ Switch button loaded!');
+                }
                 // ดึง Styles
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
@@ -494,6 +283,57 @@
                     window.sharedScriptLoaded = true;
                     console.log('✅ Shared components script loaded!');
                 }
+                
+                // ฟังก์ชันสลับคำตาม Mode
+                setTimeout(() => {
+                    function updateTextByMode() {
+                        const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+                        
+                        const textReplacements = {
+                            'ทองคำ': isSilverMode ? 'เงิน' : 'ทองคำ',
+                            'ทอง': isSilverMode ? 'เงิน' : 'ทอง',
+                            'Gold': isSilverMode ? 'Silver' : 'Gold'
+                        };
+                        
+                        function replaceText(element) {
+                            if (element.nodeType === Node.TEXT_NODE) {
+                                let text = element.textContent;
+                                let modified = false;
+                                
+                                for (const [oldText, newText] of Object.entries(textReplacements)) {
+                                    if (text.includes(oldText)) {
+                                        text = text.replace(new RegExp(oldText, 'g'), newText);
+                                        modified = true;
+                                    }
+                                }
+                                
+                                if (modified) {
+                                    element.textContent = text;
+                                }
+                            } else if (element.nodeType === Node.ELEMENT_NODE && 
+                                       element.tagName !== 'SCRIPT' && 
+                                       element.tagName !== 'STYLE' &&
+                                       !element.classList.contains('no-translate')) {
+                                for (const child of element.childNodes) {
+                                    replaceText(child);
+                                }
+                            }
+                        }
+                        
+                        const mainContent = document.body;
+                        if (mainContent) {
+                            replaceText(mainContent);
+                        }
+                        
+                        console.log(`✅ FAQ page text updated to ${isSilverMode ? 'Silver' : 'Gold'} mode`);
+                    }
+                    
+                    updateTextByMode();
+                    
+                    window.addEventListener('modeChanged', () => {
+                        updateTextByMode();
+                    });
+                }, 600);
             })
             .catch(error => console.error('Error loading components:', error));
     </script>

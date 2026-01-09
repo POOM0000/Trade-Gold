@@ -6,618 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ราคาทองคำ - Trade Gold</title>
     <link rel="icon" type="image/png" href="image/logo.png">
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold-primary: #EDBF43;
-            --gold-light: #FFD700;
-            --gold-dark: #B8860B;
-            --navy: #1E3A8A;
-            --navy-medium: #1E40AF;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray-medium: #e9ecef;
-            --text-dark: #2c3e50;
-            --sky-blue: #87CEEB;
-            --sky-light: #A3DFF8;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --green: #059669;
-            --red: #dc2626;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-@keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
-        }
-
-        /* Page Header */
-        .page-header {
-            padding: 2rem 2rem;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        /* Chart Container */
-        .chart-container {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-
-        .chart-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .chart-header h2 {
-            color: var(--navy);
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Price Widgets */
-        .price-widgets-container {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-
-        .price-widgets-header {
-            margin-bottom: 2rem;
-        }
-
-        .price-widgets-header h2 {
-            color: var(--navy);
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .price-widgets-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .price-widget-card {
-            background: var(--gray-light);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .price-widget-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .country-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--gray-medium);
-        }
-
-        .flag {
-            font-size: 2rem;
-        }
-
-        .country-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .tv-widget-item {
-            background: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* Market Hours Grid Timeline */
-        .market-hours-container {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-
-        .market-hours-header {
-            margin-bottom: 2rem;
-        }
-
-        .market-hours-header h2 {
-            color: var(--navy);
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Gantt Chart Timeline */
-        .gantt-timeline {
-            background: var(--gray-light);
-            border-radius: 12px;
-            padding: 1.5rem;
-            overflow-x: auto;
-        }
-
-        .timeline-header {
-            display: grid;
-            grid-template-columns: 180px repeat(24, minmax(40px, 1fr));
-            gap: 0;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-label {
-            background: var(--navy);
-            color: var(--white);
-            padding: 0.75rem;
-            font-weight: 600;
-            text-align: center;
-            border-right: 1px solid var(--white);
-        }
-
-        .timeline-hour {
-            background: var(--navy);
-            color: var(--white);
-            padding: 0.75rem 0.15rem;
-            font-size: 0.75rem;
-            text-align: center;
-            border-right: 1px solid var(--white);
-            font-weight: 500;
-        }
-
-        .timeline-row {
-            display: grid;
-            grid-template-columns: 180px repeat(24, minmax(40px, 1fr));
-            gap: 0;
-            margin-bottom: 0.5rem;
-            position: relative;
-        }
-
-        .market-label {
-            background: var(--white);
-            padding: 0.75rem;
-            font-weight: 600;
-            color: var(--navy);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid var(--gray-medium);
-            border-radius: 8px 0 0 8px;
-            font-size: 0.9rem;
-        }
-
-        .market-label .flag {
-            font-size: 1.3rem;
-        }
-
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(24, minmax(40px, 1fr));
-            grid-column: 2 / -1;
-            position: relative;
-        }
-
-        .timeline-cell {
-            border-right: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            background: var(--white);
-            min-height: 50px;
-        }
-
-        .timeline-bar {
-            position: absolute;
-            height: 38px;
-            top: 6px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-            font-size: 0.75rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .timeline-bar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-        }
-
-        .bar-usa {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-        }
-
-        .bar-uk {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-        }
-
-        .bar-europe {
-            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
-        }
-
-        .bar-china {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-
-        .bar-singapore {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-
-        .bar-hongkong {
-            background: linear-gradient(135deg, #6b21a8 0%, #581c87 100%);
-            opacity: 1;
-        }
-
-        .bar-thailand {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-
-        .bar-japan {
-            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-        }
-
-        .volatility-indicator {
-            position: absolute;
-            top: -5px;
-            right: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 2px solid var(--white);
-            display: none;
-        }
-
-        .vol-high {
-            background: #dc2626;
-            animation: pulse-high 2s infinite;
-        }
-
-        .vol-medium {
-            background: #f59e0b;
-        }
-
-        .vol-low {
-            background: #10b981;
-        }
-
-        @keyframes pulse-high {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
-            50% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
-        }
-
-        .timeline-legend {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .legend-color {
-            width: 30px;
-            height: 15px;
-            border-radius: 4px;
-        }
-
-        /* Timeline Details Modal */
-        .timeline-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s;
-        }
-
-        .timeline-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.3s;
-            position: relative;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--gray-light);
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            background: var(--gold-primary);
-            color: var(--white);
-            transform: rotate(90deg);
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--gray-medium);
-        }
-
-        .modal-flag {
-            font-size: 3rem;
-        }
-
-        .modal-title {
-            flex: 1;
-        }
-
-        .modal-title h2 {
-            color: var(--navy);
-            font-size: 1.8rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .modal-title .time-range {
-            color: var(--gold-dark);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .modal-section {
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-section h3 {
-            color: var(--navy);
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .modal-section p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-
-        .volatility-display {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: 600;
-        }
-
-        .peak-time-list {
-            background: var(--gray-light);
-            padding: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--gold-primary);
-        }
-
-        .peak-time-list li {
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .factors-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .factors-list li {
-            padding: 0.75rem;
-            background: var(--gray-light);
-            margin-bottom: 0.5rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .factors-list li::before {
-            content: "💡";
-            flex-shrink: 0;
-        }
-
-/* Responsive */
-        @media (max-width: 1200px) {
-            .price-widgets-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-.gantt-timeline {
-                overflow-x: auto;
-            }
-
-            .timeline-hour {
-                font-size: 0.7rem;
-                padding: 0.5rem 0.1rem;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .price-widgets-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .timeline-header,
-            .timeline-row {
-                grid-template-columns: 140px repeat(24, minmax(35px, 1fr));
-            }
-
-            .market-label {
-                padding: 0.5rem;
-                font-size: 0.8rem;
-            }
-
-            .timeline-bar {
-                font-size: 0.65rem;
-                height: 35px;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-.page-header h1 {
-                font-size: 2rem;
-            }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .chart-container {
-                padding: 1rem;
-            }
-
-            .price-widgets-container {
-                padding: 1rem;
-            }
-
-            .price-widgets-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .country-header {
-                font-size: 0.9rem;
-            }
-
-            .flag {
-                font-size: 1.5rem;
-            }
-
-            .market-hours-container {
-                padding: 1rem;
-            }
-
-            .gantt-timeline {
-                padding: 0.5rem;
-            }
-
-            .timeline-header,
-            .timeline-row {
-                grid-template-columns: 120px repeat(24, minmax(30px, 1fr));
-            }
-
-            .market-label {
-                padding: 0.5rem 0.3rem;
-                font-size: 0.75rem;
-            }
-
-            .market-label .flag {
-                font-size: 1.1rem;
-            }
-
-            .timeline-bar {
-                font-size: 0.6rem;
-                height: 32px;
-            }
-
-            .timeline-hour {
-                font-size: 0.65rem;
-                padding: 0.5rem 0.05rem;
-            }
-
-            .timeline-legend {
-                gap: 0.75rem;
-                font-size: 0.75rem;
-            }
-
-            .legend-color {
-                width: 25px;
-                height: 12px;
-            }
-
-}
-    </style>
+    <style>:root{--gold-primary:#EDBF43;--gold-light:#FFD700;--gold-dark:#B8860B;--navy:#1E3A8A;--navy-medium:#1E40AF;--white:#ffffff;--gray-light:#f8f9fa;--gray-medium:#e9ecef;--text-dark:#2c3e50;--sky-blue:#87CEEB;--sky-light:#A3DFF8;--shadow:0 10px 30px rgba(0,0,0,0.1);--green:#059669;--red:#dc2626}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Kanit',sans-serif;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);color:var(--text-dark);line-height:1.6}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,0.7)}50%{box-shadow:0 0 0 10px rgba(212,175,55,0)}}.page-header{padding:2rem 2rem;text-align:center;color:var(--white)}.page-header h1{font-size:3rem;margin-bottom:1rem;color:var(--navy)}.container{max-width:1400px;margin:0 auto;padding:3rem 2rem}.chart-container{background:var(--white);border-radius:15px;padding:2rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);margin-bottom:2rem}.chart-header{margin-bottom:1.5rem}.chart-header h2{color:var(--navy);font-size:1.8rem;display:flex;align-items:center;gap:0.5rem}.price-widgets-container{background:var(--white);border-radius:15px;padding:2rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);margin-bottom:2rem}.price-widgets-header{margin-bottom:2rem}.price-widgets-header h2{color:var(--navy);font-size:1.8rem;display:flex;align-items:center;gap:0.5rem}.price-widgets-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}.price-widget-card{background:var(--gray-light);border-radius:12px;padding:1rem;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:transform 0.3s,box-shadow 0.3s}.price-widget-card:hover{transform:translateY(-5px);box-shadow:0 5px 15px rgba(0,0,0,0.1)}.country-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:2px solid var(--gray-medium)}.flag{font-size:2rem}.country-name{font-size:1.1rem;font-weight:600;color:var(--navy)}.tv-widget-item{background:var(--white);border-radius:8px;overflow:hidden}.market-hours-container{background:var(--white);border-radius:15px;padding:2rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);margin-bottom:2rem}.market-hours-header{margin-bottom:2rem}.market-hours-header h2{color:var(--navy);font-size:1.8rem;display:flex;align-items:center;gap:0.5rem}.gantt-timeline{background:var(--gray-light);border-radius:12px;padding:1.5rem;overflow-x:auto;position:relative}.gantt-timeline::-webkit-scrollbar{height:8px}.gantt-timeline::-webkit-scrollbar-track{background:#f1f1f1;border-radius:10px}.gantt-timeline::-webkit-scrollbar-thumb{background:var(--gold-primary);border-radius:10px}.gantt-timeline::-webkit-scrollbar-thumb:hover{background:var(--gold-dark)}.scroll-hint{display:none;text-align:center;padding:0.5rem;color:var(--navy);font-size:0.8rem;opacity:0.7;margin-top:0.5rem}@media (max-width:768px){.scroll-hint{display:block}}.timeline-header{display:grid;grid-template-columns:180px repeat(24,minmax(40px,1fr));gap:0;margin-bottom:1rem}.timeline-label{background:var(--navy);color:var(--white);padding:0.75rem;font-weight:600;text-align:center;border-right:1px solid var(--white)}.timeline-hour{background:var(--navy);color:var(--white);padding:0.75rem 0.15rem;font-size:0.75rem;text-align:center;border-right:1px solid var(--white);font-weight:500}.timeline-row{display:grid;grid-template-columns:180px repeat(24,minmax(40px,1fr));gap:0;margin-bottom:0.5rem;position:relative}.market-label{background:var(--white);padding:0.75rem;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:0.5rem;border:1px solid var(--gray-medium);border-radius:8px 0 0 8px;font-size:0.9rem}.market-label .flag{font-size:1.3rem}.timeline-grid{display:grid;grid-template-columns:repeat(24,minmax(40px,1fr));grid-column:2 / -1;position:relative}.timeline-cell{border-right:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;background:var(--white);min-height:50px}.timeline-bar{position:absolute;height:38px;top:6px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:600;font-size:0.75rem;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.3s;cursor:pointer}.timeline-bar:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.25)}.bar-usa{background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%)}.bar-uk{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%)}.bar-europe{background:linear-gradient(135deg,#fb923c 0%,#f97316 100%)}.bar-china{background:linear-gradient(135deg,#10b981 0%,#059669 100%)}.bar-singapore{background:linear-gradient(135deg,#10b981 0%,#059669 100%)}.bar-hongkong{background:linear-gradient(135deg,#6b21a8 0%,#581c87 100%);opacity:1}.bar-thailand{background:linear-gradient(135deg,#10b981 0%,#059669 100%)}.bar-japan{background:linear-gradient(135deg,#0ea5e9 0%,#0284c7 100%)}.volatility-indicator{position:absolute;top:-5px;right:5px;width:12px;height:12px;border-radius:50%;border:2px solid var(--white);display:none}.vol-high{background:#dc2626;animation:pulse-high 2s infinite}.vol-medium{background:#f59e0b}.vol-low{background:#10b981}@keyframes pulse-high{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,0.7)}50%{box-shadow:0 0 0 6px rgba(220,38,38,0)}}.timeline-legend{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap}.legend-item{display:flex;align-items:center;gap:0.5rem;font-size:0.9rem}.legend-color{width:30px;height:15px;border-radius:4px}.timeline-modal{display:none;position:fixed;z-index:2000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);animation:fadeIn 0.3s}.timeline-modal.active{display:flex;align-items:center;justify-content:center}.modal-content{background:var(--white);border-radius:15px;padding:2rem;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,0.3);animation:slideUp 0.3s;position:relative}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes slideUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}.modal-close{position:absolute;top:1rem;right:1rem;background:var(--gray-light);border:none;width:35px;height:35px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s}.modal-close:hover{background:var(--gold-primary);color:var(--white);transform:rotate(90deg)}.modal-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--gray-medium)}.modal-flag{font-size:3rem}.modal-title{flex:1}.modal-title h2{color:var(--navy);font-size:1.8rem;margin-bottom:0.25rem}.modal-title .time-range{color:var(--gold-dark);font-weight:600;font-size:1.1rem}.modal-section{margin-bottom:1.5rem}.modal-section h3{color:var(--navy);font-size:1.2rem;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}.modal-section p{color:#666;line-height:1.6;margin-bottom:0.5rem}.volatility-display{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border-radius:25px;font-weight:600}.peak-time-list{background:var(--gray-light);padding:1rem;border-radius:10px;border-left:4px solid var(--gold-primary)}.peak-time-list li{color:var(--text-dark);margin-bottom:0.5rem}.factors-list{list-style:none;padding:0}.factors-list li{padding:0.75rem;background:var(--gray-light);margin-bottom:0.5rem;border-radius:8px;display:flex;align-items:flex-start;gap:0.5rem}.factors-list li::before{content:"💡";flex-shrink:0}@media (max-width:1400px){.market-hours-header h2{font-size:1.5rem}.timeline-header,.timeline-row{grid-template-columns:160px repeat(24,minmax(38px,1fr))}.market-label{padding:0.65rem;font-size:0.85rem}.timeline-hour{font-size:0.7rem;padding:0.65rem 0.1rem}.timeline-bar{font-size:0.7rem;height:36px}}@media (max-width:1200px){.price-widgets-grid{grid-template-columns:repeat(3,1fr)}.gantt-timeline{overflow-x:auto;padding:1rem}.market-hours-header h2{font-size:1.3rem}.timeline-header,.timeline-row{grid-template-columns:140px repeat(24,minmax(36px,1fr));min-width:1000px}.market-label{padding:0.6rem 0.4rem;font-size:0.8rem}.market-label .flag{font-size:1.2rem}.timeline-hour{font-size:0.65rem;padding:0.6rem 0.1rem}.timeline-bar{font-size:0.65rem;height:34px;top:5px}.timeline-legend{gap:1.5rem;font-size:0.85rem}.legend-color{width:28px;height:14px}}@media (max-width:900px){.price-widgets-grid{grid-template-columns:repeat(2,1fr)}.market-hours-container{padding:1.5rem 1rem}.market-hours-header h2{font-size:1.1rem}.gantt-timeline{padding:0.75rem;border-radius:10px}.timeline-header,.timeline-row{grid-template-columns:120px repeat(24,minmax(32px,1fr));min-width:900px}.market-label{padding:0.5rem 0.3rem;font-size:0.75rem;gap:0.3rem}.market-label .flag{font-size:1.1rem}.timeline-bar{font-size:0.6rem;height:32px;top:4px}.timeline-hour{font-size:0.6rem;padding:0.5rem 0.05rem}.timeline-legend{gap:1rem;font-size:0.8rem}.legend-item{font-size:0.8rem}.legend-color{width:26px;height:13px}}@media (max-width:768px){.page-header h1{font-size:2rem}.container{padding:2rem 1rem}.chart-container{padding:1rem}.price-widgets-container{padding:1rem}.price-widgets-grid{grid-template-columns:1fr}.country-header{font-size:0.9rem}.flag{font-size:1.5rem}.market-hours-container{padding:1rem;border-radius:12px}.market-hours-header{margin-bottom:1.5rem}.market-hours-header h2{font-size:1rem;flex-direction:column;align-items:flex-start;gap:0.3rem;line-height:1.4}.gantt-timeline{padding:0.5rem;border-radius:8px}.timeline-header,.timeline-row{grid-template-columns:100px repeat(24,minmax(28px,1fr));min-width:800px}.market-label{padding:0.4rem 0.25rem;font-size:0.7rem;gap:0.25rem;border-radius:6px 0 0 6px}.market-label .flag{font-size:1rem}.timeline-bar{font-size:0.55rem;height:28px;top:3px;border-radius:6px}.timeline-hour{font-size:0.55rem;padding:0.4rem 0.05rem}.timeline-cell{min-height:35px}.timeline-legend{gap:0.75rem;font-size:0.75rem;margin-top:1.5rem}.legend-item{font-size:0.7rem;gap:0.4rem}.legend-color{width:24px;height:12px}}@media (max-width:480px){.market-hours-header h2{font-size:0.9rem}.gantt-timeline{padding:0.4rem}.timeline-header,.timeline-row{grid-template-columns:85px repeat(24,minmax(26px,1fr));min-width:750px}.market-label{padding:0.35rem 0.2rem;font-size:0.65rem}.market-label .flag{font-size:0.9rem}.timeline-bar{font-size:0.5rem;height:26px;padding:0 0.2rem}.timeline-hour{font-size:0.5rem;padding:0.35rem 0.05rem}.timeline-cell{min-height:32px}.timeline-legend{flex-direction:column;align-items:flex-start;gap:0.6rem;margin-top:1rem}.legend-item{font-size:0.65rem;width:100%}.legend-color{width:22px;height:11px}}@media (max-width:380px){.market-hours-header h2{font-size:0.85rem}.timeline-header,.timeline-row{grid-template-columns:75px repeat(24,minmax(24px,1fr));min-width:700px}.market-label{font-size:0.6rem;padding:0.3rem 0.15rem}.timeline-bar{font-size:0.45rem;height:24px}.timeline-hour{font-size:0.45rem}.legend-item{font-size:0.6rem}}</style>
 
 </head>
 <body>
@@ -638,23 +31,6 @@
             </div>
             <div class="tradingview-widget-container" style="height: 400px; width: 100%;">
                 <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                {
-                    "width": "100%",
-                    "height": 400,
-                    "autosize": true,
-                    "symbol": "FOREXCOM:XAUUSD",
-                    "interval": "D",
-                    "timezone": "Asia/Bangkok",
-                    "theme": "light",
-                    "style": "1",
-                    "locale": "en",
-                    "enable_publishing": false,
-                    "allow_symbol_change": true,
-                    "calendar": false,
-                    "support_host": "https://www.tradingview.com"
-                }
-                </script>
             </div>
         </div>
 
@@ -665,114 +41,90 @@
             </div>
             <div class="price-widgets-grid">
                 <!-- USA -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="usa">
                     <div class="country-header">
                         <span class="flag">US</span>
                         <span class="country-name">อเมริกา (USA)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FOREXCOM:XAUUSD", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
 
                 <!-- UK -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="uk">
                     <div class="country-header">
                         <span class="flag">GB</span>
                         <span class="country-name">อังกฤษ (UK)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FOREXCOM:XAUGBP", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
 
                 <!-- Europe -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="europe">
                     <div class="country-header">
                         <span class="flag">EU</span>
                         <span class="country-name">ยุโรป (Europe)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FOREXCOM:XAUEUR", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
 
                 <!-- Japan -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="japan">
                     <div class="country-header">
                         <span class="flag">JP</span>
                         <span class="country-name">ญี่ปุ่น (Japan)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FOREXCOM:XAUJPY", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
 
                 <!-- Thailand -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="thailand">
                     <div class="country-header">
                         <span class="flag">TH</span>
                         <span class="country-name">ไทย (Thailand)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "SAXO:XAUTHB", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
 
                 <!-- Hong Kong -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="hongkong">
                     <div class="country-header">
                         <span class="flag">HK</span>
                         <span class="country-name">ฮ่องกง (Hong Kong)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "SAXO:XAUHKD", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
 
                 <!-- China (Shanghai) -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="shanghai">
                     <div class="country-header">
                         <span class="flag">CN</span>
                         <span class="country-name">เซี่ยงไฮ้ (Shanghai)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "SAXO:XAUCNH", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
 
                 <!-- Singapore -->
-                <div class="price-widget-card">
+                <div class="price-widget-card" data-country="singapore">
                     <div class="country-header">
                         <span class="flag">SG</span>
                         <span class="country-name">สิงคโปร์ (Singapore)</span>
                     </div>
                     <div class="tradingview-widget-container tv-widget-item">
                         <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FX_IDC:XAUSGD", "colorTheme": "light", "isTransparent": false, "locale": "en", "width": "100%", "height": 100 }
-                        </script>
                     </div>
                 </div>
             </div>
@@ -781,7 +133,7 @@
         <!-- Market Hours Grid Timeline -->
         <div class="market-hours-container">
             <div class="market-hours-header">
-                <h2>🕐 เวลาเปิด-ปิดตลาดทองคำทั่วโลก (24 ชั่วโมง)</h2>
+                <h2 class="market-hours-title">🕐 เวลาเปิด-ปิดตลาดทองคำทั่วโลก (24 ชั่วโมง)</h2>
             </div>
             <div class="gantt-timeline">
                 <!-- Timeline Header -->
@@ -1162,11 +514,19 @@
                         <span>ความผันผวนต่ำ (ญี่ปุ่น)</span>
                     </div>
                 </div>
+                
+                <!-- Scroll Hint for Mobile -->
+                <div class="scroll-hint">
+                    ← เลื่อนไปทางซ้ายหรือขวาเพื่อดูเวลาทั้งหมด →
+                </div>
             </div>
         </div>
     </div>
 
 <div id="footer-placeholder"></div>
+
+    <!-- Switch Button Placeholder -->
+    <div id="switch-button-placeholder"></div>
 
     <!-- Timeline Details Modal -->
     <div class="timeline-modal" id="timelineModal">
@@ -1195,8 +555,132 @@
     </div>
 
     <script>
+        // Market Symbol Configuration
+        const marketSymbols = {
+            gold: {
+                mainChart: 'FOREXCOM:XAUUSD',
+                usa: 'FOREXCOM:XAUUSD',
+                uk: 'FOREXCOM:XAUGBP',
+                europe: 'FOREXCOM:XAUEUR',
+                japan: 'FOREXCOM:XAUJPY',
+                thailand: 'SAXO:XAUTHB',
+                hongkong: 'SAXO:XAUHKD',
+                shanghai: 'SAXO:XAUCNH',
+                singapore: 'FX_IDC:XAUSGD'
+            },
+            silver: {
+                mainChart: 'OANDA:XAGUSD',
+                usa: 'OANDA:XAGUSD',
+                uk: 'FX_IDC:XAGGBP',
+                europe: 'OANDA:XAGEUR',
+                japan: 'FX_IDC:XAGJPY',
+                thailand: 'FX_IDC:XAGTHB',
+                hongkong: 'OANDA:XAGHKD',
+                shanghai: 'FX_IDC:XAGCNY',
+                singapore: 'FX_IDC:XAGSGD'
+            }
+        };
+
+        // Function to reload a single widget
+        function reloadWidget(container, symbol) {
+            const widgetDiv = container.querySelector('.tradingview-widget-container__widget');
+            if (!widgetDiv) return;
+            
+            // Clear existing widget
+            widgetDiv.innerHTML = '';
+            
+            // Create new script
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js';
+            script.async = true;
+            script.textContent = JSON.stringify({
+                symbol: symbol,
+                colorTheme: "light",
+                isTransparent: false,
+                locale: "en",
+                width: "100%",
+                height: 100
+            });
+            
+            container.appendChild(script);
+        }
+
+        // Function to reload main chart
+        function reloadMainChart(symbol) {
+            const chartContainer = document.querySelector('.chart-container .tradingview-widget-container');
+            if (!chartContainer) return;
+            
+            // Clear existing chart
+            chartContainer.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
+            
+            // Create new script
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+            script.async = true;
+            script.textContent = JSON.stringify({
+                width: "100%",
+                height: 400,
+                autosize: true,
+                symbol: symbol,
+                interval: "D",
+                timezone: "Asia/Bangkok",
+                theme: "light",
+                style: "1",
+                locale: "en",
+                enable_publishing: false,
+                allow_symbol_change: true,
+                calendar: false,
+                support_host: "https://www.tradingview.com"
+            });
+            
+            chartContainer.appendChild(script);
+        }
+
+        // Function to sync all widgets based on current mode
+        function syncAllWidgets() {
+            const mode = localStorage.getItem('tradeSiteMode') || 'gold';
+            const symbols = marketSymbols[mode];
+            
+            // Reload main chart
+            reloadMainChart(symbols.mainChart);
+            
+            // Reload all country widgets using data-country attribute
+            const widgetCards = document.querySelectorAll('.price-widget-card[data-country]');
+            widgetCards.forEach((card) => {
+                const country = card.getAttribute('data-country');
+                const container = card.querySelector('.tradingview-widget-container');
+                if (container && symbols[country]) {
+                    reloadWidget(container, symbols[country]);
+                }
+            });
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Sync widgets based on current mode
+            setTimeout(() => {
+                syncAllWidgets();
+            }, 1000);
+            
+            // Listen for mode changes
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'tradeSiteMode') {
+                    syncAllWidgets();
+                }
+            });
+            
+            // Listen for custom event from switch button
+            window.addEventListener('modeChanged', () => {
+                syncAllWidgets();
+            });
+        });
+
         // Market data
-        const marketData = {
+        
+        // Market data with Silver mode support
+        const marketDataGold = {
             japan: {
                 flag: '🇯🇵',
                 name: 'ญี่ปุ่น (Tokyo)',
@@ -1209,22 +693,7 @@
                     'สภาพคล่องยังไม่สูงมาก เหมาะสำหรับติดตามทิศทางเบื้องต้น',
                     'ค่าเงินเยน (JPY) มีผลต่อราคาทองคำในตลาดญี่ปุ่น',
                     'ข่าวสารเศรษฐกิจในโซนเอเชียแปซิฟิก',
-                    'นโยบายการเงินของธนาคารกลางญี่ปุ่น (BOJ)'
-                ]
-            },
-            china: {
-                flag: '🇨🇳',
-                name: 'เซี่ยงไฮ้ / ฮ่องกง',
-                time: '08:00 - 16:00 น.',
-                volatility: 'ปานกลาง',
-                volatilityClass: 'volatility-medium',
-                peakTime: '09:00 – 10:30 น. และ 13:30 – 14:30 น.',
-                factors: [
-                    'อุปสงค์ทองคำจากจีน (ผู้บริโภครายใหญ่ที่สุดของโลก)',
-                    'ข่าวเศรษฐกิจจีน เช่น GDP, ดัชนีผู้จัดการฝ่ายจัดซื้อ (PMI)',
-                    'เทศกาลสำคัญ เช่น ตรุษจีน, เทศกาลไหว้พระจันทร์',
-                    'นโยบายการค้าและค่าเงินหยวน (CNY)',
-                    'ตลาดทองคำ Shanghai Gold Exchange (SGE)'
+                    'นโยบายการทองคำของธนาคารกลางญี่ปุ่น (BOJ)'
                 ]
             },
             shanghai: {
@@ -1233,7 +702,7 @@
                 time: '08:00 - 14:30 น. และ 19:00 - 01:30 น. (รอบค่ำ)',
                 volatility: 'ปานกลาง',
                 volatilityClass: 'volatility-medium',
-                peakTime: '09:00 – 10:30 น. และ 19:00 – 21:00 น.',
+                peakTime: '08:30 – 11:30 น. และ 20:00 – 23:00 น.',
                 factors: [
                     'ศูนย์กลางทองคำกายภาพรายใหญ่ที่สุดในโลก',
                     'มีรอบค่ำ (19:00 - 01:30 น.) เพิ่มสภาพคล่อง',
@@ -1246,10 +715,10 @@
             hongkong: {
                 flag: '🇭🇰',
                 name: 'ฮ่องกง (CGSE)',
-                time: '08:00 - 16:00 น. (กายภาพ) + 24 ชม. (อิเล็กทรอนิกส์)',
+                time: '07:30 - 15:00 น.',
                 volatility: 'ปานกลาง',
                 volatilityClass: 'volatility-medium',
-                peakTime: '08:00 – 10:00 น., 14:00 – 16:00 น., 19:00 – 23:00 น.',
+                peakTime: '08:00 – 12:00 น.',
                 factors: [
                     'ศูนย์กลางการค้าทองคำสำคัญในเอเชีย เชื่อมต่อราคาโลก',
                     'ศูนย์กลางทองคำเสรี (Chinese Gold & Silver Exchange Society)',
@@ -1262,10 +731,10 @@
             singapore: {
                 flag: '🇸🇬',
                 name: 'สิงคโปร์',
-                time: '08:00 - 16:00 น.',
+                time: '06:00 - 04:00 น. (วันถัดไป)',
                 volatility: 'ปานกลาง',
                 volatilityClass: 'volatility-medium',
-                peakTime: '08:30 – 10:00 น.',
+                peakTime: '08:00 – 16:00 น.',
                 factors: [
                     'ศูนย์กลางการค้าทองคำสำคัญในเอเชีย',
                     'เชื่อมต่อราคาทองคำโลกกับตลาดในภูมิภาค',
@@ -1276,11 +745,11 @@
             },
             thailand: {
                 flag: '🇹🇭',
-                name: 'ไทย (สมาคมค้าทองคำ)',
-                time: '09:20 - 17:00 น.',
+                name: 'ไทย (TFEX)',
+                time: '09:15 / 14:00 / 19:15 - 12:30 / 16:55 / 03:00 น.',
                 volatility: 'ปานกลาง',
                 volatilityClass: 'volatility-medium',
-                peakTime: '09:20 – 11:00 น. และ 14:00 – 16:00 น.',
+                peakTime: '19:15 – 00:00 น. (ตามตลาดสหรัฐฯ)',
                 factors: [
                     'เริ่มประกาศราคาสมาคมค้าทองคำเวลา 09:20 น.',
                     'ปรับเปลี่ยนราคาตามความผันผวนของราคาโลกตลอดวัน',
@@ -1292,28 +761,28 @@
             },
             europe: {
                 flag: '🇪🇺',
-                name: 'ยุโรป (Zurich / Paris / Frankfurt)',
+                name: 'ยุโรป (Zurich / Euronext)',
                 time: '14:00 - 22:00 น.',
                 volatility: 'สูง',
                 volatilityClass: 'volatility-high',
-                peakTime: '14:00 – 16:00 น. และ 19:00 – 22:00 น.',
+                peakTime: '15:00 – 18:00 น.',
                 factors: [
                     'ศูนย์กลางทองคำแท่ง (Swiss Gold) คุณภาพสูงระดับโลก',
                     'นโยบายเงินเฟ้อและดอกเบี้ยของธนาคารกลางยุโรป (ECB)',
                     'ค่าเงินยูโร (EUR) ต่อดอลลาร์สหรัฐฯ',
                     'ข่าวเศรษฐกิจเยอรมนี ฝรั่งเศส และสวิตเซอร์แลนด์',
                     'ตลาดทองคำในซูริก (Zurich) เป็นศูนย์กลางการกลั่นทองคำระดับโลก',
-                    'นโยบายการเงินและการคลังของสหภาพยุโรป',
+                    'นโยบายการทองคำและการคลังของสหภาพยุโรป',
                     'ความไม่แน่นอนทางการเมืองในยุโรป'
                 ]
             },
             london: {
                 flag: '🇬🇧',
                 name: 'ลอนดอน / ยุโรป (LBMA)',
-                time: '14:00 - 23:00 น.',
+                time: '15:00 - 23:00 น.',
                 volatility: 'สูง',
                 volatilityClass: 'volatility-high',
-                peakTime: '15:00 – 16:00 น. (Gold Fixing) และ 19:00 – 22:00 น.',
+                peakTime: '17:00 – 22:00 น. (ช่วงประกาศราคา Benchmark)',
                 factors: [
                     'ลอนดอน (LBMA) เป็นศูนย์กลางที่กำหนดราคากลางโลก',
                     'การกำหนดราคา Gold Fixing ที่ส่งผลต่อตลาดทั่วโลก',
@@ -1325,11 +794,11 @@
             },
             usa: {
                 flag: '🇺🇸',
-                name: 'สหรัฐอเมริกา (New York)',
-                time: '19:00 - 03:00 / 04:00 น. (วันถัดไป)',
+                name: 'สหรัฐอเมริกา (COMEX)',
+                time: '05:00 - 04:00 น. (วันถัดไป)',
                 volatility: 'สูงสุด',
                 volatilityClass: 'volatility-high',
-                peakTime: '19:00 – 23:00 น. (ทับซ้อนกับลอนดอน)',
+                peakTime: '19:20 – 00:30 น. (ช่วงตลาด Open Outcry เดิม)',
                 factors: [
                     'ตลาดที่ผันผวนที่สุด โดยเฉพาะช่วงประกาศข่าวเศรษฐกิจ',
                     'ตัวเลขเศรษฐกิจสหรัฐฯ (CPI, Non-farm Payrolls, GDP, ดัชนีความเชื่อมั่น)',
@@ -1342,9 +811,149 @@
             }
         };
 
+        const marketDataSilver = {
+            japan: {
+                flag: '🇯🇵',
+                name: 'ญี่ปุ่น (Tokyo - TOCOM)',
+                time: '06:45 - 03:45 น. (วันถัดไป)',
+                volatility: 'ต่ำ-กลาง',
+                volatilityClass: 'volatility-low',
+                peakTime: '07:00 – 13:00 น.',
+                factors: [
+                    'ค่าเงินเยน (JPY), ตัวเลขส่งออกรถยนต์ (EV)',
+                    'เงินเยนมักถูกใช้เป็น Safe Haven คู่กับ Silver ในช่วงวิกฤต',
+                    'ตลาดแรกของเอเชียที่เริ่มขยับ',
+                    'สภาพคล่องยังไม่สูงมาก เหมาะสำหรับติดตามทิศทางเบื้องต้น'
+                ]
+            },
+            shanghai: {
+                flag: '🇨🇳',
+                name: 'เซี่ยงไฮ้ (SGE / SHFE)',
+                time: '08:00 / 19:00 - 14:30 / 01:30 น.',
+                volatility: 'กลาง-สูง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '08:30 – 11:30 น. และ 20:00 – 23:00 น.',
+                factors: [
+                    'ดัชนีภาคการผลิต (PMI), นโยบายพลังงานสะอาด (แผงโซลาร์เซลล์), การอุปโภคภายใน',
+                    'จีนคือผู้บริโภค Silver ในอุตสาหกรรมรายใหญ่ที่สุดของโลก',
+                    'มีรอบค่ำ (19:00 - 01:30 น.) เพิ่มสภาพคล่อง',
+                    'ตลาดแลกเปลี่ยนหลักของจีน ยึดตามเวลาทำการที่แน่นอน'
+                ]
+            },
+            hongkong: {
+                flag: '🇭🇰',
+                name: 'ฮ่องกง (CGSE / HKEX)',
+                time: '07:30 - 15:00 น.',
+                volatility: 'ปานกลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '08:00 – 12:00 น.',
+                factors: [
+                    'ศูนย์กลางการค้า Silver สำคัญในเอเชีย',
+                    'เชื่อมต่อราคาโลกกับตลาดในภูมิภาค',
+                    'จุดเชื่อมระหว่างตลาดเอเชียกับตลาดตะวันตก',
+                    'ค่าเงินดอลลาร์ฮ่องกง (HKD)'
+                ]
+            },
+            singapore: {
+                flag: '🇸🇬',
+                name: 'สิงคโปร์ (SGX)',
+                time: '06:00 - 04:00 น. (วันถัดไป)',
+                volatility: 'ปานกลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '08:00 – 16:00 น.',
+                factors: [
+                    'ศูนย์กลางการค้า Silver สำคัญในเอเชีย',
+                    'เชื่อมต่อราคา Silver โลกกับตลาดในภูมิภาค',
+                    'การซื้อขาย Silver ในตลาดเอเชียตะวันออกเฉียงใต้',
+                    'ค่าเงินดอลลาร์สิงคโปร์ (SGD)'
+                ]
+            },
+            thailand: {
+                flag: '🇹🇭',
+                name: 'ไทย (TFEX - Silver Online)',
+                time: '09:15 / 14:00 / 19:15 - 12:30 / 16:55 / 03:00 น.',
+                volatility: 'กลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: '19:15 – 00:00 น. (ตามตลาดสหรัฐฯ)',
+                factors: [
+                    'ค่าเงินบาท (USD/THB), นโยบายนำเข้า-ส่งออกทองและเงิน',
+                    'มีผลต่อราคาขายปลีกในไทย (บาทอ่อน = Silver ไทยแพงขึ้น)',
+                    'ปรับเปลี่ยนราคาตามความผันผวนของราคาโลกตลอดวัน',
+                    'ราคา Silver โลก (XAGUSD)'
+                ]
+            },
+            europe: {
+                flag: '🇪🇺',
+                name: 'ยุโรป (Zurich / Euronext)',
+                time: '14:00 - 22:00 น.',
+                volatility: 'สูง',
+                volatilityClass: 'volatility-high',
+                peakTime: '15:00 – 18:00 น.',
+                factors: [
+                    'การประกาศราคา Silver Fixing ของลอนดอน, สงครามในยูเครน, ค่าเงินยูโร/ปอนด์',
+                    'นโยบายเงินเฟ้อและดอกเบี้ยของธนาคารกลางยุโรป (ECB)',
+                    'ข่าวเศรษฐกิจเยอรมนี ฝรั่งเศส และสวิตเซอร์แลนด์',
+                    'ความไม่แน่นอนทางการเมืองในยุโรป'
+                ]
+            },
+            london: {
+                flag: '🇬🇧',
+                name: 'ลอนดอน (LBMA / LME)',
+                time: '15:00 - 23:00 น.',
+                volatility: 'สูง',
+                volatilityClass: 'volatility-high',
+                peakTime: '17:00 – 22:00 น. (ช่วงประกาศราคา Benchmark)',
+                factors: [
+                    'การประกาศราคา Silver Fixing ของลอนดอน, สงครามในยูเครน, ค่าเงินยูโร/ปอนด์',
+                    'ลอนดอนเป็นศูนย์กลางการเก็บสต็อก Silver กายภาพที่ใหญ่ที่สุด',
+                    'การกำหนดราคา Silver Fixing ที่ส่งผลต่อตลาดทั่วโลก',
+                    'การทับซ้อนกับตลาดนิวยอร์ก (19:00-23:00 น.) ทำให้ผันผวนสูง',
+                    'ข่าวเศรษฐกิจยุโรปและอังกฤษ'
+                ]
+            },
+            usa: {
+                flag: '🇺🇸',
+                name: 'สหรัฐอเมริกา (COMEX)',
+                time: '05:00 - 04:00 น. (วันถัดไป)',
+                volatility: 'สูงมาก',
+                volatilityClass: 'volatility-high',
+                peakTime: '19:20 – 00:30 น. (ช่วงตลาด Open Outcry เดิม)',
+                factors: [
+                    'ตัวเลขการจ้างงาน (Non-farm), อัตราดอกเบี้ย Fed, ดัชนีเงินดอลลาร์ (DXY)',
+                    'เป็นศูนย์กลางกำหนดราคาสากลและกระแสเงินทุนหลัก',
+                    'ตัวเลขเศรษฐกิจสหรัฐฯ มีผลกระทบทันที',
+                    'ตลาดหุ้นสหรัฐฯและความเสี่ยงโลก (Risk-off/Risk-on)',
+                    'ข่าวภูมิรัฐศาสตร์และความตึงเครียดระหว่างประเทศ'
+                ]
+            },
+            india: {
+                flag: '🇮🇳',
+                name: 'อินเดีย',
+                time: 'ตามตลาดโลก',
+                volatility: 'กลาง',
+                volatilityClass: 'volatility-medium',
+                peakTime: 'ช่วงเทศกาล',
+                factors: [
+                    'เทศกาลดิวาลี (Diwali), ภาษีนำเข้าโลหะมีค่า',
+                    'อินเดียเป็นผู้นำเข้า Silver รายใหญ่ของโลก (กระทบ Demand รวม)',
+                    'อุปสงค์จากเทศกาลและงานแต่งงาน',
+                    'นโยบายการนำเข้าของรัฐบาล'
+                ]
+            }
+        };
+
+        // Get current market data based on mode
+        function getCurrentMarketData() {
+            const mode = localStorage.getItem('tradeSiteMode') || 'gold';
+            return mode === 'silver' ? marketDataSilver : marketDataGold;
+        }
+
+        const marketData = getCurrentMarketData();
+
+
         // Open modal function
         function openTimelineModal(market) {
-            const data = marketData[market];
+            const data = getCurrentMarketData()[market];
             if (!data) return;
 
             document.getElementById('modalFlag').textContent = data.flag;
@@ -1425,6 +1034,14 @@
                     document.getElementById('footer-placeholder').appendChild(footerContent);
                 }
                 
+                
+                // ดึง Switch Button Template
+                const switchButtonTemplate = doc.getElementById('switch-button-template');
+                if (switchButtonTemplate) {
+                    const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+                    document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
+                    console.log('✅ Switch button loaded!');
+                }
                 // ดึง Styles
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
@@ -1444,6 +1061,59 @@
                     window.sharedScriptLoaded = true;
                     console.log('✅ Shared components script loaded!');
                 }
+                
+                // ฟังก์ชันสลับคำตาม Mode
+                setTimeout(() => {
+                    function updateTextByMode() {
+                        const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+                        
+                        // สลับคำในเนื้อหา
+                        const textReplacements = {
+                            'ทองคำ': isSilverMode ? 'เงิน' : 'ทองคำ',
+                            'ทอง': isSilverMode ? 'เงิน' : 'ทอง',
+                            'Gold': isSilverMode ? 'Silver' : 'Gold'
+                        };
+                        
+                        // หาและแทนที่ข้อความ
+                        function replaceText(element) {
+                            if (element.nodeType === Node.TEXT_NODE) {
+                                let text = element.textContent;
+                                let modified = false;
+                                
+                                for (const [oldText, newText] of Object.entries(textReplacements)) {
+                                    if (text.includes(oldText)) {
+                                        text = text.replace(new RegExp(oldText, 'g'), newText);
+                                        modified = true;
+                                    }
+                                }
+                                
+                                if (modified) {
+                                    element.textContent = text;
+                                }
+                            } else if (element.nodeType === Node.ELEMENT_NODE && 
+                                       element.tagName !== 'SCRIPT' && 
+                                       element.tagName !== 'STYLE' &&
+                                       !element.classList.contains('no-translate')) {
+                                for (const child of element.childNodes) {
+                                    replaceText(child);
+                                }
+                            }
+                        }
+                        
+                        const mainContent = document.body;
+                        if (mainContent) {
+                            replaceText(mainContent);
+                        }
+                        
+                        console.log(`✅ Market page text updated to ${isSilverMode ? 'Silver' : 'Gold'} mode`);
+                    }
+                    
+                    updateTextByMode();
+                    
+                    window.addEventListener('modeChanged', () => {
+                        updateTextByMode();
+                    });
+                }, 600);
             })
             .catch(error => console.error('Error loading components:', error));
     </script>

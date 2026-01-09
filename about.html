@@ -6,202 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>เกี่ยวกับเรา - Trade Gold</title>
     <link rel="icon" type="image/png" href="image/logo.png">
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --gold-primary: #EDBF43;
-            --gold-light: #FFD700;
-            --gold-dark: #B8860B;
-            --navy: #1E3A8A;
-            --navy-medium: #1E40AF;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray-medium: #e9ecef;
-            --text-dark: #2c3e50;
-            --sky-blue: #87CEEB;
-            --sky-light: #A3DFF8;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-@keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(212,175,55,0); }
-        }
-
-        /* Hero Section */
-        .hero-section {
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-section h1 {
-            font-family: 'Kanit', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            margin-top: 1rem;
-            color: var(--navy);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0rem 2rem;
-        }
-
-        /* Story Section */
-        .story-section {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 4rem;
-            margin-bottom: 5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .story-content h2 {
-            font-size: 2.5rem;
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .story-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Values Section */
-        .values-section {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 4rem;
-            margin-bottom: 5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .values-section h2 {
-            font-size: 2.5rem;
-            color: var(--navy);
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-        }
-
-        .value-item {
-            text-align: center;
-        }
-
-        .value-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .value-item h3 {
-            font-size: 1.5rem;
-            color: var(--navy);
-            margin-bottom: 1rem;
-        }
-
-        .value-item p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 5rem;
-        }
-
-        .stat-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gold-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-/* Responsive */
-        @media (max-width: 1200px) {
-
-}
-
-        @media (max-width: 768px) {
-
-.hero-section h1 {
-                font-size: 2rem;
-            }
-
-.story-content h2,
-            .values-section h2,
-            .team-section h2 {
-                font-size: 2rem;
-            }
-
-            .values-section {
-                padding: 2rem;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .story-section,
-        .values-section,
-        .stat-card {
-            animation: fadeInUp 0.8s ease-out;
-        }
-    </style>
+    <style>:root{--gold-primary:#EDBF43;--gold-light:#FFD700;--gold-dark:#B8860B;--navy:#1E3A8A;--navy-medium:#1E40AF;--white:#ffffff;--gray-light:#f8f9fa;--gray-medium:#e9ecef;--text-dark:#2c3e50;--sky-blue:#87CEEB;--sky-light:#A3DFF8;--shadow:0 10px 30px rgba(0,0,0,0.1)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Kanit',sans-serif;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);color:var(--text-dark);line-height:1.6}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,0.7)}50%{box-shadow:0 0 0 10px rgba(212,175,55,0)}}.hero-section{text-align:center;color:var(--white)}.hero-section h1{font-family:'Kanit',serif;font-size:3.5rem;margin-bottom:1rem;margin-top:1rem;color:var(--navy)}.container{max-width:1120px;margin:0 auto;padding:0rem 2rem}.story-section{background:var(--white);border-radius:20px;padding:4rem;margin-bottom:5rem;box-shadow:0 4px 20px rgba(0,0,0,0.08)}.story-content h2{font-size:2.5rem;color:var(--navy);margin-bottom:1.5rem;text-align:center}.story-content p{font-size:1.1rem;line-height:1.8;color:#666;margin-bottom:1.5rem}.values-section{background:var(--white);border-radius:20px;padding:4rem;margin-bottom:5rem;box-shadow:0 4px 20px rgba(0,0,0,0.08)}.values-section h2{font-size:2.5rem;color:var(--navy);text-align:center;margin-bottom:3rem}.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3rem}.value-item{text-align:center}.value-icon{font-size:4rem;margin-bottom:1rem}.value-item h3{font-size:1.5rem;color:var(--navy);margin-bottom:1rem}.value-item p{color:#666;line-height:1.8}.stats-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-bottom:5rem}.stat-card{background:var(--white);border-radius:15px;padding:3rem 2rem;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,0.08);transition:all 0.3s}.stat-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,0.15)}.stat-number{font-size:3rem;font-weight:700;color:var(--gold-primary);margin-bottom:0.5rem}.stat-label{font-size:1.1rem;color:#666}@media (max-width:1200px){}@media (max-width:768px){.hero-section h1{font-size:2rem}.story-content h2,.values-section h2,.team-section h2{font-size:2rem}.values-section{padding:2rem}}@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}.story-section,.values-section,.stat-card{animation:fadeInUp 0.8s ease-out}</style>
 
 </head>
 <body>
@@ -253,6 +63,9 @@
     </div>
 
     <div id="footer-placeholder"></div>
+
+    <!-- Switch Button Placeholder -->
+    <div id="switch-button-placeholder"></div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Smooth scroll
@@ -340,6 +153,14 @@
                     document.getElementById('footer-placeholder').appendChild(footerContent);
                 }
                 
+                
+                // ดึง Switch Button Template
+                const switchButtonTemplate = doc.getElementById('switch-button-template');
+                if (switchButtonTemplate) {
+                    const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+                    document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
+                    console.log('✅ Switch button loaded!');
+                }
                 // ดึง Styles
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
@@ -362,6 +183,57 @@
                     window.sharedScriptLoaded = true;
                     console.log('✅ Shared components script loaded!');
                 }
+                
+                // ฟังก์ชันสลับคำตาม Mode
+                setTimeout(() => {
+                    function updateTextByMode() {
+                        const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+                        
+                        const textReplacements = {
+                            'ทองคำ': isSilverMode ? 'เงิน' : 'ทองคำ',
+                            'ทอง': isSilverMode ? 'เงิน' : 'ทอง',
+                            'Gold': isSilverMode ? 'Silver' : 'Gold'
+                        };
+                        
+                        function replaceText(element) {
+                            if (element.nodeType === Node.TEXT_NODE) {
+                                let text = element.textContent;
+                                let modified = false;
+                                
+                                for (const [oldText, newText] of Object.entries(textReplacements)) {
+                                    if (text.includes(oldText)) {
+                                        text = text.replace(new RegExp(oldText, 'g'), newText);
+                                        modified = true;
+                                    }
+                                }
+                                
+                                if (modified) {
+                                    element.textContent = text;
+                                }
+                            } else if (element.nodeType === Node.ELEMENT_NODE && 
+                                       element.tagName !== 'SCRIPT' && 
+                                       element.tagName !== 'STYLE' &&
+                                       !element.classList.contains('no-translate')) {
+                                for (const child of element.childNodes) {
+                                    replaceText(child);
+                                }
+                            }
+                        }
+                        
+                        const mainContent = document.body;
+                        if (mainContent) {
+                            replaceText(mainContent);
+                        }
+                        
+                        console.log(`✅ About page text updated to ${isSilverMode ? 'Silver' : 'Gold'} mode`);
+                    }
+                    
+                    updateTextByMode();
+                    
+                    window.addEventListener('modeChanged', () => {
+                        updateTextByMode();
+                    });
+                }, 600);
             })
             .catch(error => console.error('Error loading components:', error));
     </script>

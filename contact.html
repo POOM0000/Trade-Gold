@@ -6,149 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Contact - Trade Gold</title>
     <link rel="icon" type="image/png" href="image/logo.png">
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold-primary: #EDBF43;
-            --gold-light: #FFD700;
-            --gold-dark: #B8860B;
-            --navy: #1E3A8A;
-            --navy-dark: #172d69;
-            --navy-medium: #1E40AF;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray-medium: #e9ecef;
-            --text-dark: #2c3e50;
-            --sky-blue: #87CEEB;
-            --sky-light: #A3DFF8;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(180deg, var(--sky-light) 0%, var(--white) 100%);
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-/* Contact Container */
-        .contact-container {
-            max-width: 900px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .contact-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .contact-content {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--shadow);
-        }
-
-        .contact-info {
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-info p {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .contact-info a {
-            color: var(--navy);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .contact-info a:hover {
-            color: var(--gold-primary);
-        }
-
-        .line-account {
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .phone-numbers {
-            color: var(--navy);
-            font-weight: 500;
-        }
-
-        .qr-code-section {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--gray-medium);
-        }
-
-        .qr-code-wrapper {
-            display: inline-block;
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .qr-code-wrapper img {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .qr-placeholder {
-            width: 300px;
-            height: 300px;
-            background: var(--gray-light);
-            border: 3px dashed var(--gray-medium);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: #999;
-            text-align: center;
-        }
-
-/* Responsive */
-        @media (max-width: 768px) {
-            .contact-title {
-                font-size: 2rem;
-            }
-
-            .contact-content {
-                padding: 2rem;
-            }
-
-            .contact-info p {
-                font-size: 1rem;
-            }
-
-            .qr-placeholder,
-            .qr-code-wrapper img {
-                max-width: 250px;
-            }
-
-}
-    </style>
+    <style>:root{--gold-primary:#EDBF43;--gold-light:#FFD700;--gold-dark:#B8860B;--navy:#1E3A8A;--navy-dark:#172d69;--navy-medium:#1E40AF;--white:#ffffff;--gray-light:#f8f9fa;--gray-medium:#e9ecef;--text-dark:#2c3e50;--sky-blue:#87CEEB;--sky-light:#A3DFF8;--shadow:0 10px 30px rgba(0,0,0,0.1)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Kanit',sans-serif;background:linear-gradient(180deg,var(--sky-light) 0%,var(--white) 100%);color:var(--text-dark);line-height:1.6;min-height:100vh}.contact-container{max-width:900px;margin:4rem auto;padding:0 2rem}.contact-title{font-size:3rem;font-weight:700;color:var(--navy);margin-bottom:3rem;text-align:center}.contact-content{background:var(--white);border-radius:20px;padding:3rem;box-shadow:var(--shadow)}.contact-info{margin-bottom:2.5rem}.contact-info p{font-size:1.2rem;color:var(--text-dark);margin-bottom:1rem;line-height:1.8}.contact-info a{color:var(--navy);text-decoration:none;font-weight:600;transition:color 0.3s}.contact-info a:hover{color:var(--gold-primary)}.line-account{font-weight:600;color:var(--navy)}.phone-numbers{color:var(--navy);font-weight:500}.qr-code-section{text-align:center;margin-top:3rem;padding-top:2rem;border-top:2px solid var(--gray-medium)}.qr-code-wrapper{display:inline-block;padding:2rem;background:var(--white);border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1)}.qr-code-wrapper img{max-width:300px;width:100%;height:auto;display:block}.qr-placeholder{width:300px;height:300px;background:var(--gray-light);border:3px dashed var(--gray-medium);border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#999;text-align:center}@media (max-width:768px){.contact-title{font-size:2rem}.contact-content{padding:2rem}.contact-info p{font-size:1rem}.qr-placeholder,.qr-code-wrapper img{max-width:250px}}</style>
 </head>
 <body>
     <!-- Header -->
@@ -168,14 +30,14 @@
                 
                 <p>
                     <strong>เบอร์ติดต่อ:</strong> 
-                    <span class="phone-numbers">02-088-9181, 02-088-9185</span>
+                    <span class="phone-numbers">02-xxx-xxxx, 02-xxx-xxxx</span>
                 </p>
             </div>
 
             <div class="qr-code-section">
                 <div class="qr-code-wrapper">
                     <div class="qr-placeholder">
-                        <img src="Image/qr-code.png" alt="LINE QR Code">
+                        <img loading="lazy" src="Image/qr-code.png" alt="LINE QR Code">
                     </div>
                 </div>
             </div>
@@ -184,25 +46,28 @@
 
     <div id="footer-placeholder"></div>
 
+    <!-- Switch Button Placeholder -->
+    <div id="switch-button-placeholder"></div>
+
 <!-- Load Shared Components Script -->
     <script>
-        // Apps Script URL สำหรับดึงข้อมูลบทความ (สำหรับ Search Bar)
+        // Apps Script URL à¸ªà¸³à¸«à¸£à¸±à¸šà¸”à¸¶à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸šà¸—à¸„à¸§à¸²à¸¡ (à¸ªà¸³à¸«à¸£à¸±à¸š Search Bar)
         window.GUIDE_API_URL = 'https://script.google.com/macros/s/AKfycbzTIMUcEl49nXGRMQk_L_TI1XFD28gUNyMt0IXKVWnDiPnV5GorIEEPMswp-Gsv0r1Bhw/exec';
         
-        // โหลด Navbar และ Footer
+        // à¹‚à¸«à¸¥à¸” Navbar à¹à¸¥à¸° Footer
         fetch('index.html')
             .then(response => response.text())
             .then(html => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 
-                // ดึง Navbar Template
+                // à¸”à¸¶à¸‡ Navbar Template
                 const navbarTemplate = doc.getElementById('navbar-template');
                 if (navbarTemplate) {
                     const navbarContent = navbarTemplate.content.cloneNode(true);
                     document.getElementById('navbar-placeholder').appendChild(navbarContent);
                     
-                    // เพิ่ม active class
+                    // à¹€à¸žà¸´à¹ˆà¸¡ active class
                     const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
                     const navLinks = document.querySelectorAll('.nav-menu a');
                     navLinks.forEach(link => {
@@ -213,14 +78,22 @@
                     });
                 }
                 
-                // ดึง Footer Template
+                // à¸”à¸¶à¸‡ Footer Template
                 const footerTemplate = doc.getElementById('footer-template');
                 if (footerTemplate) {
                     const footerContent = footerTemplate.content.cloneNode(true);
                     document.getElementById('footer-placeholder').appendChild(footerContent);
                 }
                 
-                // ดึง Styles
+                
+                // à¸”à¸¶à¸‡ Switch Button Template
+                const switchButtonTemplate = doc.getElementById('switch-button-template');
+                if (switchButtonTemplate) {
+                    const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
+                    document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
+                    console.log('âœ… Switch button loaded!');
+                }
+                // à¸”à¸¶à¸‡ Styles
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
                     const styleElement = document.createElement('style');
@@ -229,7 +102,7 @@
                     document.head.appendChild(styleElement);
                 }
                 
-                // ดึงและรัน Shared Components Script
+                // à¸”à¸¶à¸‡à¹à¸¥à¸°à¸£à¸±à¸™ Shared Components Script
                 const sharedScript = doc.getElementById('shared-components-script');
                 if (sharedScript && !window.sharedScriptLoaded) {
                     console.log('Loading shared components script...');
@@ -237,9 +110,60 @@
                     scriptElement.textContent = sharedScript.textContent;
                     document.body.appendChild(scriptElement);
                     window.sharedScriptLoaded = true;
-                    console.log('✅ Shared components script loaded!');
+                    console.log('âœ… Shared components script loaded!');
                 }
             })
+                
+                // ฟังก์ชันสลับคำตาม Mode
+                setTimeout(() => {
+                    function updateTextByMode() {
+                        const isSilverMode = localStorage.getItem('tradeSiteMode') === 'silver';
+                        
+                        const textReplacements = {
+                            'ทองคำ': isSilverMode ? 'เงิน' : 'ทองคำ',
+                            'ทอง': isSilverMode ? 'เงิน' : 'ทอง',
+                            'Gold': isSilverMode ? 'Silver' : 'Gold'
+                        };
+                        
+                        function replaceText(element) {
+                            if (element.nodeType === Node.TEXT_NODE) {
+                                let text = element.textContent;
+                                let modified = false;
+                                
+                                for (const [oldText, newText] of Object.entries(textReplacements)) {
+                                    if (text.includes(oldText)) {
+                                        text = text.replace(new RegExp(oldText, 'g'), newText);
+                                        modified = true;
+                                    }
+                                }
+                                
+                                if (modified) {
+                                    element.textContent = text;
+                                }
+                            } else if (element.nodeType === Node.ELEMENT_NODE && 
+                                       element.tagName !== 'SCRIPT' && 
+                                       element.tagName !== 'STYLE' &&
+                                       !element.classList.contains('no-translate')) {
+                                for (const child of element.childNodes) {
+                                    replaceText(child);
+                                }
+                            }
+                        }
+                        
+                        const mainContent = document.body;
+                        if (mainContent) {
+                            replaceText(mainContent);
+                        }
+                        
+                        console.log(`✅ Contact page text updated to ${isSilverMode ? 'Silver' : 'Gold'} mode`);
+                    }
+                    
+                    updateTextByMode();
+                    
+                    window.addEventListener('modeChanged', () => {
+                        updateTextByMode();
+                    });
+                }, 600);
             .catch(error => console.error('Error loading components:', error));
     </script>
 
