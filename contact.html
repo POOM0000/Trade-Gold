@@ -30,15 +30,13 @@
                 
                 <p>
                     <strong>เบอร์ติดต่อ:</strong> 
-                    <span class="phone-numbers">02-xxx-xxxx, 02-xxx-xxxx</span>
+                    <span class="phone-numbers">02-088-9181, 02-088-9185</span>
                 </p>
             </div>
 
             <div class="qr-code-section">
                 <div class="qr-code-wrapper">
-                    <div class="qr-placeholder">
-                        <img loading="lazy" src="Image/qr-code.png" alt="LINE QR Code">
-                    </div>
+                    <img loading="lazy" src="Image/qr-code.png" alt="LINE QR Code">
                 </div>
             </div>
         </div>
@@ -51,23 +49,23 @@
 
 <!-- Load Shared Components Script -->
     <script>
-        // Apps Script URL à¸ªà¸³à¸«à¸£à¸±à¸šà¸”à¸¶à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸šà¸—à¸„à¸§à¸²à¸¡ (à¸ªà¸³à¸«à¸£à¸±à¸š Search Bar)
+        // Apps Script URL สำหรับดึงข้อมูลคำศัพท์ (สำหรับ Search Bar)
         window.GUIDE_API_URL = 'https://script.google.com/macros/s/AKfycbzTIMUcEl49nXGRMQk_L_TI1XFD28gUNyMt0IXKVWnDiPnV5GorIEEPMswp-Gsv0r1Bhw/exec';
         
-        // à¹‚à¸«à¸¥à¸” Navbar à¹à¸¥à¸° Footer
+        // โหลด Navbar และ Footer
         fetch('index.html')
             .then(response => response.text())
             .then(html => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 
-                // à¸”à¸¶à¸‡ Navbar Template
+                // ดึง Navbar Template
                 const navbarTemplate = doc.getElementById('navbar-template');
                 if (navbarTemplate) {
                     const navbarContent = navbarTemplate.content.cloneNode(true);
                     document.getElementById('navbar-placeholder').appendChild(navbarContent);
                     
-                    // à¹€à¸žà¸´à¹ˆà¸¡ active class
+                    // เพิ่ม active class
                     const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
                     const navLinks = document.querySelectorAll('.nav-menu a');
                     navLinks.forEach(link => {
@@ -78,22 +76,22 @@
                     });
                 }
                 
-                // à¸”à¸¶à¸‡ Footer Template
+                // ดึง Footer Template
                 const footerTemplate = doc.getElementById('footer-template');
                 if (footerTemplate) {
                     const footerContent = footerTemplate.content.cloneNode(true);
                     document.getElementById('footer-placeholder').appendChild(footerContent);
                 }
                 
-                
-                // à¸”à¸¶à¸‡ Switch Button Template
+                // ดึง Switch Button Template
                 const switchButtonTemplate = doc.getElementById('switch-button-template');
                 if (switchButtonTemplate) {
                     const switchButtonContent = switchButtonTemplate.content.cloneNode(true);
                     document.getElementById('switch-button-placeholder').appendChild(switchButtonContent);
-                    console.log('âœ… Switch button loaded!');
+                    console.log('✅ Switch button loaded!');
                 }
-                // à¸”à¸¶à¸‡ Styles
+                
+                // ดึง Styles
                 const sharedStyles = doc.getElementById('shared-styles');
                 if (sharedStyles && !document.getElementById('shared-styles-injected')) {
                     const styleElement = document.createElement('style');
@@ -102,7 +100,7 @@
                     document.head.appendChild(styleElement);
                 }
                 
-                // à¸”à¸¶à¸‡à¹à¸¥à¸°à¸£à¸±à¸™ Shared Components Script
+                // ดึงและรัน Shared Components Script
                 const sharedScript = doc.getElementById('shared-components-script');
                 if (sharedScript && !window.sharedScriptLoaded) {
                     console.log('Loading shared components script...');
@@ -110,9 +108,8 @@
                     scriptElement.textContent = sharedScript.textContent;
                     document.body.appendChild(scriptElement);
                     window.sharedScriptLoaded = true;
-                    console.log('âœ… Shared components script loaded!');
+                    console.log('✅ Shared components script loaded!');
                 }
-            })
                 
                 // ฟังก์ชันสลับคำตาม Mode
                 setTimeout(() => {
@@ -164,6 +161,7 @@
                         updateTextByMode();
                     });
                 }, 600);
+            })
             .catch(error => console.error('Error loading components:', error));
     </script>
 
