@@ -947,6 +947,11 @@
 
     // เรียกใช้ Theme ทันทีเมื่อโหลดหน้า
     function initializeTheme() {
+      // เซ็ต default mode เป็น gold ถ้ายังไม่เคยเซ็ต
+      if (!localStorage.getItem('tradeSiteMode')) {
+        localStorage.setItem('tradeSiteMode', 'gold');
+        console.log('✅ Default mode set to Gold');
+      }
       applyTheme();
     }
 
